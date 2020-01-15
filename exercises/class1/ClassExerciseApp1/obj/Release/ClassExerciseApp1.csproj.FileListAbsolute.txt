@@ -1,0 +1,9 @@
+C:\Users\Gustavo\Conestoga\net\PROG1815\exercises\class1\ClassExerciseApp1\bin\Release\ClassExerciseApp1.exe.config
+C:\Users\Gustavo\Conestoga\net\PROG1815\exercises\class1\ClassExerciseApp1\bin\Release\ClassExerciseApp1.exe
+C:\Users\Gustavo\Conestoga\net\PROG1815\exercises\class1\ClassExerciseApp1\bin\Release\ClassExerciseApp1.pdb
+C:\Users\Gustavo\Conestoga\net\PROG1815\exercises\class1\ClassExerciseApp1\obj\Release\ClassExerciseApp1.csprojAssemblyReference.cache
+C:\Users\Gustavo\Conestoga\net\PROG1815\exercises\class1\ClassExerciseApp1\obj\Release\ClassExerciseApp1.InvestmentCalculator.resources
+C:\Users\Gustavo\Conestoga\net\PROG1815\exercises\class1\ClassExerciseApp1\obj\Release\ClassExerciseApp1.Properties.Resources.resources
+C:\Users\Gustavo\Conestoga\net\PROG1815\exercises\class1\ClassExerciseApp1\obj\Release\ClassExerciseApp1.csproj.GenerateResource.cache
+C:\Users\Gustavo\Conestoga\net\PROG1815\exercises\class1\ClassExerciseApp1\obj\Release\ClassExerciseApp1.exe
+C:\Users\Gustavo\Conestoga\net\PROG1815\exercises\class1\ClassExerciseApp1\obj\Release\ClassExerciseApp1.pdb

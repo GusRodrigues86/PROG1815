@@ -27,6 +27,13 @@ namespace ClassExerciseApp1
             Close();
         }
 
+        // load state of the app
+        private void InvestmentCalculator_Load(object sender, EventArgs e)
+        {
+
+            lblMessages.Text = String.Empty;
+        }
+
         /// <summary>
         /// Calculate the form accordingly to the selected type
         /// </summary>
@@ -34,11 +41,39 @@ namespace ClassExerciseApp1
         /// <param name="e"></param>
         private void btnCalculate_Click(object sender, EventArgs e)
         {
+            // initializing variables
+            int years = 0;
+            double interest =0, futureValue = 0, deposit = 0;
+
             // transforms text into string even if nulls.
             txtMonthlyDeposit.Text += "";
             txtAnnualInterest.Text += "";
             txtMonthlyDeposit.Text += "";
-            txtYears.Text = "";
+            txtYears.Text += "";
+
+            // convert year string to int
+            try
+            {
+                years = Convert.ToInt32(txtYears.Text);
+            }
+            catch (Exception)
+            {
+                lblMessages.Text += "Years needs to be an integer\n";
+            }
+            // convert interest string to int
+            try
+            {
+                interest = Convert.ToDouble(txtAnnualInterest.Text);
+
+                if (interest < 0 || interest > 10)
+                {
+                    lblMessages.Text += "Interest must be between 0 and 10\n";
+                }
+            }
+            catch (Exception)
+            {
+                lblMessages.Text += "Interest needs to be an integer\n";
+            }
 
             if (radFutureValue.Checked)
             {
@@ -49,5 +84,7 @@ namespace ClassExerciseApp1
                 // monthly investment calculation
             }
         }
+
+        
     }
 }

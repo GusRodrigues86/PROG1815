@@ -41,6 +41,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtFutureValue = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.lblMessages = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,10 +49,11 @@
             // 
             this.radFutureValue.AutoSize = true;
             this.radFutureValue.Checked = true;
+            this.radFutureValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radFutureValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.radFutureValue.Location = new System.Drawing.Point(6, 52);
+            this.radFutureValue.Location = new System.Drawing.Point(20, 39);
             this.radFutureValue.Name = "radFutureValue";
-            this.radFutureValue.Size = new System.Drawing.Size(119, 24);
+            this.radFutureValue.Size = new System.Drawing.Size(107, 21);
             this.radFutureValue.TabIndex = 0;
             this.radFutureValue.TabStop = true;
             this.radFutureValue.Text = "Future Value";
@@ -88,7 +90,7 @@
             this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(305, 100);
+            this.groupBox1.Size = new System.Drawing.Size(309, 77);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Calculate";
@@ -96,10 +98,11 @@
             // radMonthlyInvestment
             // 
             this.radMonthlyInvestment.AutoSize = true;
+            this.radMonthlyInvestment.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radMonthlyInvestment.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.radMonthlyInvestment.Location = new System.Drawing.Point(131, 52);
+            this.radMonthlyInvestment.Location = new System.Drawing.Point(145, 39);
             this.radMonthlyInvestment.Name = "radMonthlyInvestment";
-            this.radMonthlyInvestment.Size = new System.Drawing.Size(165, 24);
+            this.radMonthlyInvestment.Size = new System.Drawing.Size(147, 21);
             this.radMonthlyInvestment.TabIndex = 1;
             this.radMonthlyInvestment.Text = "Monthly Investment";
             this.radMonthlyInvestment.UseVisualStyleBackColor = false;
@@ -184,12 +187,24 @@
             this.label4.TabIndex = 10;
             this.label4.Text = "Future Value";
             // 
+            // lblMessages
+            // 
+            this.lblMessages.AutoSize = true;
+            this.lblMessages.ForeColor = System.Drawing.Color.Red;
+            this.lblMessages.Location = new System.Drawing.Point(15, 283);
+            this.lblMessages.Name = "lblMessages";
+            this.lblMessages.Size = new System.Drawing.Size(16, 13);
+            this.lblMessages.TabIndex = 12;
+            this.lblMessages.Text = "...";
+            // 
             // InvestmentCalculator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Menu;
-            this.ClientSize = new System.Drawing.Size(340, 450);
+            this.ClientSize = new System.Drawing.Size(333, 481);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.lblMessages);
             this.Controls.Add(this.txtFutureValue);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtYears);
@@ -198,11 +213,11 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtMonthlyDeposit);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnCalculate);
             this.Name = "InvestmentCalculator";
             this.Text = "Investment Calculator";
+            this.Load += new System.EventHandler(this.InvestmentCalculator_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -225,5 +240,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtFutureValue;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblMessages;
     }
 }
