@@ -169,12 +169,15 @@
             // 
             // txtFutureValue
             // 
+            this.txtFutureValue.BackColor = System.Drawing.SystemColors.Window;
             this.txtFutureValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtFutureValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtFutureValue.Location = new System.Drawing.Point(133, 202);
             this.txtFutureValue.Name = "txtFutureValue";
+            this.txtFutureValue.ReadOnly = true;
             this.txtFutureValue.Size = new System.Drawing.Size(174, 23);
             this.txtFutureValue.TabIndex = 11;
+            this.txtFutureValue.Text = "$";
             // 
             // label4
             // 
@@ -199,6 +202,7 @@
             // 
             // InvestmentCalculator
             // 
+            this.AcceptButton = this.btnCalculate;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Menu;

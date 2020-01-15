@@ -30,7 +30,6 @@ namespace ClassExerciseApp1
         // load state of the app
         private void InvestmentCalculator_Load(object sender, EventArgs e)
         {
-
             lblMessages.Text = String.Empty;
         }
 
@@ -48,8 +47,8 @@ namespace ClassExerciseApp1
             // transforms text into string even if nulls.
             txtMonthlyDeposit.Text += "";
             txtAnnualInterest.Text += "";
-            txtMonthlyDeposit.Text += "";
             txtYears.Text += "";
+            
 
             // convert year string to int
             try
@@ -74,14 +73,32 @@ namespace ClassExerciseApp1
             {
                 lblMessages.Text += "Interest needs to be an integer\n";
             }
+            
+            // monthly deposit
+            try
+            {
+                deposit = Convert.ToDouble(txtMonthlyDeposit.Text);
+                if (deposit <= 0)
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+            }
+            catch (Exception)
+            {
+                lblMessages.Text += "Monthly deposit needs to be bigger than 0\n";
+            }
 
             if (radFutureValue.Checked)
             {
+                double value = 10;
                 // future value calculation
+                txtFutureValue.Text = "$ " +value.ToString("N2");
             }
             else
             {
                 // monthly investment calculation
+                double value = 20;
+                txtFutureValue.Text = "$ " + value.ToString("N2");
             }
         }
 
