@@ -16,5 +16,11 @@ namespace AirlineReservation
         {
             InitializeComponent();
         }
+
+        // Force state of lblMessage after initialization
+        private void AirlineReservation_Load(object sender, EventArgs e)
+        {
+            lblMessages.Text = "";
+        }
     }
 }

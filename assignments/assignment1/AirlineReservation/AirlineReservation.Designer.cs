@@ -76,6 +76,7 @@
             this.toolTipSeatStatus = new System.Windows.Forms.ToolTip(this.components);
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
+            this.lblMessages = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -508,11 +509,24 @@
             this.richTextBox2.TabIndex = 32;
             this.richTextBox2.Text = "";
             // 
+            // lblMessages
+            // 
+            this.lblMessages.AutoSize = true;
+            this.lblMessages.Enabled = false;
+            this.lblMessages.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMessages.ForeColor = System.Drawing.Color.DarkRed;
+            this.lblMessages.Location = new System.Drawing.Point(353, 248);
+            this.lblMessages.Name = "lblMessages";
+            this.lblMessages.Size = new System.Drawing.Size(19, 13);
+            this.lblMessages.TabIndex = 33;
+            this.lblMessages.Text = "...";
+            // 
             // AirlineReservation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(624, 461);
+            this.Controls.Add(this.lblMessages);
             this.Controls.Add(this.richTextBox2);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.button20);
@@ -551,6 +565,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "AirlineReservation";
             this.Text = "Airline Reservation";
+            this.Load += new System.EventHandler(this.AirlineReservation_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -607,5 +622,6 @@
         private System.Windows.Forms.Button button20;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.RichTextBox richTextBox2;
+        private System.Windows.Forms.Label lblMessages;
     }
 }
