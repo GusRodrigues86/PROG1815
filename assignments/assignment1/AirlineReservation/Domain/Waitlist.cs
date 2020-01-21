@@ -53,6 +53,10 @@ namespace AirlineReservation
         /// Index of last item removed.
         /// </summary>
         private int Tail;
+        /// <summary>
+        /// How many names in the queue
+        /// </summary>
+        private int size;
 
         /// <summary>
         /// Constructs a waitlist that can hold 10 names on it.
@@ -62,6 +66,7 @@ namespace AirlineReservation
             this.Queue = new string[10];
             this.Head = 0;
             this.Tail = 0;
+            this.size = 0;
             _CheckInvariant();
         }
 
@@ -110,7 +115,7 @@ namespace AirlineReservation
         /// </summary>
         /// <param name="customer"></param>
         /// <returns></returns>
-        public bool AddToWaitlist(string customer)
+        public bool Enqueue(string customer)
         {
             // we insert iff queue[tail] is null
             if (Queue[Tail] is null)
@@ -118,6 +123,7 @@ namespace AirlineReservation
                 Queue[Tail] = customer;
                 // move the tail to next index
                 _NextTailIndex();
+                size++;
                 return true;
             }
             return false;
@@ -130,7 +136,7 @@ namespace AirlineReservation
         /// </summary>
         /// <returns>The element at the head of the waitlist.
         /// Otherwise returns an empty string.</returns>
-        public string RemoveFromWaitlist()
+        public string Dequeue()
         {
             if (IsEmpty())
             {
@@ -139,6 +145,7 @@ namespace AirlineReservation
             string toReturn = Queue[Head];
             Queue[Head] = null; // remove from the waitlist.
             _NextHeadIndex();
+            size--;
             return toReturn;
         }
 
