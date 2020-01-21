@@ -98,20 +98,38 @@ namespace AirlineReservation
             {
                 return new string[] { String.Empty };
             }
-
-            string[] copy = new string[10];
+            
+            int capacity = 1; // will be 1 or size.
+            if (size != 0)
+            {
+                capacity = size;
+            }
+            string[] copy = new string[capacity];
             int k = 0; // index for copy array
             // O(n) operation
-            for (int i = Head; i < Queue.Length; i+= (i+1)%10)
+            for (int i = Head; i < Queue.Length; i = NextIndex(i))
             {
                 // the copy starts where is the first item that was inserted.
                 // the copy uses the same formula to guarantee access to the right item.
                 copy[k] = Queue[i];
                 k++; // increments the copy array index
+                
+                // if next index will be bigger than the total itens, break the loop
+                if (k >= capacity)
+                {
+                    break;
+                }
             }
 
             return copy;
         }
+
+        /// <summary>
+        /// Generates the next index to iterate over a circular array
+        /// </summary>
+        /// <param name="i"></param>
+        /// <returns></returns>
+        private int NextIndex(int i) => (i + 1) % 10;
 
         /// <summary>
         /// Attempts to add customer to the waitlist.
