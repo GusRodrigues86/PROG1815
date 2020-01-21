@@ -80,8 +80,8 @@ namespace AirlineReservation
         private void _CheckInvariant()
         {
             _ = (Queue is null) ? throw new NullReferenceException("Invalid waitlist") : "";
-            _ = (Head <= 0 || Head >= 10) ? throw new IndexOutOfRangeException("Invalid waitlist") : "";
-            _ = (Tail <= 0 || Tail >= 10) ? throw new IndexOutOfRangeException("Invalid waitlist") : "";
+            _ = (Head < 0 || Head >= 10) ? throw new IndexOutOfRangeException("Invalid waitlist") : "";
+            _ = (Tail < 0 || Tail >= 10) ? throw new IndexOutOfRangeException("Invalid waitlist") : "";
         }
 
         /// <summary>
@@ -90,20 +90,19 @@ namespace AirlineReservation
         /// <returns>A copy, 0 indexed, of the current waitlist.</returns>
         public string[] WaitlistedCustomers()
         {
-            string[] copy = new string[10];
             // empty queue copy.
             if (IsEmpty())
             {
-                return copy;
+                return new string[] { String.Empty };
             }
 
+            string[] copy = new string[size];
             // O(n) operation
-            for (int i = 0; i < Queue.Length; i++)
+            for (int i = Head; i < Queue.Length; i+= (i+1)%size)
             {
                 // the copy starts where is the first item that was inserted.
                 // the copy uses the same formula to guarantee access to the right item.
-                int j = (i + Head) % 9;
-                copy[i] = Queue[j];
+                copy[i] = Queue[i];
             }
 
             return copy;
