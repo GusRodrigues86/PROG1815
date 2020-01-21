@@ -96,13 +96,15 @@ namespace AirlineReservation
                 return new string[] { String.Empty };
             }
 
-            string[] copy = new string[size];
+            string[] copy = new string[10];
+            int k = 0; // index for copy array
             // O(n) operation
             for (int i = Head; i < Queue.Length; i+= (i+1)%size)
             {
                 // the copy starts where is the first item that was inserted.
                 // the copy uses the same formula to guarantee access to the right item.
-                copy[i] = Queue[i];
+                copy[k] = Queue[i];
+                k++; // increments the copy array index
             }
 
             return copy;
