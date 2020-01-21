@@ -36,9 +36,12 @@ namespace AirlineReservation
          * move the tail index
          * f(n): (i + 1) % N | i = tail index, N = 10 (max waitlist size - 1).
          * 
-         * This guarantee a FIFO behaviour with O(1) operation, WaitlistedCustomers.
+         * This guarantee a FIFO behaviour with O(1) operation, except for
+         * WaitlistedCustomers(), which is O(n).
          * 
-         * This class does not overrides ToString
+         * This class does not overrides ToString. A plausible implementation
+         * would run in O(n), if using a String builder. O(N^2) with String 
+         * concatenation.
          */
 
         /// <summary>
