@@ -55,6 +55,7 @@
     <Compile Include="Domain\Waitlist.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\WaitlistService.cs" />
     <EmbeddedResource Include="AirlineReservation.resx">
       <DependentUpon>AirlineReservation.cs</DependentUpon>
     </EmbeddedResource>

@@ -74,8 +74,8 @@
             this.btnAllSeats = new System.Windows.Forms.Button();
             this.button20 = new System.Windows.Forms.Button();
             this.toolTipSeatStatus = new System.Windows.Forms.ToolTip(this.components);
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
+            this.rtxtboxSeated = new System.Windows.Forms.RichTextBox();
+            this.rtxtWaitlist = new System.Windows.Forms.RichTextBox();
             this.lblMessages = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -111,6 +111,11 @@
             // lstBoxSeat
             // 
             this.lstBoxSeat.FormattingEnabled = true;
+            this.lstBoxSeat.Items.AddRange(new object[] {
+            "A",
+            "B",
+            "C",
+            "D"});
             this.lstBoxSeat.Location = new System.Drawing.Point(63, 61);
             this.lstBoxSeat.Name = "lstBoxSeat";
             this.lstBoxSeat.Size = new System.Drawing.Size(35, 69);
@@ -120,6 +125,12 @@
             // lstBoxRow
             // 
             this.lstBoxRow.FormattingEnabled = true;
+            this.lstBoxRow.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"});
             this.lstBoxRow.Location = new System.Drawing.Point(19, 61);
             this.lstBoxRow.Name = "lstBoxRow";
             this.lstBoxRow.Size = new System.Drawing.Size(35, 69);
@@ -143,6 +154,7 @@
             this.btnWaitList.TabIndex = 8;
             this.btnWaitList.Text = "Add to Wait List";
             this.btnWaitList.UseVisualStyleBackColor = true;
+            this.btnWaitList.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnAddToWaitlist);
             // 
             // btnCancel
             // 
@@ -488,26 +500,27 @@
             this.button20.TabIndex = 30;
             this.button20.Text = "Show Waiting List";
             this.button20.UseVisualStyleBackColor = true;
+            this.button20.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnShowWaitingList);
             // 
             // toolTipSeatStatus
             // 
             this.toolTipSeatStatus.IsBalloon = true;
             // 
-            // richTextBox1
+            // rtxtboxSeated
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(94, 275);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(105, 174);
-            this.richTextBox1.TabIndex = 31;
-            this.richTextBox1.Text = "";
+            this.rtxtboxSeated.Location = new System.Drawing.Point(94, 275);
+            this.rtxtboxSeated.Name = "rtxtboxSeated";
+            this.rtxtboxSeated.Size = new System.Drawing.Size(105, 174);
+            this.rtxtboxSeated.TabIndex = 31;
+            this.rtxtboxSeated.Text = "";
             // 
-            // richTextBox2
+            // rtxtWaitlist
             // 
-            this.richTextBox2.Location = new System.Drawing.Point(236, 275);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(105, 174);
-            this.richTextBox2.TabIndex = 32;
-            this.richTextBox2.Text = "";
+            this.rtxtWaitlist.Location = new System.Drawing.Point(236, 275);
+            this.rtxtWaitlist.Name = "rtxtWaitlist";
+            this.rtxtWaitlist.Size = new System.Drawing.Size(105, 174);
+            this.rtxtWaitlist.TabIndex = 32;
+            this.rtxtWaitlist.Text = "";
             // 
             // lblMessages
             // 
@@ -527,8 +540,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(624, 461);
             this.Controls.Add(this.lblMessages);
-            this.Controls.Add(this.richTextBox2);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.rtxtWaitlist);
+            this.Controls.Add(this.rtxtboxSeated);
             this.Controls.Add(this.button20);
             this.Controls.Add(this.btnAllSeats);
             this.Controls.Add(this.button16);
@@ -620,8 +633,8 @@
         private System.Windows.Forms.Button btnAllSeats;
         private System.Windows.Forms.ToolTip toolTipSeatStatus;
         private System.Windows.Forms.Button button20;
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.RichTextBox richTextBox2;
+        private System.Windows.Forms.RichTextBox rtxtboxSeated;
+        private System.Windows.Forms.RichTextBox rtxtWaitlist;
         private System.Windows.Forms.Label lblMessages;
     }
 }
