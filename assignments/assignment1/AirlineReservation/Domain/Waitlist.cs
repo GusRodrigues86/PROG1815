@@ -29,12 +29,12 @@ namespace AirlineReservation
          * we move the head to + 1.
          * Due to the fixed constraing, we operate in a circular manner.
          * The next index is given as:
-         * f(n): i + 1 % N | i = head index, N = 9 (max waitlist size - 1).
+         * f(n): i + 1 % N | i = head index, N = 10 (max waitlist size - 1).
          * 
          * When queueing 
          * we insert iff queue[tail] is null
          * move the tail index
-         * f(n): (i + 1) % N | i = tail index, N = 9 (max waitlist size - 1).
+         * f(n): (i + 1) % N | i = tail index, N = 10 (max waitlist size - 1).
          * 
          * This guarantee a FIFO behaviour with O(1) operation, WaitlistedCustomers.
          * 
@@ -152,14 +152,14 @@ namespace AirlineReservation
         /// Move tail to the next index
         /// </summary>
         private void _NextTailIndex() =>
-            Tail = (Tail + 1) % 9;
+            Tail = (Tail + 1) % 10;
 
         /// <summary>
         /// Move Head to the next index
         /// </summary>
         
         private void _NextHeadIndex() =>
-            Head = (Head + 1) % 9;
+            Head = (Head + 1) % 10;
 
         /// <summary>
         /// Checks if the Queue is empty.
