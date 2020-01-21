@@ -157,6 +157,7 @@ namespace AirlineReservation
         /// <summary>
         /// Move Head to the next index
         /// </summary>
+        
         private void _NextHeadIndex() =>
             Head = (Head + 1) % 9;
 

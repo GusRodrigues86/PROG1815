@@ -26,11 +26,12 @@ namespace AirlineReservation
             lblMessages.Text = "";
         }
         
-        // When clicked, add to the waitlist
+        // Add to the waitlist
         private void btnAddToWaitlist(object sender, MouseEventArgs e)
         {
             lblMessages.Text = "";
             MessageBox.Show("add to waitlist was clicked");
+            // must check IF any seat is empty.
             try
             {
                 waitlistService.AddToWaitlist(txtName.Text);
@@ -41,7 +42,7 @@ namespace AirlineReservation
             }
         }
 
-        // When clicked, shows the waitlist
+        // Update/Shows the waitlist
         private void btnShowWaitingList(object sender, MouseEventArgs e)
         {
             // guarantees an empty box ALWAYS.
