@@ -28,7 +28,8 @@ namespace AirlineReservation
         public string[] Waitlist() => waitlist.WaitlistedCustomers();
 
         /// <summary>
-        /// 
+        /// Attempts to add customer to the Waitlist.
+        /// True IFF customer is successfully add to it. otherwise, false.
         /// </summary>
         /// <param name="customer"></param>
         /// <returns></returns>
@@ -39,6 +40,7 @@ namespace AirlineReservation
             {
                 throw new NullReferenceException("Customer must have a name");
             }
+            
             return waitlist.Enqueue(customer);
         }
 
