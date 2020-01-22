@@ -173,6 +173,7 @@
             this.btnBook.TabIndex = 6;
             this.btnBook.Text = "Book";
             this.btnBook.UseVisualStyleBackColor = true;
+            this.btnBook.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnBookSeat);
             // 
             // label3
             // 
@@ -491,6 +492,7 @@
             this.btnAllSeats.TabIndex = 9;
             this.btnAllSeats.Text = "Show All Seats";
             this.btnAllSeats.UseVisualStyleBackColor = true;
+            this.btnAllSeats.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnShowAllSeats);
             // 
             // button20
             // 
@@ -526,7 +528,6 @@
             // 
             this.lblMessages.AutoSize = true;
             this.lblMessages.BackColor = System.Drawing.SystemColors.Control;
-            this.lblMessages.Enabled = false;
             this.lblMessages.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMessages.ForeColor = System.Drawing.Color.Red;
             this.lblMessages.Location = new System.Drawing.Point(353, 248);
