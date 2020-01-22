@@ -50,7 +50,7 @@ namespace AirlineReservationTests.Domain
             // act
             Assert.IsFalse(ap.UnassignSeat(seat));
         }
-        
+
         [Test]
         public void UnassignSeatWithCustomer_ReturnsTrue()
         {
@@ -71,10 +71,28 @@ namespace AirlineReservationTests.Domain
         public void testToString()
         {
             // Assemble
-            string expected = "1A - test\r\n" +
+            string expected =
+                "1A - test\r\n" +
                 "1B - test\r\n" +
                 "1C - test\r\n" +
-                "2A - test\r\n";
+                "1D - \r\n" +
+                "2A - test\r\n" +
+                "2B - \r\n" +
+                "2C - \r\n" +
+                "2D - \r\n" +
+                "3A - \r\n" +
+                "3B - \r\n" +
+                "3C - \r\n" +
+                "3D - \r\n" +
+                "4A - \r\n" +
+                "4B - \r\n" +
+                "4C - \r\n" +
+                "4D - \r\n" +
+                "5A - \r\n" +
+                "5B - \r\n" +
+                "5C - \r\n" +
+                "5D - ";
+
             ap.AssignSeatTo("1A", "test");
             ap.AssignSeatTo("1B", "test");
             ap.AssignSeatTo("1C", "test");
@@ -84,5 +102,40 @@ namespace AirlineReservationTests.Domain
             // Assert
             Assert.AreEqual(expected, actual);
         }
+
+
+        /*
+         * Tests for the is full
+         */
+         [Test]
+        public void FullPlane_WillReturnTrue()
+        {
+            string[] customers = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12",
+            "13","14","15","16","17","18","19","20"};
+            string[] seats = { "1A", "1B", "1C", "1D", "2A", "2B", "2C", "2D", "3A", "3B", "3C", "3D",
+            "4A","4B","4C","4D","5A","5B","5C","5D"};
+            for (int i = 0; i < customers.Length; i++)
+            {
+                ap.AssignSeatTo(seats[i], customers[i]);
+            }
+
+            // act
+            // Assert
+            Assert.IsFalse(ap.AssignSeatTo("1A", "Wilie E Coyote"));
+        }
+        [Test]
+        public void PlaneNotFull_WillReturnTrue()
+        {
+            string[] customers = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12",
+            "13","14","15","16","17","18","19",};
+            string[] seats = { "1A", "1B", "1C", "1D", "2A", "2B", "2C", "2D", "3A", "3B", "3C", "3D",
+            "4A","4B","4C","4D","5A","5B","5C","5D"};
+            for (int i = 0; i < customers.Length; i++)
+            {
+                Assert.IsTrue(ap.AssignSeatTo(seats[i], customers[i]));
+            }
+        }
+        
+
     }
 }

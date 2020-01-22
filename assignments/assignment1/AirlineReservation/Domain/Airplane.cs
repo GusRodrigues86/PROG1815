@@ -22,15 +22,23 @@ namespace AirlineReservation
     {
         private string[,] SeatMap;
 
+        private int Bookings;
         public Airplane()
         {
             this.SeatMap = new string[5, 4];
+            this.Bookings = 0;
             CheckRep();
         }
 
+        /// <summary>
+        /// Invariant
+        /// SeatMap != null &&
+        /// 0 <= n <= 20 | n = Bookings
+        /// </summary>
         private void CheckRep()
         {
             _ = (SeatMap is null) ? throw new NullReferenceException("Invalid seat arrangement") : "";
+            _ = (Bookings < 0 && Bookings > 20) ? throw new IndexOutOfRangeException("Invalid passengers listed") : "";
         }
 
         /// <summary>
@@ -58,6 +66,8 @@ namespace AirlineReservation
             }
 
             SeatMap[row, letter] = customer;
+            Bookings++;
+            CheckRep();
             return true;
         }
 
@@ -84,8 +94,16 @@ namespace AirlineReservation
                 return false;
             }
             SeatMap[row, letter] = null; // GC remove reference
+            Bookings--;
+            CheckRep();
             return true;
         }
+
+        /// <summary>
+        /// True IFF There are 20 passengers with seat assigned
+        /// </summary>
+        /// <returns></returns>
+        public bool IsFull() => Bookings == 20;
 
         /// <summary>
         /// Convert the string representing the desired Seat as indexes to
@@ -109,14 +127,19 @@ namespace AirlineReservation
             for (int i = 0; i < SeatMap.Length; i++)
             {
                 // indexes. row is % 5, letter is % 4
-                int row = i % 5;
+                int row = (int) Math.Floor(i/4.0);
                 int letter = i % 4;
 
+                // creates structure
+                String seating = (row + 1) + "" + ((char) ((i % 4)+65)) + " - ";
+                sb.Append(seating);
                 if (SeatMap[row, letter] != null)
                 {
-                    // creates structure
-                    String seating = (row + 1) + "" + ((char) ((i % 4)+65)) + " - ";
-                    sb.AppendLine(seating + SeatMap[row,letter]);
+                    sb.Append(SeatMap[row,letter]);
+                }
+                if (i != (SeatMap.Length - 1))
+                {
+                    sb.Append("\r\n");
                 }
             }
             return sb.ToString();
