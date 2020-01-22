@@ -52,6 +52,7 @@
     <Compile Include="AirlineReservation.Designer.cs">
       <DependentUpon>AirlineReservation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Domain\Airplane.cs" />
     <Compile Include="Domain\Waitlist.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

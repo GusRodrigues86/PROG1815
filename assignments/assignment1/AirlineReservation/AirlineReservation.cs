@@ -29,16 +29,16 @@ namespace AirlineReservation
         // Add to the waitlist
         private void btnAddToWaitlist(object sender, MouseEventArgs e)
         {
-            lblMessages.Text = "";
-            MessageBox.Show("add to waitlist was clicked");
+            //lblMessages. Text = "";
+            
             // must check IF any seat is empty.
             try
             {
                 waitlistService.AddToWaitlist(txtName.Text);
             }
             catch (NullReferenceException)
-            {
-                lblMessages.Text += "Name must not be empty or white spaced\n";
+            { 
+                lblMessages.Text = "Name must not be empty or white spaced\n";
             }
         }
 

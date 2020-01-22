@@ -525,9 +525,10 @@
             // lblMessages
             // 
             this.lblMessages.AutoSize = true;
+            this.lblMessages.BackColor = System.Drawing.SystemColors.Control;
             this.lblMessages.Enabled = false;
             this.lblMessages.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMessages.ForeColor = System.Drawing.Color.DarkRed;
+            this.lblMessages.ForeColor = System.Drawing.Color.Red;
             this.lblMessages.Location = new System.Drawing.Point(353, 248);
             this.lblMessages.Name = "lblMessages";
             this.lblMessages.Size = new System.Drawing.Size(19, 13);
