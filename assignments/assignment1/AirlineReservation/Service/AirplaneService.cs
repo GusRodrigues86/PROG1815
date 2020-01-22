@@ -72,6 +72,15 @@ namespace AirlineReservation.Service
         public bool IsFull() => ap.IsFull();
 
         /// <summary>
+        /// Checks if the supplied seat is empty.
+        /// 
+        /// True IFF is empty.
+        /// </summary>
+        /// <param name="seat">The seat to check</param>
+        /// <returns>True IFF the desired seat is empty, otherwise, false</returns>
+        public bool SeatStatus(string seat) => ap.IsSeatEmpty(seat);
+
+        /// <summary>
         /// True IFF the seat is INVALID.
         /// 
         /// Validation is based in the following:
@@ -81,7 +90,8 @@ namespace AirlineReservation.Service
         /// </summary>
         /// <param name="seat">the seat to be checked</param>
         /// <returns>True IFF the seat is INVALID</returns>
-        private bool IsInvalidSeat(string seat) {
+        private bool IsInvalidSeat(string seat)
+        {
             // first digit.
             // not digit
             if (!Char.IsDigit(seat[0]) ||
@@ -89,18 +99,18 @@ namespace AirlineReservation.Service
                 (Char.GetNumericValue(seat[0]) > 5) ||
                 // < 1
                 (Char.GetNumericValue(seat[0]) < 1))
-                {
+            {
                 return true;
-                }
+            }
 
             // a letter that is less than A (65) OR a letter that is bigger than D (68)
             if ((seat[1] < 65) || (seat[1] > 68))
-            { 
-                return true; 
+            {
+                return true;
             }
             return false;
         }
 
-
+        
     }
 }

@@ -71,6 +71,22 @@ namespace AirlineReservation
             return true;
         }
 
+
+        /// <summary>
+        /// Returns true IFF the desired seat is empty.
+        /// </summary>
+        /// <param name="seat">The seat to check</param>
+        /// <returns>True IFF the supplied seat is empty. Otherwise, false.</returns>
+        public bool IsSeatEmpty(string seat)
+        {
+            int[] indexes = SeatAsMapIndexes(seat);
+            if (SeatMap[indexes[0],indexes[1]] is null)
+            {
+                return true;
+            }
+            return false;
+        }
+
         /// <summary>
         /// Remove customer from the desired seat.
         /// 

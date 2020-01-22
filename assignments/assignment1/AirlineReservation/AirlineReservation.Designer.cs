@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtStatus = new System.Windows.Forms.TextBox();
             this.lstBoxSeat = new System.Windows.Forms.ListBox();
             this.lstBoxRow = new System.Windows.Forms.ListBox();
             this.btnStatus = new System.Windows.Forms.Button();
@@ -82,7 +82,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.txtStatus);
             this.groupBox1.Controls.Add(this.lstBoxSeat);
             this.groupBox1.Controls.Add(this.lstBoxRow);
             this.groupBox1.Controls.Add(this.btnStatus);
@@ -100,13 +100,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Booking and Cancelation";
             // 
-            // textBox1
+            // txtStatus
             // 
-            this.textBox1.Location = new System.Drawing.Point(128, 89);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(209, 20);
-            this.textBox1.TabIndex = 5;
-            this.toolTipSeatStatus.SetToolTip(this.textBox1, "The Status of the selected seat");
+            this.txtStatus.Enabled = false;
+            this.txtStatus.Location = new System.Drawing.Point(128, 89);
+            this.txtStatus.Name = "txtStatus";
+            this.txtStatus.Size = new System.Drawing.Size(209, 20);
+            this.txtStatus.TabIndex = 5;
+            this.toolTipSeatStatus.SetToolTip(this.txtStatus, "The Status of the selected seat");
             // 
             // lstBoxSeat
             // 
@@ -145,6 +146,7 @@
             this.btnStatus.TabIndex = 4;
             this.btnStatus.Text = "Status";
             this.btnStatus.UseVisualStyleBackColor = true;
+            this.btnStatus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnSeatStatus);
             // 
             // btnWaitList
             // 
@@ -595,7 +597,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtStatus;
         private System.Windows.Forms.ListBox lstBoxSeat;
         private System.Windows.Forms.ListBox lstBoxRow;
         private System.Windows.Forms.Button btnStatus;

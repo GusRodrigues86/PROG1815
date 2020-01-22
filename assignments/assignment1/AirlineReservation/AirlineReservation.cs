@@ -65,19 +65,7 @@ namespace AirlineReservation
             // builds the waitlist
             foreach (string item in WaitlistService.Waitlist())
             {
-                // TODO REMOVE AND LEAVE ONLY THE COMMENTED LINE BELLOW UNCOMMENTED
-                // rtxtWaitlist.AppendText(item);
-                // rtxtWaitlist.AppendText("\n");
-                if (String.IsNullOrWhiteSpace(item))
-                {
-                    rtxtWaitlist.AppendText("cu");
-                    rtxtWaitlist.AppendText("\n");
-                }
-                else
-                {
-                    rtxtWaitlist.AppendText(item);
-                    rtxtWaitlist.AppendText("\n");
-                }
+                rtxtWaitlist.AppendText(item + "\r\n");
             }
         }
 
@@ -108,23 +96,40 @@ namespace AirlineReservation
                 // null or empty name
                 if (String.IsNullOrWhiteSpace(customer))
                 {
-                    throw new NullReferenceException();
+                    throw new NullReferenceException("Name must not be empty or white spaced\r\n");
                 }
                 // checks seat selection
-                if (String.IsNullOrWhiteSpace(lstBoxRow.SelectedItem.ToString()))
+                try
+                {
+                    if (String.IsNullOrWhiteSpace(lstBoxRow.SelectedItem.ToString()))
+                    {
+                        throw new InvalidOperationException("Select a row");
+                    }
+
+                }
+                catch (NullReferenceException)
                 {
                     throw new InvalidOperationException("Select a row");
                 }
-                if (String.IsNullOrWhiteSpace(lstBoxSeat.SelectedItem.ToString()))
+                try
+                {
+                    if (String.IsNullOrWhiteSpace(lstBoxSeat.SelectedItem.ToString()))
+                    {
+                        throw new InvalidOperationException("Select a seat");
+                    }
+
+                }
+                catch (NullReferenceException)
                 {
                     throw new InvalidOperationException("Select a seat");
                 }
+
                 string seat = lstBoxRow.SelectedItem.ToString();
                 seat += lstBoxSeat.SelectedItem.ToString();
 
                 if (!AirplaneService.AssignCustomerToSeat(seat, customer))
                 {
-                    lblMessages.Text += "Unable to assign customer to the seat";
+                    lblMessages.Text += "Unable to assign customer to the seat\r\n";
                 }
                 btnShowAllSeats(sender, e);
             }
@@ -133,10 +138,10 @@ namespace AirlineReservation
                 // flight is full
                 lblMessages.Text += "Flight is full, Customer needs to go to the Waitlist\r\n";
             }
-            catch (NullReferenceException)
+            catch (NullReferenceException ex)
             {
                 // no name was typed
-                lblMessages.Text += "Name must not be empty or white spaced\r\n";
+                lblMessages.Text = ex.Message;
             }
             catch (InvalidOperationException ex)
             {
@@ -144,5 +149,61 @@ namespace AirlineReservation
                 lblMessages.Text += ex.Message + "\r\n";
             }
         }
+
+        // Check the status of a selected seat
+        private void btnSeatStatus(object sender, MouseEventArgs e)
+        {
+            // validation if user selected a seat
+            // checks seat selection
+            try
+            {
+                try
+                {
+                    if (String.IsNullOrWhiteSpace(lstBoxRow.SelectedItem.ToString()))
+                    {
+                        throw new InvalidOperationException("Select a row");
+                    }
+
+                }
+                catch (NullReferenceException)
+                {
+                    throw new InvalidOperationException("Select a row");
+                }
+                try
+                {
+                    if (String.IsNullOrWhiteSpace(lstBoxSeat.SelectedItem.ToString()))
+                    {
+                        throw new InvalidOperationException("Select a seat");
+                    }
+
+                }
+                catch (NullReferenceException)
+                {
+                    throw new InvalidOperationException("Select a seat");
+                }
+
+                lblMessages.Text = ""; // remove any warnings
+
+                string seat = lstBoxRow.SelectedItem.ToString();
+                seat += lstBoxSeat.SelectedItem.ToString();
+
+                bool seatStatus = AirplaneService.SeatStatus(seat);
+                if (seatStatus)
+                {
+                    txtStatus.Text = "Seat available";
+                }
+                else
+                {
+                    txtStatus.Text = "Seat not available";
+                }
+            }
+            catch (InvalidOperationException ex)
+            {
+                lblMessages.Text = ex.Message;
+            }
+
+        }
+
+
     }
 }

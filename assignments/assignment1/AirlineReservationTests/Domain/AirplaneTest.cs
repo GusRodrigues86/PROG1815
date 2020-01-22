@@ -63,8 +63,7 @@ namespace AirlineReservationTests.Domain
             // Assert
             Assert.IsTrue(ap.UnassignSeat(seat)); // Sorry again Wile.
         }
-        /*
-         * ToString testing
+        /* ToString testing
          */
 
         [Test]
@@ -104,11 +103,10 @@ namespace AirlineReservationTests.Domain
         }
 
 
-        /*
-         * Tests for the is full
+        /* IsFull Tests cases
          */
-         [Test]
-        public void FullPlane_WillReturnTrue()
+        [Test]
+        public void AssignSeatInFullPlane_WillReturnTrue()
         {
             string[] customers = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12",
             "13","14","15","16","17","18","19","20"};
@@ -124,7 +122,7 @@ namespace AirlineReservationTests.Domain
             Assert.IsFalse(ap.AssignSeatTo("1A", "Wilie E Coyote"));
         }
         [Test]
-        public void PlaneNotFull_WillReturnTrue()
+        public void AssignSeatInANotFull_WillReturnTrue()
         {
             string[] customers = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12",
             "13","14","15","16","17","18","19",};
@@ -135,7 +133,34 @@ namespace AirlineReservationTests.Domain
                 Assert.IsTrue(ap.AssignSeatTo(seats[i], customers[i]));
             }
         }
-        
+        /* Empty seat test cases
+         */
+        [Test]
+        public void IsSeatEmptyInAnEmptyPlane_WillReturnTrue()
+        {
+            string[] seats = { "1A", "1B", "1C", "1D", "2A", "2B", "2C", "2D", "3A", "3B", "3C", "3D",
+            "4A","4B","4C","4D","5A","5B","5C","5D"};
+            foreach (var seat in seats)
+            {
+                Assert.IsTrue(ap.IsSeatEmpty(seat));
+            }
+        }
+        [Test]
+        public void IsSeatEmptyOnAnFullPlane_WillReturnFalse()
+        {
+            string[] customers = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12",
+            "13","14","15","16","17","18","19","20"};
+            string[] seats = { "1A", "1B", "1C", "1D", "2A", "2B", "2C", "2D", "3A", "3B", "3C", "3D",
+            "4A","4B","4C","4D","5A","5B","5C","5D"};
+            for (int i = 0; i < customers.Length; i++)
+            {
+                ap.AssignSeatTo(seats[i], customers[i]);
+            }
 
+            foreach (string seat in seats)
+            {
+                Assert.IsFalse(ap.IsSeatEmpty(seat));
+            }
+        }
     }
 }
