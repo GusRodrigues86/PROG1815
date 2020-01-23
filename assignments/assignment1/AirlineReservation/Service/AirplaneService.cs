@@ -1,8 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿/* Assignment 1
+ *   AirplaneService.cs
+ *   Service that provide UseCases for accessing the airplane ADT
+ *   
+ * Revision History
+ *      Gustavo Bonifacio Rodrigues, 2020.01.20: Created
+ */
+using System;
 
 namespace AirlineReservation.Service
 {
@@ -19,8 +22,8 @@ namespace AirlineReservation.Service
         /// True iff was able to assign customer to that seat.
         /// False otherwise
         /// </summary>
-        /// <param name="customer"></param>
-        /// <param name="seat"></param>
+        /// <param name="seat">Desired seat assignment</param>
+        /// <param name="customer">Customer to be assigned</param>
         /// <returns>True iff was able to assign customer to that seat.
         /// False otherwise</returns>
         public bool AssignCustomerToSeat(string seat, string customer)
@@ -46,8 +49,8 @@ namespace AirlineReservation.Service
         /// 
         /// an empty seat will return FALSE.
         /// </summary>
-        /// <param name="seat"></param>
-        /// <returns></returns>
+        /// <param name="seat">Seat to have customer unassigned to it.</param>
+        /// <returns>True if and only if there is a customer assigned to that seat.</returns>
         public bool UnassignSeat(string seat)
         {
             // validate seat input
@@ -62,13 +65,13 @@ namespace AirlineReservation.Service
         /// <summary>
         /// String representing all seated customers
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A string representing all the seats, including those with customers to it.</returns>
         public string SeatedCustomers() => ap.ToString();
 
         /// <summary>
         /// True IFF there is no more seats available to assign
         /// </summary>
-        /// <returns></returns>
+        /// <returns>True if and only if the airplane has no more seats available to assign.</returns>
         public bool IsFull() => ap.IsFull();
 
         /// <summary>
@@ -77,7 +80,7 @@ namespace AirlineReservation.Service
         /// True IFF is empty.
         /// </summary>
         /// <param name="seat">The seat to check</param>
-        /// <returns>True IFF the desired seat is empty, otherwise, false</returns>
+        /// <returns>True if and only if the desired seat is empty.</returns>
         public bool SeatStatus(string seat) => ap.IsSeatEmpty(seat);
 
         /// <summary>
@@ -89,7 +92,7 @@ namespace AirlineReservation.Service
         /// 2nd char IS VALID IFF is not a number and must have the char value 65 (A) <= n <= 68 (D)
         /// </summary>
         /// <param name="seat">the seat to be checked</param>
-        /// <returns>True IFF the seat is INVALID</returns>
+        /// <returns>True if th supplied seat is an INVALID one. i.e. out of range</returns>
         private bool IsInvalidSeat(string seat)
         {
             // first digit.
@@ -109,8 +112,6 @@ namespace AirlineReservation.Service
                 return true;
             }
             return false;
-        }
-
-        
+        }  
     }
 }

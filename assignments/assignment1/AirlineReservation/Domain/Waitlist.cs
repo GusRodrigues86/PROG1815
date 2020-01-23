@@ -1,8 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿/* Assignment 1
+ *   Waitlist.cs
+ *   Waitlist is an ADT that represents an flight waitlist. It behaves as a standard Queue.
+ *   The ADT ensure O(1) for all Queue and Dequeueing operations, and O(n) for the entire list.
+ *   The ADT is capable of holding no more than 10 elements in the Queue.
+ *   
+ * Revision History
+ *      Gustavo Bonifacio Rodrigues, 2020.01.20: Created
+ */
+
+using System;
 
 namespace AirlineReservation
 {
@@ -70,7 +76,7 @@ namespace AirlineReservation
             this.Head = 0;
             this.Tail = 0;
             this.size = 0;
-            _CheckInvariant();
+            CheckInvariant();
         }
 
         /// <summary>
@@ -80,7 +86,7 @@ namespace AirlineReservation
         /// 0 <= head < 10
         /// 0 <= tail < 10
         /// </summary>
-        private void _CheckInvariant()
+        private void CheckInvariant()
         {
             _ = (Queue is null) ? throw new NullReferenceException("Invalid waitlist") : "";
             _ = (Head < 0 || Head >= 10) ? throw new IndexOutOfRangeException("Invalid waitlist") : "";

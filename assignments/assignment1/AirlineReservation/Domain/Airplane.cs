@@ -1,8 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿/* Assignment 1
+ *   Airplane.cs
+ *   ADT representing the seat arrangement of an airplane in a reservation system
+ *   The ADT provides methods to manage the seating.
+ *   The Seat arrangement of the airplane is represented as a 2 Dimensional Array.
+ *   
+ *   ToString offers Linear time operation, while Assignment and Unassignment of seats offers O(1).
+ *   
+ * Revision History
+ *      Gustavo Bonifacio Rodrigues, 2020.01.20: Created
+ */
+
+using System;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace AirlineReservation
 {
@@ -27,7 +36,7 @@ namespace AirlineReservation
         {
             this.SeatMap = new string[5, 4];
             this.Bookings = 0;
-            CheckRep();
+            CheckInvariant();
         }
 
         /// <summary>
@@ -35,7 +44,7 @@ namespace AirlineReservation
         /// SeatMap != null &&
         /// 0 <= n <= 20 | n = Bookings
         /// </summary>
-        private void CheckRep()
+        private void CheckInvariant()
         {
             _ = (SeatMap is null) ? throw new NullReferenceException("Invalid seat arrangement") : "";
             _ = (Bookings < 0 && Bookings > 20) ? throw new IndexOutOfRangeException("Invalid passengers listed") : "";
@@ -67,7 +76,7 @@ namespace AirlineReservation
 
             SeatMap[row, letter] = customer;
             Bookings++;
-            CheckRep();
+            CheckInvariant();
             return true;
         }
 
@@ -111,7 +120,7 @@ namespace AirlineReservation
             }
             SeatMap[row, letter] = null; // GC remove reference
             Bookings--;
-            CheckRep();
+            CheckInvariant();
             return true;
         }
 

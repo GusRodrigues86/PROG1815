@@ -1,8 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿/* Assignment 1
+ *   WaitlistServices.cs
+ *   Service that provide UseCases for accessing the waitlist ADT
+ *   
+ * Revision History
+ *      Gustavo Bonifacio Rodrigues, 2020.01.20: Created
+ */
+using System;
 
 namespace AirlineReservation
 {
@@ -22,17 +25,19 @@ namespace AirlineReservation
         }
 
         /// <summary>
-        /// Copy of the array holding all customers waitlisted
+        /// Copy of the array holding all customers waitlisted.
+        /// 
+        /// If first element is an empty string, there is no one on the waitlist.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A string array holding all the customers on the waitlist.</returns>
         public string[] Waitlist() => waitlist.WaitlistedCustomers();
 
         /// <summary>
         /// Attempts to add customer to the Waitlist.
         /// True IFF customer is successfully add to it. otherwise, false.
         /// </summary>
-        /// <param name="customer"></param>
-        /// <returns></returns>
+        /// <param name="customer">Customer to be added to waitlist</param>
+        /// <returns>True if and only if the customer was successfully added to the waitlist</returns>
         public bool AddToWaitlist(string customer)
         {
             // String validation to prevent null/whitespaced
@@ -40,17 +45,16 @@ namespace AirlineReservation
             {
                 throw new NullReferenceException("Customer must have a name");
             }
-            
+
             return waitlist.Enqueue(customer);
         }
 
         /// <summary>
         /// Attempts to remove customer from the waitlist.
         /// 
-        /// Returns the customer, if any. Otherwise, returns an
-        /// empty string.
+        /// Returns the customer, if any. Otherwise, returns an empty string.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The first customer on the waitlist. If there wasn't an user to be removed from the waitlist, it will return an empty string.</returns>
         public string RemoveFromTheWaitlist() => waitlist.Dequeue();
     }
 }

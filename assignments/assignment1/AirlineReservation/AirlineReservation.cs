@@ -1,12 +1,13 @@
-﻿using AirlineReservation.Service;
+﻿/* Assignment 1
+ *   AirlineReservation.cs
+ *   Windows form manipulation class
+ *   
+ * Revision History
+ *      Gustavo Bonifacio Rodrigues, 2020.01.20: Created
+ */
+using AirlineReservation.Service;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AirlineReservation
