@@ -112,6 +112,9 @@ namespace AirlineReservation.Service
                 return true;
             }
             return false;
-        }  
+        }
+
+        public String GetCustomerInSeat(string seat) => ap.GetCustomerInSeat(seat);
+
     }
 }

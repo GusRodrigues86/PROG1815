@@ -178,6 +178,21 @@ namespace AirlineReservation
         }
 
         /// <summary>
+        /// Returns the first element of the Queue. If null, returns an empty string.
+        /// This method does not modify the Queue
+        /// </summary>
+        /// <returns>Returns the first element of Queue, if none. Otherwise, returns an empty string</returns>
+        public string Peek()
+        {
+            string nextItem = Queue[Head];
+            if (String.IsNullOrWhiteSpace(nextItem))
+            {
+                return String.Empty;
+            }
+            return nextItem;
+        }
+
+        /// <summary>
         /// Move tail to the next index
         /// </summary>
         private void _NextTailIndex() =>

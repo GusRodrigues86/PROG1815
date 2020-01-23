@@ -56,5 +56,11 @@ namespace AirlineReservation
         /// </summary>
         /// <returns>The first customer on the waitlist. If there wasn't an user to be removed from the waitlist, it will return an empty string.</returns>
         public string RemoveFromTheWaitlist() => waitlist.Dequeue();
+
+        /// <summary>
+        /// Checks if there is an element to be removed from the waitlist and assign to seat.
+        /// </summary>
+        /// <returns></returns>
+        public bool HasNext() => (String.IsNullOrWhiteSpace(waitlist.Peek())) ? false : true;
     }
 }

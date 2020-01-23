@@ -29,6 +29,16 @@ namespace AirlineReservation
         private void AirlineReservation_Load(object sender, EventArgs e)
         {
             lblMessages.Text = "";
+
+            // test condition for waitlist and cancelation of booking.
+            string[] seats = { "1A", "1B", "1C", "1D", "2A", "2B", "2C", "2D", "3A", "3B", "3C", "3D",
+            "4A","4B","4C","4D","5A","5B","5C","5D"};
+            foreach (var seat in seats)
+            {
+                AirplaneService.AssignCustomerToSeat(seat, "Dolly");
+            }
+            // remove test before submission
+
             btnShowAllSeats(sender, e);
         }
 
@@ -46,11 +56,18 @@ namespace AirlineReservation
                 {
                     throw new ConstraintException();
                 }
-                WaitlistService.AddToWaitlist(txtName.Text);
+                var attempt = WaitlistService.AddToWaitlist(txtName.Text);
+
+                if (!attempt)
+                {
+                    lblMessages.Text += "Waitlist is full!";
+                }
+                btnShowWaitingList(sender, e); // update dialog status
+                ResetSelection();
             }
             catch (ConstraintException) // full flight
             {
-                lblMessages.Text += "Waitlist is only available after all seats are assigned.\r\n";
+                lblMessages.Text += "Waitlist is only available after all\n\r seats are assigned.\r\n";
             }
             catch (NullReferenceException) // empty name
             {
@@ -86,6 +103,7 @@ namespace AirlineReservation
 
             string customer = txtName.Text;
 
+            // book customer...
             try
             {
                 // cannot add customer on a full flight
@@ -131,7 +149,9 @@ namespace AirlineReservation
                 {
                     lblMessages.Text += "Unable to assign customer to the seat\r\n";
                 }
-                btnShowAllSeats(sender, e);
+                btnShowAllSeats(sender, e); // update customer list
+                // clear info after successfully insertion
+                ResetSelection();
             }
             catch (ConstraintException)
             {
@@ -212,8 +232,78 @@ namespace AirlineReservation
             lstBoxRow.SetSelected(row, true);
             lstBoxSeat.SetSelected(seatIndex, true);
 
-            btnSeatStatus(sender, e); 
+            btnSeatStatus(sender, e);
+            // Customer name shows in the Name textbox
+            if (!AirplaneService.SeatStatus(seat))
+            {
+                txtName.Clear();
+                txtName.Text += AirplaneService.GetCustomerInSeat(seat);
+            }
         }
 
+        // Cancel customer booking based on Seat selection
+        private void btnCancelBooking(object sender, EventArgs e)
+        {
+            // clear messages
+            lblMessages.Text = "";
+            // it only needs the seat selection. if not empty, REMOVE IT!
+
+            try
+            {
+                string row = lstBoxRow.SelectedItem.ToString();
+                string seat = lstBoxSeat.SelectedItem.ToString();
+                string seatSelection = row + seat;
+
+                // if seat is not occupied, present message
+                if (AirplaneService.SeatStatus(seatSelection))
+                {
+                    lblMessages.Text = "Selected seat is empty.";
+                    ResetSelection(); // unselect and clears everything
+                    return; // forces the end of the method.
+                }
+                // at this point, removal of seat is possible.
+                string warningMessage = "The removal of a customer will enforce any name on the waitlist" +
+                    "to take it's place and cannot be undone. Do you want to proceed?";
+                DialogResult result = MessageBox.Show(warningMessage, "Cancel Booking", MessageBoxButtons.YesNo);
+                // user confirm he wants to proceed
+                if (result == DialogResult.Yes)
+                {
+                    AirplaneService.UnassignSeat(seatSelection);
+                    // get the first element of the waitlist.
+                    if (WaitlistService.HasNext())
+                    {
+                        // Dequeue element and put on the txtName
+                        txtName.Text = WaitlistService.RemoveFromTheWaitlist();
+                        // Assign the customer to the seat.
+                        btnBookSeat(sender, e);
+                        
+                    }
+                    btnShowWaitingList(sender,e);
+                    btnShowAllSeats(sender, e);
+                    ResetSelection();
+                }
+                else
+                {
+                    // clear form entirely
+                    ResetSelection();
+                }
+            }
+            // NRE is caused by the lstBoxRow and Seat. It means that seat was not properly selected.
+            catch (NullReferenceException)
+            {
+                lblMessages.Text += "Select a seat first";
+            }
+            
+        }
+
+        // clear the customer name box, the row and seat selection and seat status information
+        private void ResetSelection()
+        {
+            txtName.Clear(); // Clear customer name from the box.
+            lstBoxRow.ClearSelected(); // unselect row
+            lstBoxSeat.ClearSelected(); // unselect seat
+            txtStatus.Clear(); // clear status
+            txtName.Clear(); // clear status info
+        }
     }
 }

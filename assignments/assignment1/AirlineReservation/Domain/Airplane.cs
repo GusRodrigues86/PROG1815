@@ -89,7 +89,7 @@ namespace AirlineReservation
         public bool IsSeatEmpty(string seat)
         {
             int[] indexes = SeatAsMapIndexes(seat);
-            if (SeatMap[indexes[0],indexes[1]] is null)
+            if (SeatMap[indexes[0], indexes[1]] is null)
             {
                 return true;
             }
@@ -131,6 +131,25 @@ namespace AirlineReservation
         public bool IsFull() => Bookings == 20;
 
         /// <summary>
+        /// Returns the customer in the desired seat.
+        /// 
+        /// IFF empty, returns an empty string
+        /// </summary>
+        /// <param name="seat"></param>
+        /// <returns>IFF the desired seat is empty, returns an empty string, otherwise, the customer on it.</returns>
+        public string GetCustomerInSeat(string seat)
+        {
+            // check if empty
+            if (IsSeatEmpty(seat))
+            {
+                return String.Empty;
+            }
+            // if there is a customer:
+            int[] indexes = SeatAsMapIndexes(seat);
+            return SeatMap[indexes[0], indexes[1]];
+        }
+
+        /// <summary>
         /// Convert the string representing the desired Seat as indexes to
         /// access the seatmap.
         /// </summary>
@@ -152,15 +171,15 @@ namespace AirlineReservation
             for (int i = 0; i < SeatMap.Length; i++)
             {
                 // indexes. row is % 5, letter is % 4
-                int row = (int) Math.Floor(i/4.0);
+                int row = (int) Math.Floor(i / 4.0);
                 int letter = i % 4;
 
                 // creates structure
-                String seating = (row + 1) + "" + ((char) ((i % 4)+65)) + " - ";
+                String seating = (row + 1) + "" + ((char) ((i % 4) + 65)) + " - ";
                 sb.Append(seating);
                 if (SeatMap[row, letter] != null)
                 {
-                    sb.Append(SeatMap[row,letter]);
+                    sb.Append(SeatMap[row, letter]);
                 }
                 if (i != (SeatMap.Length - 1))
                 {
