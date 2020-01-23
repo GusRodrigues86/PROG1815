@@ -48,28 +48,28 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.btn1a = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
+            this.btn1b = new System.Windows.Forms.Button();
+            this.btn1d = new System.Windows.Forms.Button();
+            this.btn1c = new System.Windows.Forms.Button();
+            this.btn2d = new System.Windows.Forms.Button();
+            this.btn2c = new System.Windows.Forms.Button();
+            this.btn2b = new System.Windows.Forms.Button();
+            this.btn2a = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
+            this.btn3d = new System.Windows.Forms.Button();
+            this.btn3c = new System.Windows.Forms.Button();
+            this.btn3b = new System.Windows.Forms.Button();
+            this.btn3a = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
-            this.button14 = new System.Windows.Forms.Button();
-            this.button15 = new System.Windows.Forms.Button();
+            this.btn4d = new System.Windows.Forms.Button();
+            this.btn4c = new System.Windows.Forms.Button();
+            this.btn4b = new System.Windows.Forms.Button();
+            this.btn4a = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
-            this.button16 = new System.Windows.Forms.Button();
-            this.button17 = new System.Windows.Forms.Button();
-            this.button18 = new System.Windows.Forms.Button();
-            this.button19 = new System.Windows.Forms.Button();
+            this.btn5d = new System.Windows.Forms.Button();
+            this.btn5c = new System.Windows.Forms.Button();
+            this.btn5B = new System.Windows.Forms.Button();
+            this.btn5a = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
             this.btnAllSeats = new System.Windows.Forms.Button();
             this.button20 = new System.Windows.Forms.Button();
@@ -102,9 +102,10 @@
             // 
             // txtStatus
             // 
-            this.txtStatus.Enabled = false;
+            this.txtStatus.BackColor = System.Drawing.SystemColors.Window;
             this.txtStatus.Location = new System.Drawing.Point(128, 89);
             this.txtStatus.Name = "txtStatus";
+            this.txtStatus.ReadOnly = true;
             this.txtStatus.Size = new System.Drawing.Size(209, 20);
             this.txtStatus.TabIndex = 5;
             this.toolTipSeatStatus.SetToolTip(this.txtStatus, "The Status of the selected seat");
@@ -146,7 +147,7 @@
             this.btnStatus.TabIndex = 4;
             this.btnStatus.Text = "Status";
             this.btnStatus.UseVisualStyleBackColor = true;
-            this.btnStatus.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnSeatStatus);
+            this.btnStatus.Click += new System.EventHandler(this.btnSeatStatus);
             // 
             // btnWaitList
             // 
@@ -156,7 +157,7 @@
             this.btnWaitList.TabIndex = 8;
             this.btnWaitList.Text = "Add to Wait List";
             this.btnWaitList.UseVisualStyleBackColor = true;
-            this.btnWaitList.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnAddToWaitlist);
+            this.btnWaitList.Click += new System.EventHandler(this.btnAddToWaitlist);
             // 
             // btnCancel
             // 
@@ -175,7 +176,7 @@
             this.btnBook.TabIndex = 6;
             this.btnBook.Text = "Book";
             this.btnBook.UseVisualStyleBackColor = true;
-            this.btnBook.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnBookSeat);
+            this.btnBook.Click += new System.EventHandler(this.btnBookSeat);
             // 
             // label3
             // 
@@ -268,75 +269,92 @@
             // 
             // btn1a
             // 
+            this.btn1a.ForeColor = System.Drawing.SystemColors.Control;
             this.btn1a.Location = new System.Drawing.Point(32, 41);
             this.btn1a.Name = "btn1a";
             this.btn1a.Size = new System.Drawing.Size(23, 23);
             this.btn1a.TabIndex = 6;
             this.btn1a.TabStop = false;
+            this.btn1a.Tag = "1A";
             this.btn1a.UseVisualStyleBackColor = true;
+            this.btn1a.Click += new System.EventHandler(this.btnSelectSeat);
             // 
-            // button1
+            // btn1b
             // 
-            this.button1.Location = new System.Drawing.Point(61, 41);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(23, 23);
-            this.button1.TabIndex = 7;
-            this.button1.TabStop = false;
-            this.button1.UseVisualStyleBackColor = true;
+            this.btn1b.Location = new System.Drawing.Point(61, 41);
+            this.btn1b.Name = "btn1b";
+            this.btn1b.Size = new System.Drawing.Size(23, 23);
+            this.btn1b.TabIndex = 7;
+            this.btn1b.TabStop = false;
+            this.btn1b.Tag = "1B";
+            this.btn1b.UseVisualStyleBackColor = true;
+            this.btn1b.Click += new System.EventHandler(this.btnSelectSeat);
             // 
-            // button2
+            // btn1d
             // 
-            this.button2.Location = new System.Drawing.Point(146, 41);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(23, 23);
-            this.button2.TabIndex = 9;
-            this.button2.TabStop = false;
-            this.button2.UseVisualStyleBackColor = true;
+            this.btn1d.Location = new System.Drawing.Point(146, 41);
+            this.btn1d.Name = "btn1d";
+            this.btn1d.Size = new System.Drawing.Size(23, 23);
+            this.btn1d.TabIndex = 9;
+            this.btn1d.TabStop = false;
+            this.btn1d.Tag = "1D";
+            this.btn1d.UseVisualStyleBackColor = true;
+            this.btn1d.Click += new System.EventHandler(this.btnSelectSeat);
             // 
-            // button3
+            // btn1c
             // 
-            this.button3.Location = new System.Drawing.Point(113, 41);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(23, 23);
-            this.button3.TabIndex = 8;
-            this.button3.TabStop = false;
-            this.button3.UseVisualStyleBackColor = true;
+            this.btn1c.Location = new System.Drawing.Point(113, 41);
+            this.btn1c.Name = "btn1c";
+            this.btn1c.Size = new System.Drawing.Size(23, 23);
+            this.btn1c.TabIndex = 8;
+            this.btn1c.TabStop = false;
+            this.btn1c.Tag = "1C";
+            this.btn1c.UseVisualStyleBackColor = true;
+            this.btn1c.Click += new System.EventHandler(this.btnSelectSeat);
             // 
-            // button4
+            // btn2d
             // 
-            this.button4.Location = new System.Drawing.Point(146, 70);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(23, 23);
-            this.button4.TabIndex = 14;
-            this.button4.TabStop = false;
-            this.button4.UseVisualStyleBackColor = true;
+            this.btn2d.Location = new System.Drawing.Point(146, 70);
+            this.btn2d.Name = "btn2d";
+            this.btn2d.Size = new System.Drawing.Size(23, 23);
+            this.btn2d.TabIndex = 14;
+            this.btn2d.TabStop = false;
+            this.btn2d.Tag = "2D";
+            this.btn2d.UseVisualStyleBackColor = true;
+            this.btn2d.Click += new System.EventHandler(this.btnSelectSeat);
             // 
-            // button5
+            // btn2c
             // 
-            this.button5.Location = new System.Drawing.Point(113, 70);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(23, 23);
-            this.button5.TabIndex = 13;
-            this.button5.TabStop = false;
-            this.button5.UseVisualStyleBackColor = true;
+            this.btn2c.Location = new System.Drawing.Point(113, 70);
+            this.btn2c.Name = "btn2c";
+            this.btn2c.Size = new System.Drawing.Size(23, 23);
+            this.btn2c.TabIndex = 13;
+            this.btn2c.TabStop = false;
+            this.btn2c.Tag = "2C";
+            this.btn2c.UseVisualStyleBackColor = true;
+            this.btn2c.Click += new System.EventHandler(this.btnSelectSeat);
             // 
-            // button6
+            // btn2b
             // 
-            this.button6.Location = new System.Drawing.Point(61, 70);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(23, 23);
-            this.button6.TabIndex = 12;
-            this.button6.TabStop = false;
-            this.button6.UseVisualStyleBackColor = true;
+            this.btn2b.Location = new System.Drawing.Point(61, 70);
+            this.btn2b.Name = "btn2b";
+            this.btn2b.Size = new System.Drawing.Size(23, 23);
+            this.btn2b.TabIndex = 12;
+            this.btn2b.TabStop = false;
+            this.btn2b.Tag = "2B";
+            this.btn2b.UseVisualStyleBackColor = true;
+            this.btn2b.Click += new System.EventHandler(this.btnSelectSeat);
             // 
-            // button7
+            // btn2a
             // 
-            this.button7.Location = new System.Drawing.Point(32, 70);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(23, 23);
-            this.button7.TabIndex = 11;
-            this.button7.TabStop = false;
-            this.button7.UseVisualStyleBackColor = true;
+            this.btn2a.Location = new System.Drawing.Point(32, 70);
+            this.btn2a.Name = "btn2a";
+            this.btn2a.Size = new System.Drawing.Size(23, 23);
+            this.btn2a.TabIndex = 11;
+            this.btn2a.TabStop = false;
+            this.btn2a.Tag = "2A";
+            this.btn2a.UseVisualStyleBackColor = true;
+            this.btn2a.Click += new System.EventHandler(this.btnSelectSeat);
             // 
             // label9
             // 
@@ -348,41 +366,49 @@
             this.label9.TabIndex = 10;
             this.label9.Text = "2";
             // 
-            // button8
+            // btn3d
             // 
-            this.button8.Location = new System.Drawing.Point(146, 99);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(23, 23);
-            this.button8.TabIndex = 19;
-            this.button8.TabStop = false;
-            this.button8.UseVisualStyleBackColor = true;
+            this.btn3d.Location = new System.Drawing.Point(146, 99);
+            this.btn3d.Name = "btn3d";
+            this.btn3d.Size = new System.Drawing.Size(23, 23);
+            this.btn3d.TabIndex = 19;
+            this.btn3d.TabStop = false;
+            this.btn3d.Tag = "3D";
+            this.btn3d.UseVisualStyleBackColor = true;
+            this.btn3d.Click += new System.EventHandler(this.btnSelectSeat);
             // 
-            // button9
+            // btn3c
             // 
-            this.button9.Location = new System.Drawing.Point(113, 99);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(23, 23);
-            this.button9.TabIndex = 18;
-            this.button9.TabStop = false;
-            this.button9.UseVisualStyleBackColor = true;
+            this.btn3c.Location = new System.Drawing.Point(113, 99);
+            this.btn3c.Name = "btn3c";
+            this.btn3c.Size = new System.Drawing.Size(23, 23);
+            this.btn3c.TabIndex = 18;
+            this.btn3c.TabStop = false;
+            this.btn3c.Tag = "3C";
+            this.btn3c.UseVisualStyleBackColor = true;
+            this.btn3c.Click += new System.EventHandler(this.btnSelectSeat);
             // 
-            // button10
+            // btn3b
             // 
-            this.button10.Location = new System.Drawing.Point(61, 99);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(23, 23);
-            this.button10.TabIndex = 17;
-            this.button10.TabStop = false;
-            this.button10.UseVisualStyleBackColor = true;
+            this.btn3b.Location = new System.Drawing.Point(61, 99);
+            this.btn3b.Name = "btn3b";
+            this.btn3b.Size = new System.Drawing.Size(23, 23);
+            this.btn3b.TabIndex = 17;
+            this.btn3b.TabStop = false;
+            this.btn3b.Tag = "3B";
+            this.btn3b.UseVisualStyleBackColor = true;
+            this.btn3b.Click += new System.EventHandler(this.btnSelectSeat);
             // 
-            // button11
+            // btn3a
             // 
-            this.button11.Location = new System.Drawing.Point(32, 99);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(23, 23);
-            this.button11.TabIndex = 16;
-            this.button11.TabStop = false;
-            this.button11.UseVisualStyleBackColor = true;
+            this.btn3a.Location = new System.Drawing.Point(32, 99);
+            this.btn3a.Name = "btn3a";
+            this.btn3a.Size = new System.Drawing.Size(23, 23);
+            this.btn3a.TabIndex = 16;
+            this.btn3a.TabStop = false;
+            this.btn3a.Tag = "3A";
+            this.btn3a.UseVisualStyleBackColor = true;
+            this.btn3a.Click += new System.EventHandler(this.btnSelectSeat);
             // 
             // label10
             // 
@@ -394,41 +420,49 @@
             this.label10.TabIndex = 15;
             this.label10.Text = "3";
             // 
-            // button12
+            // btn4d
             // 
-            this.button12.Location = new System.Drawing.Point(146, 143);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(23, 23);
-            this.button12.TabIndex = 24;
-            this.button12.TabStop = false;
-            this.button12.UseVisualStyleBackColor = true;
+            this.btn4d.Location = new System.Drawing.Point(146, 143);
+            this.btn4d.Name = "btn4d";
+            this.btn4d.Size = new System.Drawing.Size(23, 23);
+            this.btn4d.TabIndex = 24;
+            this.btn4d.TabStop = false;
+            this.btn4d.Tag = "4D";
+            this.btn4d.UseVisualStyleBackColor = true;
+            this.btn4d.Click += new System.EventHandler(this.btnSelectSeat);
             // 
-            // button13
+            // btn4c
             // 
-            this.button13.Location = new System.Drawing.Point(113, 143);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(23, 23);
-            this.button13.TabIndex = 23;
-            this.button13.TabStop = false;
-            this.button13.UseVisualStyleBackColor = true;
+            this.btn4c.Location = new System.Drawing.Point(113, 143);
+            this.btn4c.Name = "btn4c";
+            this.btn4c.Size = new System.Drawing.Size(23, 23);
+            this.btn4c.TabIndex = 23;
+            this.btn4c.TabStop = false;
+            this.btn4c.Tag = "4C";
+            this.btn4c.UseVisualStyleBackColor = true;
+            this.btn4c.Click += new System.EventHandler(this.btnSelectSeat);
             // 
-            // button14
+            // btn4b
             // 
-            this.button14.Location = new System.Drawing.Point(61, 143);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(23, 23);
-            this.button14.TabIndex = 22;
-            this.button14.TabStop = false;
-            this.button14.UseVisualStyleBackColor = true;
+            this.btn4b.Location = new System.Drawing.Point(61, 143);
+            this.btn4b.Name = "btn4b";
+            this.btn4b.Size = new System.Drawing.Size(23, 23);
+            this.btn4b.TabIndex = 22;
+            this.btn4b.TabStop = false;
+            this.btn4b.Tag = "4B";
+            this.btn4b.UseVisualStyleBackColor = true;
+            this.btn4b.Click += new System.EventHandler(this.btnSelectSeat);
             // 
-            // button15
+            // btn4a
             // 
-            this.button15.Location = new System.Drawing.Point(32, 143);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(23, 23);
-            this.button15.TabIndex = 21;
-            this.button15.TabStop = false;
-            this.button15.UseVisualStyleBackColor = true;
+            this.btn4a.Location = new System.Drawing.Point(32, 143);
+            this.btn4a.Name = "btn4a";
+            this.btn4a.Size = new System.Drawing.Size(23, 23);
+            this.btn4a.TabIndex = 21;
+            this.btn4a.TabStop = false;
+            this.btn4a.Tag = "4A";
+            this.btn4a.UseVisualStyleBackColor = true;
+            this.btn4a.Click += new System.EventHandler(this.btnSelectSeat);
             // 
             // label11
             // 
@@ -440,41 +474,49 @@
             this.label11.TabIndex = 20;
             this.label11.Text = "4";
             // 
-            // button16
+            // btn5d
             // 
-            this.button16.Location = new System.Drawing.Point(146, 172);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(23, 23);
-            this.button16.TabIndex = 29;
-            this.button16.TabStop = false;
-            this.button16.UseVisualStyleBackColor = true;
+            this.btn5d.Location = new System.Drawing.Point(146, 172);
+            this.btn5d.Name = "btn5d";
+            this.btn5d.Size = new System.Drawing.Size(23, 23);
+            this.btn5d.TabIndex = 29;
+            this.btn5d.TabStop = false;
+            this.btn5d.Tag = "5D";
+            this.btn5d.UseVisualStyleBackColor = true;
+            this.btn5d.Click += new System.EventHandler(this.btnSelectSeat);
             // 
-            // button17
+            // btn5c
             // 
-            this.button17.Location = new System.Drawing.Point(113, 172);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(23, 23);
-            this.button17.TabIndex = 28;
-            this.button17.TabStop = false;
-            this.button17.UseVisualStyleBackColor = true;
+            this.btn5c.Location = new System.Drawing.Point(113, 172);
+            this.btn5c.Name = "btn5c";
+            this.btn5c.Size = new System.Drawing.Size(23, 23);
+            this.btn5c.TabIndex = 28;
+            this.btn5c.TabStop = false;
+            this.btn5c.Tag = "5C";
+            this.btn5c.UseVisualStyleBackColor = true;
+            this.btn5c.Click += new System.EventHandler(this.btnSelectSeat);
             // 
-            // button18
+            // btn5B
             // 
-            this.button18.Location = new System.Drawing.Point(61, 172);
-            this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(23, 23);
-            this.button18.TabIndex = 27;
-            this.button18.TabStop = false;
-            this.button18.UseVisualStyleBackColor = true;
+            this.btn5B.Location = new System.Drawing.Point(61, 172);
+            this.btn5B.Name = "btn5B";
+            this.btn5B.Size = new System.Drawing.Size(23, 23);
+            this.btn5B.TabIndex = 27;
+            this.btn5B.TabStop = false;
+            this.btn5B.Tag = "5B";
+            this.btn5B.UseVisualStyleBackColor = true;
+            this.btn5B.Click += new System.EventHandler(this.btnSelectSeat);
             // 
-            // button19
+            // btn5a
             // 
-            this.button19.Location = new System.Drawing.Point(32, 172);
-            this.button19.Name = "button19";
-            this.button19.Size = new System.Drawing.Size(23, 23);
-            this.button19.TabIndex = 26;
-            this.button19.TabStop = false;
-            this.button19.UseVisualStyleBackColor = true;
+            this.btn5a.Location = new System.Drawing.Point(32, 172);
+            this.btn5a.Name = "btn5a";
+            this.btn5a.Size = new System.Drawing.Size(23, 23);
+            this.btn5a.TabIndex = 26;
+            this.btn5a.TabStop = false;
+            this.btn5a.Tag = "5A";
+            this.btn5a.UseVisualStyleBackColor = true;
+            this.btn5a.Click += new System.EventHandler(this.btnSelectSeat);
             // 
             // label12
             // 
@@ -494,7 +536,7 @@
             this.btnAllSeats.TabIndex = 9;
             this.btnAllSeats.Text = "Show All Seats";
             this.btnAllSeats.UseVisualStyleBackColor = true;
-            this.btnAllSeats.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnShowAllSeats);
+            this.btnAllSeats.Click += new System.EventHandler(this.btnShowAllSeats);
             // 
             // button20
             // 
@@ -504,7 +546,7 @@
             this.button20.TabIndex = 30;
             this.button20.Text = "Show Waiting List";
             this.button20.UseVisualStyleBackColor = true;
-            this.button20.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnShowWaitingList);
+            this.button20.Click += new System.EventHandler(this.btnShowWaitingList);
             // 
             // toolTipSeatStatus
             // 
@@ -548,29 +590,29 @@
             this.Controls.Add(this.rtxtboxSeated);
             this.Controls.Add(this.button20);
             this.Controls.Add(this.btnAllSeats);
-            this.Controls.Add(this.button16);
-            this.Controls.Add(this.button17);
-            this.Controls.Add(this.button18);
-            this.Controls.Add(this.button19);
+            this.Controls.Add(this.btn5d);
+            this.Controls.Add(this.btn5c);
+            this.Controls.Add(this.btn5B);
+            this.Controls.Add(this.btn5a);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.button12);
-            this.Controls.Add(this.button13);
-            this.Controls.Add(this.button14);
-            this.Controls.Add(this.button15);
+            this.Controls.Add(this.btn4d);
+            this.Controls.Add(this.btn4c);
+            this.Controls.Add(this.btn4b);
+            this.Controls.Add(this.btn4a);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.button8);
-            this.Controls.Add(this.button9);
-            this.Controls.Add(this.button10);
-            this.Controls.Add(this.button11);
+            this.Controls.Add(this.btn3d);
+            this.Controls.Add(this.btn3c);
+            this.Controls.Add(this.btn3b);
+            this.Controls.Add(this.btn3a);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.button7);
+            this.Controls.Add(this.btn2d);
+            this.Controls.Add(this.btn2c);
+            this.Controls.Add(this.btn2b);
+            this.Controls.Add(this.btn2a);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btn1d);
+            this.Controls.Add(this.btn1c);
+            this.Controls.Add(this.btn1b);
             this.Controls.Add(this.btn1a);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label8);
@@ -611,28 +653,28 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btn1a;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button btn1b;
+        private System.Windows.Forms.Button btn1d;
+        private System.Windows.Forms.Button btn1c;
+        private System.Windows.Forms.Button btn2d;
+        private System.Windows.Forms.Button btn2c;
+        private System.Windows.Forms.Button btn2b;
+        private System.Windows.Forms.Button btn2a;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button btn3d;
+        private System.Windows.Forms.Button btn3c;
+        private System.Windows.Forms.Button btn3b;
+        private System.Windows.Forms.Button btn3a;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.Button button15;
+        private System.Windows.Forms.Button btn4d;
+        private System.Windows.Forms.Button btn4c;
+        private System.Windows.Forms.Button btn4b;
+        private System.Windows.Forms.Button btn4a;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Button button16;
-        private System.Windows.Forms.Button button17;
-        private System.Windows.Forms.Button button18;
-        private System.Windows.Forms.Button button19;
+        private System.Windows.Forms.Button btn5d;
+        private System.Windows.Forms.Button btn5c;
+        private System.Windows.Forms.Button btn5B;
+        private System.Windows.Forms.Button btn5a;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button btnAllSeats;
         private System.Windows.Forms.ToolTip toolTipSeatStatus;

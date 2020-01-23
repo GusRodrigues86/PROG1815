@@ -28,10 +28,11 @@ namespace AirlineReservation
         private void AirlineReservation_Load(object sender, EventArgs e)
         {
             lblMessages.Text = "";
+            btnShowAllSeats(sender, e);
         }
 
         // Add to the waitlist
-        private void btnAddToWaitlist(object sender, MouseEventArgs e)
+        private void btnAddToWaitlist(object sender, EventArgs e)
         {
             //lblMessages. Text = "";
 
@@ -55,9 +56,8 @@ namespace AirlineReservation
                 lblMessages.Text += "Name must not be empty or white spaced\r\n";
             }
         }
-
         // Update/Shows the waitlist
-        private void btnShowWaitingList(object sender, MouseEventArgs e)
+        private void btnShowWaitingList(object sender, EventArgs e)
         {
             // ALWAYS guarantees an empty box.
             rtxtWaitlist.ResetText();
@@ -68,9 +68,8 @@ namespace AirlineReservation
                 rtxtWaitlist.AppendText(item + "\r\n");
             }
         }
-
         // Updates/Shows all the customers with seat assigned
-        private void btnShowAllSeats(object sender, MouseEventArgs e)
+        private void btnShowAllSeats(object sender, EventArgs e)
         {
             // ALWAYS guarantees an empty box.
             rtxtboxSeated.ResetText();
@@ -78,9 +77,9 @@ namespace AirlineReservation
             // builds the customers with seats assigneds
             rtxtboxSeated.AppendText(AirplaneService.SeatedCustomers());
         }
-
+        
         // Attempt to assign the selected seat to the customer
-        private void btnBookSeat(object sender, MouseEventArgs e)
+        private void btnBookSeat(object sender, EventArgs e)
         {
             lblMessages.Text = ""; // resets all messages before start
 
@@ -149,9 +148,8 @@ namespace AirlineReservation
                 lblMessages.Text += ex.Message + "\r\n";
             }
         }
-
         // Check the status of a selected seat
-        private void btnSeatStatus(object sender, MouseEventArgs e)
+        private void btnSeatStatus(object sender, EventArgs e)
         {
             // validation if user selected a seat
             // checks seat selection
@@ -203,7 +201,18 @@ namespace AirlineReservation
             }
 
         }
+        // Display seat status for the selected seat from seatmap
+        private void btnSelectSeat(object sender, EventArgs e)
+        {
+            Button btn = (Button) sender; // safecast
+            string seat = btn.Tag.ToString(); // get the tag ID of the seatmap.
+            int row = (int) Char.GetNumericValue(seat[0]) - 1; // for 0 index
+            int seatIndex = (int) seat[1] - 65; // char value - 65 : for 0 index
+            lstBoxRow.SetSelected(row, true);
+            lstBoxSeat.SetSelected(seatIndex, true);
 
+            btnSeatStatus(sender, e); 
+        }
 
     }
 }
