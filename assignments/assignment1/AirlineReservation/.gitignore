@@ -11,10 +11,7 @@
 *.sln.docstates
 *.ide
 *.ide-wal
-<<<<<<< HEAD
-=======
 *.lock
->>>>>>> assignments
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
