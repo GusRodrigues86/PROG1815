@@ -29,23 +29,13 @@ namespace AirlineReservation
         private void AirlineReservation_Load(object sender, EventArgs e)
         {
             lblMessages.Text = "";
-
-            // test condition for waitlist and cancelation of booking.
-            string[] seats = { "1A", "1B", "1C", "1D", "2A", "2B", "2C", "2D", "3A", "3B", "3C", "3D",
-            "4A","4B","4C","4D","5A","5B","5C","5D"};
-            foreach (var seat in seats)
-            {
-                AirplaneService.AssignCustomerToSeat(seat, "Dolly");
-            }
-            // remove test before submission
-
-            btnShowAllSeats(sender, e);
+            btnShowAllSeats(sender,e);
         }
 
         // Add to the waitlist
         private void btnAddToWaitlist(object sender, EventArgs e)
         {
-            //lblMessages. Text = "";
+            lblMessages.Text = ""; // clear lables of error before checking.
 
 
             // must check IF any seat is empty.
@@ -95,7 +85,7 @@ namespace AirlineReservation
             // builds the customers with seats assigneds
             rtxtboxSeated.AppendText(AirplaneService.SeatedCustomers());
         }
-        
+
         // Attempt to assign the selected seat to the customer
         private void btnBookSeat(object sender, EventArgs e)
         {
@@ -156,7 +146,7 @@ namespace AirlineReservation
             catch (ConstraintException)
             {
                 // flight is full
-                lblMessages.Text += "Flight is full, Customer needs to go to the Waitlist\r\n";
+                lblMessages.Text += "Flight is full.\r\nCustomer needs to go to the Waitlist\r\n";
             }
             catch (NullReferenceException ex)
             {
@@ -262,8 +252,9 @@ namespace AirlineReservation
                     return; // forces the end of the method.
                 }
                 // at this point, removal of seat is possible.
-                string warningMessage = "The removal of a customer will enforce any name on the waitlist" +
-                    "to take it's place and cannot be undone. Do you want to proceed?";
+                string warningMessage = "The removal of a customer will enforce the first name, if any, " +
+                    "on the waitlist to take it's place and cannot be undone.\r\n" +
+                    "Do you want to proceed?";
                 DialogResult result = MessageBox.Show(warningMessage, "Cancel Booking", MessageBoxButtons.YesNo);
                 // user confirm he wants to proceed
                 if (result == DialogResult.Yes)
@@ -276,9 +267,9 @@ namespace AirlineReservation
                         txtName.Text = WaitlistService.RemoveFromTheWaitlist();
                         // Assign the customer to the seat.
                         btnBookSeat(sender, e);
-                        
+
                     }
-                    btnShowWaitingList(sender,e);
+                    btnShowWaitingList(sender, e);
                     btnShowAllSeats(sender, e);
                     ResetSelection();
                 }
@@ -293,7 +284,7 @@ namespace AirlineReservation
             {
                 lblMessages.Text += "Select a seat first";
             }
-            
+
         }
 
         // clear the customer name box, the row and seat selection and seat status information
@@ -304,6 +295,23 @@ namespace AirlineReservation
             lstBoxSeat.ClearSelected(); // unselect seat
             txtStatus.Clear(); // clear status
             txtName.Clear(); // clear status info
+        }
+
+        // Fill All (Debug) is pressed.
+        // Will fill all the 20 seats, if available and there will be no names to the waitlist
+        private void btnFillAll(object sender, EventArgs e)
+        {
+            // all seats of the plane 
+            string[] seats = { "1A", "1B", "1C", "1D", "2A", "2B", "2C", "2D", "3A", "3B", "3C", "3D",
+            "4A","4B","4C","4D","5A","5B","5C","5D"};
+            // assign if available
+            foreach (var seat in seats)
+            {
+                AirplaneService.AssignCustomerToSeat(seat, "Dolly");
+            }
+            // remove test before submission
+
+            btnShowAllSeats(sender, e);
         }
     }
 }

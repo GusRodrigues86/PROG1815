@@ -77,11 +77,13 @@
             this.rtxtboxSeated = new System.Windows.Forms.RichTextBox();
             this.rtxtWaitlist = new System.Windows.Forms.RichTextBox();
             this.lblMessages = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.txtStatus);
             this.groupBox1.Controls.Add(this.lstBoxSeat);
             this.groupBox1.Controls.Add(this.lstBoxRow);
@@ -581,6 +583,16 @@
             this.lblMessages.TabIndex = 33;
             this.lblMessages.Text = "...";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(247, 138);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(90, 52);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Fill All (Debug)";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.btnFillAll);
+            // 
             // AirlineReservation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -683,5 +695,6 @@
         private System.Windows.Forms.RichTextBox rtxtboxSeated;
         private System.Windows.Forms.RichTextBox rtxtWaitlist;
         private System.Windows.Forms.Label lblMessages;
+        private System.Windows.Forms.Button button1;
     }
 }
