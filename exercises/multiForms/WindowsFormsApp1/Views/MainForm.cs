@@ -1,6 +1,6 @@
-﻿using System;
+﻿using SimpleCalculator;
+using System;
 using System.Windows.Forms;
-using Calculator;
 
 namespace WindowsFormsApp1
 {
@@ -31,8 +31,9 @@ namespace WindowsFormsApp1
         private void calculatorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // thanks Microsoft and crazy namespace rules.
-            Calculator.Calculator calculator = new Calculator.Calculator();
+            Calculator calculator = new Calculator();
             calculator.MdiParent = this;
+            calculator.MaximizeBox = true;
             calculator.Show();
         }
     }
