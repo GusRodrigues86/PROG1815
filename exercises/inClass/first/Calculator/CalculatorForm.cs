@@ -7,9 +7,9 @@
  */
 using System;
 using System.Windows.Forms;
-using static Calculator.Service.CalculationService; // static import of the calculation
+using static SimpleCalculator.Service.CalculationService; // static import of the calculation
 
-namespace Calculator
+namespace SimpleCalculator
 {
     public partial class Calculator : Form
     {

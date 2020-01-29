@@ -1,4 +1,4 @@
-﻿namespace Calculator
+﻿namespace SimpleCalculator
 {
     partial class Calculator
     {
@@ -308,10 +308,11 @@
             this.lblExpression.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblExpression.Location = new System.Drawing.Point(143, 9);
             this.lblExpression.Name = "lblExpression";
+            this.lblExpression.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lblExpression.Size = new System.Drawing.Size(45, 20);
             this.lblExpression.TabIndex = 17;
             this.lblExpression.Text = "a+b=";
-            this.lblExpression.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.lblExpression.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // btnResult
             // 

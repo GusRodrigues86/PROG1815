@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Calculator.Service
+namespace SimpleCalculator.Service
 {
     /// <summary>
     /// Perform the calculation as requested by the calculator

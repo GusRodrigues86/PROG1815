@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SimpleCalculator.Properties
+namespace WindowsFormsApp1.Properties
 {
 
 
