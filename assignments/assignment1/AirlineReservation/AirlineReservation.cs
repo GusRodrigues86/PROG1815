@@ -29,7 +29,7 @@ namespace AirlineReservation
         private void AirlineReservation_Load(object sender, EventArgs e)
         {
             lblMessages.Text = "";
-            btnShowAllSeats(sender,e);
+            btnShowAllSeats(sender, e);
         }
 
         // Add to the waitlist
@@ -92,7 +92,7 @@ namespace AirlineReservation
             lblMessages.Text = ""; // resets all messages before start
 
             string customer = txtName.Text;
-
+            bool hasErrors = false;
             // book customer...
             try
             {
@@ -101,63 +101,76 @@ namespace AirlineReservation
                 {
                     throw new ConstraintException();
                 }
-                // null or empty name
-                if (String.IsNullOrWhiteSpace(customer))
-                {
-                    throw new NullReferenceException("Name must not be empty or white spaced\r\n");
-                }
-                // checks seat selection
-                try
-                {
-                    if (String.IsNullOrWhiteSpace(lstBoxRow.SelectedItem.ToString()))
-                    {
-                        throw new InvalidOperationException("Select a row");
-                    }
-
-                }
-                catch (NullReferenceException)
-                {
-                    throw new InvalidOperationException("Select a row");
-                }
-                try
-                {
-                    if (String.IsNullOrWhiteSpace(lstBoxSeat.SelectedItem.ToString()))
-                    {
-                        throw new InvalidOperationException("Select a seat");
-                    }
-
-                }
-                catch (NullReferenceException)
-                {
-                    throw new InvalidOperationException("Select a seat");
-                }
-
-                string seat = lstBoxRow.SelectedItem.ToString();
-                seat += lstBoxSeat.SelectedItem.ToString();
-
-                if (!AirplaneService.AssignCustomerToSeat(seat, customer))
-                {
-                    lblMessages.Text += "Unable to assign customer to the seat\r\n";
-                }
-                btnShowAllSeats(sender, e); // update customer list
-                // clear info after successfully insertion
-                ResetSelection();
             }
             catch (ConstraintException)
             {
                 // flight is full
                 lblMessages.Text += "Flight is full.\r\nCustomer needs to go to the Waitlist\r\n";
+                hasErrors = true;
+            }
+            try
+            {
+                // null or empty name
+                if (String.IsNullOrWhiteSpace(customer))
+                {
+                    txtName.Focus();
+                    throw new NullReferenceException("Name must not be empty or white spaced\r\n");
+                }
             }
             catch (NullReferenceException ex)
             {
                 // no name was typed
-                lblMessages.Text = ex.Message;
+                lblMessages.Text += ex.Message;
+                hasErrors = true;
             }
-            catch (InvalidOperationException ex)
+            // checks seat selection
+            try
+            {
+                if (String.IsNullOrWhiteSpace(lstBoxRow.SelectedItem.ToString()))
+                {
+                    lstBoxRow.Focus();
+                    throw new NullReferenceException();
+                }
+
+            }
+            catch (NullReferenceException)
             {
                 // invalid seat selection
-                lblMessages.Text += ex.Message + "\r\n";
+                lblMessages.Text += "Select a row" + "\r\n";
+                hasErrors = true;
             }
+            try
+            {
+                if (String.IsNullOrWhiteSpace(lstBoxSeat.SelectedItem.ToString()))
+                {
+                    lstBoxSeat.Focus();
+                    throw new NullReferenceException();
+                }
+
+            }
+            catch (NullReferenceException)
+            {
+                // invalid seat selection
+                lblMessages.Text += "Select a seat" + "\r\n";
+                hasErrors = true;
+            }
+
+            // if there are errors, stop here!
+            if (hasErrors)
+            {
+                return;
+            }
+
+            string seat = lstBoxRow.SelectedItem.ToString();
+            seat += lstBoxSeat.SelectedItem.ToString();
+
+            if (!AirplaneService.AssignCustomerToSeat(seat, customer))
+            {
+                lblMessages.Text += "Unable to assign customer to the seat\r\n";
+            }
+            btnShowAllSeats(sender, e); // update customer list
+            ResetSelection();           // clear info after successfully insertion
+
         }
         // Check the status of a selected seat
         private void btnSeatStatus(object sender, EventArgs e)

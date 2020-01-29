@@ -33,7 +33,6 @@ namespace WindowsFormsApp1
             // thanks Microsoft and crazy namespace rules.
             Calculator calculator = new Calculator();
             calculator.MdiParent = this;
-            calculator.MaximizeBox = true;
             calculator.Show();
         }
     }
