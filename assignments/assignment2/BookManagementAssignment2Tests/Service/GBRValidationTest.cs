@@ -50,7 +50,7 @@ namespace BookManagementAssignment2Tests
         public void WhitespaceBeforeString_ReturnStringWithoutLeadingWhitespace()
         {
             string input = " input test";
-            string expected = "input test";
+            string expected = "Input Test";
 
             string actual = GBRTitleGrammer(input);
 
@@ -63,7 +63,7 @@ namespace BookManagementAssignment2Tests
         public void WhitespaceAfterText_ReturnStringWithouTrailingWhitespace()
         {
             string input = "input text ";
-            string expected = "input text";
+            string expected = "Input Text";
 
             string actual = GBRTitleGrammer(input);
 
@@ -83,6 +83,20 @@ namespace BookManagementAssignment2Tests
 
             Assert.AreEqual(expected, actual);
             Assert.AreNotEqual(input, actual);
+        }
+
+        [Test]
+        public void RandomCaseWords_ReturnsPascalCasedWord()
+        {
+            string[] input = {"PotAtO", "sAlaD","toSs", "THRoW", "pUnCH" };
+            string[] expected = { "Potato", "Salad", "Toss", "Throw", "Punch" };
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                string actual = GBRTitleGrammer(input[i]);
+                Assert.AreEqual(expected[i], actual);
+                Assert.AreNotEqual(input[i], actual);
+            }
         }
 
         /* ISBN Validation tests

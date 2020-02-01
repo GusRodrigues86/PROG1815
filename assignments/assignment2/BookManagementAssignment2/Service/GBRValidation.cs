@@ -30,7 +30,7 @@ namespace BookManagementAssignment2.Service
         {
             return false;
         }
-        
+
         /// <summary>
         /// Takes the user input and validates if is a valid phone number.
         /// 
@@ -73,12 +73,41 @@ namespace BookManagementAssignment2.Service
             {
                 return Empty;
             }
-            // input is one character long -> check with turton
+            // input is one character long -> check with 
+            // input not null -> trim beggining and end and Pascal Case it.
+            return PascalCase(input.Trim());
+        }
 
-            // input not null -> trim beggining and end.
-            input = input.Trim().ToLowerInvariant();
-            // Pascal Case input.
-            return input;
+        /// <summary>
+        /// Converts user input to Pascal Case.
+        /// 
+        /// <para>The input must be non-null. and without leading or trailing whitespaces.</para>
+        /// </summary>
+        /// <param name="input">The word to be converted to Pascal Case</param>
+        /// <returns>The word that was converted to Pascal Case</returns>
+        private static string PascalCase(string input)
+        {
+            input = input.ToLowerInvariant();
+            string[] array = input.Split(' ');
+
+            // for larges input, SB is more efficient than any string concatenation.
+            // StringBuilder will never be larger than the original input
+            StringBuilder sb = new StringBuilder(input.Length);
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                char[] temp = array[i].Trim().ToCharArray();
+                temp[0] = (char) (temp[0] - 32);
+                sb.Append(temp);
+
+                // add whitespace between words
+                if ((i + 1) != array.Length)
+                {
+                    sb.Append(" ");
+                }
+            }
+
+            return sb.ToString();
         }
 
 
