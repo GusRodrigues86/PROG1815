@@ -50,8 +50,9 @@ namespace AirlineReservation
 
                 if (!attempt)
                 {
-                    lblMessages.Text += "Waitlist is full!";
+                    lblMessages.Text += "Waitlist is full!\r\n";
                 }
+                lblMessages.Text += $"Added {txtName.Text} to the Waitlist\r\n";
                 btnShowWaitingList(sender, e); // update dialog status
                 ResetSelection();
             }
@@ -93,21 +94,17 @@ namespace AirlineReservation
 
             string customer = txtName.Text;
             bool hasErrors = false;
-            // book customer...
-            try
-            {
-                // cannot add customer on a full flight
+            // cannot add customer on a full flight
                 if (AirplaneService.IsFull())
                 {
-                    throw new ConstraintException();
+                    // attempts to add to wait list.
+                    btnAddToWaitlist(sender, e);
+                    lblMessages.Text += "Flight is full.\r\n";
+                    return;
                 }
-            }
-            catch (ConstraintException)
-            {
-                // flight is full
-                lblMessages.Text += "Flight is full.\r\nCustomer needs to go to the Waitlist\r\n";
-                hasErrors = true;
-            }
+            
+            
+            // book customer...
             try
             {
                 // null or empty name
@@ -229,6 +226,7 @@ namespace AirlineReservation
         private void btnSelectSeat(object sender, EventArgs e)
         {
             Button btn = (Button) sender; // safecast
+
             string seat = btn.Tag.ToString(); // get the tag ID of the seatmap.
             int row = (int) Char.GetNumericValue(seat[0]) - 1; // for 0 index
             int seatIndex = (int) seat[1] - 65; // char value - 65 : for 0 index
