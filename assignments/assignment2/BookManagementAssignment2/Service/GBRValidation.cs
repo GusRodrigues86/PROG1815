@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace BookManagementAssignment2.Service
 {
@@ -75,7 +76,16 @@ namespace BookManagementAssignment2.Service
             }
             // input is one character long -> check with 
             // input not null -> trim beggining and end and Pascal Case it.
-            return PascalCase(input.Trim());
+            input = input.Trim(); // remove any leading and trailing whitespaces.
+            input = GBRPunctuationRemover(input);
+            return PascalCase(input);
+        }
+
+        private static string GBRPunctuationRemover(string input)
+        {
+            Regex regex = new Regex("\\p{P}");
+            input = regex.Replace(input, "");
+            return input;
         }
 
         /// <summary>
@@ -87,6 +97,9 @@ namespace BookManagementAssignment2.Service
         /// <returns>The word that was converted to Pascal Case</returns>
         private static string PascalCase(string input)
         {
+            // we may have empty strings being supplied.
+            if (IsNullOrWhiteSpace(input))
+            { return Empty; }
             input = input.ToLowerInvariant();
             string[] array = input.Split(' ');
 

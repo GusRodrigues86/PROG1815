@@ -44,6 +44,48 @@ namespace BookManagementAssignment2Tests
             Assert.Zero(actual.Length);
         }
 
+        [Test]
+        public void OnlyPunctuation_ReturnEmptyString()
+        {
+            string[] punctuations = {
+                ";",".",",",":","?", "!", "{", "}", "(",")", "\'", "\"","-", "/"
+            };
+            string expected = String.Empty;
+
+            foreach (var punctuation in punctuations)
+            {
+                Assert.AreEqual(expected, GBRTitleGrammer(punctuation));
+            }
+        }
+
+        [Test]
+        public void PunctuationFollowedByLetter_ReturnCapitalLetterOnly()
+        {
+            string[] punctuations = {
+                ";a", ".b", ",c", ":d", "?e", "!f", "{g", "}h", "(i", ")j", "\'k", "\"l","-m", "/n"
+            };
+
+            for (int i = 0; i < punctuations.Length; i++)
+            {
+                string expected = Char.ToString((char) (i + 65));
+                Assert.AreEqual(expected, GBRTitleGrammer(punctuations[i]));
+            }
+        }
+
+        [Test]
+        public void LetterFollowedByPunctuation_ReturnCapitalLetterOnly()
+        {
+            string[] punctuations = { 
+                "a;", "b.", "c,", "d:", "e?", "f!", "g{", "h}", "i(", "j)", "k\'", "l\"","m-", "n/"
+            };
+
+            for (int i = 0; i < punctuations.Length; i++)
+            {
+                string expected = Char.ToString((char) (i + 65));
+                Assert.AreEqual(expected, GBRTitleGrammer(punctuations[i]));
+            }
+        }
+
         /* Test Whitespeace leading input
          */
         [Test]
