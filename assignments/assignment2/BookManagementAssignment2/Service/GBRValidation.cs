@@ -125,7 +125,12 @@ namespace BookManagementAssignment2.Service
                 if (!IsNullOrWhiteSpace(array[i]))
                 {
                     char[] temp = array[i].Trim().ToCharArray();
-                    temp[0] = (char) (temp[0] - 32);
+                    // prevent uppercase digits.
+                    if (Char.IsLetter(temp[0]))
+                    {
+                        temp[0] = (char) (temp[0] - 32);
+                    }
+
                     sb.Append(temp);
 
                     // add whitespace between words
