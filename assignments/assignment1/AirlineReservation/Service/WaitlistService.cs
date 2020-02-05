@@ -17,11 +17,11 @@ namespace AirlineReservation
         /// <summary>
         /// The waitlist to operate
         /// </summary>
-        private Waitlist waitlist;
+        private Waitlist CustomerWaitlist;
 
         public WaitlistService()
         {
-            this.waitlist = new Waitlist();
+            this.CustomerWaitlist = new Waitlist();
         }
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace AirlineReservation
         /// If first element is an empty string, there is no one on the waitlist.
         /// </summary>
         /// <returns>A string array holding all the customers on the waitlist.</returns>
-        public string[] Waitlist() => waitlist.WaitlistedCustomers();
+        public string[] Waitlist() => this.CustomerWaitlist.WaitlistedCustomers();
 
         /// <summary>
         /// Attempts to add customer to the Waitlist.
@@ -46,7 +46,7 @@ namespace AirlineReservation
                 throw new NullReferenceException("Customer must have a name");
             }
 
-            return waitlist.Enqueue(customer);
+            return this.CustomerWaitlist.Enqueue(customer);
         }
 
         /// <summary>
@@ -55,12 +55,14 @@ namespace AirlineReservation
         /// Returns the customer, if any. Otherwise, returns an empty string.
         /// </summary>
         /// <returns>The first customer on the waitlist. If there wasn't an user to be removed from the waitlist, it will return an empty string.</returns>
-        public string RemoveFromTheWaitlist() => waitlist.Dequeue();
+        public string RemoveFromTheWaitlist() => 
+            this.CustomerWaitlist.Dequeue();
 
         /// <summary>
         /// Checks if there is an element to be removed from the waitlist and assign to seat.
         /// </summary>
         /// <returns></returns>
-        public bool HasNext() => (String.IsNullOrWhiteSpace(waitlist.Peek())) ? false : true;
+        public bool HasNext() => 
+            (String.IsNullOrWhiteSpace(this.CustomerWaitlist.Peek())) ? false : true;
     }
 }

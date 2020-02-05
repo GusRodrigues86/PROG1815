@@ -11,8 +11,10 @@
  */
 
 using System;
+using System.Runtime.CompilerServices;
 using System.Text;
 
+[assembly: InternalsVisibleTo("AirlineReservationTests")] // allows unit tests
 namespace AirlineReservation
 {
     /// <summary>
@@ -27,7 +29,7 @@ namespace AirlineReservation
     /// An unassigned seat has a null value.
     /// A seat is assigned to it will have the Customer name on it.
     /// </summary>
-    public class Airplane
+    internal class Airplane
     {
         private string[,] SeatMap;
 

@@ -9,7 +9,9 @@
  */
 
 using System;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("AirlineReservationTests")] // allows unit tests
 namespace AirlineReservation
 {
     /// <summary>
@@ -65,7 +67,7 @@ namespace AirlineReservation
         /// <summary>
         /// How many names in the queue
         /// </summary>
-        private int size;
+        private int Size;
 
         /// <summary>
         /// Constructs a waitlist that can hold 10 names on it.
@@ -75,7 +77,7 @@ namespace AirlineReservation
             this.Queue = new string[10];
             this.Head = 0;
             this.Tail = 0;
-            this.size = 0;
+            this.Size = 0;
             CheckInvariant();
         }
 
@@ -106,9 +108,9 @@ namespace AirlineReservation
             }
             
             int capacity = 1; // will be 1 or size.
-            if (size != 0)
+            if (Size != 0)
             {
-                capacity = size;
+                capacity = Size;
             }
             string[] copy = new string[capacity];
             int k = 0; // index for copy array
@@ -150,8 +152,8 @@ namespace AirlineReservation
             {
                 Queue[Tail] = customer;
                 // move the tail to next index
-                _NextTailIndex();
-                size++;
+                NextTailIndex();
+                Size++;
                 return true;
             }
             return false;
@@ -172,8 +174,8 @@ namespace AirlineReservation
             }
             string toReturn = Queue[Head];
             Queue[Head] = null; // remove from the waitlist.
-            _NextHeadIndex();
-            size--;
+            NextHeadIndex();
+            Size--;
             return toReturn;
         }
 
@@ -195,14 +197,13 @@ namespace AirlineReservation
         /// <summary>
         /// Move tail to the next index
         /// </summary>
-        private void _NextTailIndex() =>
+        private void NextTailIndex() =>
             Tail = (Tail + 1) % 10;
 
         /// <summary>
         /// Move Head to the next index
         /// </summary>
-        
-        private void _NextHeadIndex() =>
+        private void NextHeadIndex() =>
             Head = (Head + 1) % 10;
 
         /// <summary>
