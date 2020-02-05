@@ -19,10 +19,8 @@ namespace BookManagementAssignment2
 {
     public partial class MainForm : Form
     {
-        private bool HasErrors;
         public MainForm()
         {
-            this.HasErrors = false;
             InitializeComponent();
             lblErrors.Text = "";
         }
@@ -44,11 +42,7 @@ namespace BookManagementAssignment2
         /// <param name="e"></param>
         private void btnSubmitForm(object sender, EventArgs e)
         {
-            ValidateForm();
-            if (this.HasErrors)
-            {
-                return;
-            }
+            ValidateForm(sender, e); 
 
         }
 
@@ -92,147 +86,46 @@ namespace BookManagementAssignment2
         /// <summary>
         /// Validates the form
         /// </summary>
-        private void ValidateForm()
+        private void ValidateForm(object sender, EventArgs e)
         {
             lblErrors.Text = "";
-            this.HasErrors = false; // reset state
-
-            // Book title
-            if (!ValidateBookTitle(txtBookTitle))
-            {
-                this.HasErrors = true;
-                errorProvider.SetError(txtBookTitle, "Book title cannot be empty.");
-                lblErrors.Text += "Book title cannot be empty.\r\n";
-            }
-            // ISBN
-            if (!ValidateISBN(txtISBN))
-            {
-                this.HasErrors = true;
-                errorProvider.SetError(txtISBN, "ISBN code invalid / required");
-                lblErrors.Text += "ISBN code invalid / required.\r\n";
-            }
-            // Author Name
-            if (!ValidateAuthor(txtAuthorFullName))
-            {
-                this.HasErrors = true;
-                errorProvider.SetError(txtAuthorFullName, "Author full name required");
-                lblErrors.Text += "Author full name required.\r\n";
-            }
-            // Validate email. if email is invalid, check required fields for validation
-            if (!ValidateEmail(txtEmail))
-            {
-                bool validAddress = true;
-                // check address
-                if (!ValidateAddress(txtStreetRRoute))
-                {
-                    validAddress = false;
-                    errorProvider.SetError(txtStreetRRoute, "Street/Rural Routes is required if email is not provided");
-                    lblErrors.Text += "Street/Rural Routes is required if email is not provided.\r\n";
-                }
-                else
-                {
-                    // town validation
-                    if (!ValidateTown(txtTown))
-                    {
-                        validAddress = false;
-                        errorProvider.SetError(txtTown, "Town or county name is required if email is not provided");
-                        lblErrors.Text += "Town or county is required if email is not provided.\r\n";
-                    }
-                }
-                
-                // postal code if no email
-                if (!ValidatePostalCode(txtPostalCode))
-                {
-                    {
-                        validAddress = false;
-                        errorProvider.SetError(txtPostalCode, "Postal code is required if email is not provided");
-                        lblErrors.Text += "Postal code is required if email is not provided.\r\n";
-                    }
-                }
-                
-                if (!validAddress)
-                {
-                    this.HasErrors = true;
-                    errorProvider.SetError(txtEmail, "An email is required");
-                    lblErrors.Text += "Email is required.\r\n";
-                }
-            }
-            // validate at least one phone
-            if (!ValidatePhone(txtHomePhone) && !ValidatePhone(txtCellPhone))
-            {
-                this.HasErrors = true;
-                errorProvider.SetError(txtHomePhone, "Home phone or cell phone is required");
-                errorProvider.SetError(txtCellPhone, "Home phone or cell phone is required");
-                lblErrors.Text += "Home phone or cell phone is required.\r\n";
-            }
-
         }
 
+        /// <summary>
+        /// Validates the user input for the Author name.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtAuthorFullNameValidating(object sender, CancelEventArgs e)
+        {
+            string errorMsg;
+            TextBox authorName = (TextBox) sender;
+            authorName.Text = GBRTitleGrammer(authorName.Text);
+            if (!GBRValidateAuthorName(authorName.Text, out errorMsg))
+            {
+                e.Cancel = true;
+                authorName.Select(0, authorName.Text.Length);
+
+                errorProvider.SetError(txtAuthorFullName, errorMsg);
+                appendErrorMessage(errorMsg);
+            }
+        }
 
         /// <summary>
-        /// Validates the BookTitle
+        /// Clear any errors in the Author name that has been fixed
         /// </summary>
-        /// <param name="BookTitle"></param>
-        /// <returns></returns>
-        private static bool ValidateBookTitle(TextBox BookTitle) =>
-            (String.IsNullOrWhiteSpace(BookTitle.Text))? false : true;
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtAuthorFullNameValidated(object sender, EventArgs e) =>
+            errorProvider.SetError(txtAuthorFullName, "");
 
-        /// <summary>
-        /// Calls to validate ISBN
-        /// </summary>
-        /// <param name="ISBN">TextBox with the ISBN</param>
-        /// <returns></returns>
-        private static bool ValidateISBN(TextBox ISBN) => 
-            GBRISBNValidation(ISBN.Text);
-
-        /// <summary>
-        /// Validates Author name
-        /// </summary>
-        /// <param name="AuthorName">TextBox with author name</param>
-        /// <returns></returns>
-        private bool ValidateAuthor(TextBox AuthorName) => 
-            // Needs to Split and see if has two or more name
-            (String.IsNullOrWhiteSpace(AuthorName.Text)) ? false : true;
-
-        /// <summary>
-        /// Validates the email entered, if any.
-        /// </summary>
-        /// <param name="EmailBox"></param>
-        /// <returns></returns>
-        private bool ValidateEmail(TextBox emailBox) =>
-            (String.IsNullOrWhiteSpace(emailBox.Text)) ? false : true;
-
-        /// <summary>
-        /// Validates the Street or Rural Route
-        /// </summary>
-        /// <param name="address"></param>
-        /// <returns></returns>
-        private bool ValidateAddress(TextBox address) =>
-            (String.IsNullOrWhiteSpace(address.Text)) ? false : true;
-
-        /// <summary>
-        /// Validate the supplied town name
-        /// </summary>
-        /// <param name="town"></param>
-        /// <returns></returns>
-        private bool ValidateTown(TextBox town) =>
-            (String.IsNullOrWhiteSpace(town.Text)) ? false : true;
-
-        /// <summary>
-        /// Validates the supplied Postal Code
-        /// </summary>
-        /// <param name="postalCode"></param>
-        /// <returns></returns>
-        private bool ValidatePostalCode(TextBox postalCode) =>
-            (String.IsNullOrWhiteSpace(postalCode.Text)) ? false : true;
-
-        /// <summary>
-        /// Validate the supplied phone number
-        /// </summary>
-        /// <param name="phone"></param>
-        /// <returns></returns>
-        private bool ValidatePhone(TextBox phone) =>
-            (String.IsNullOrWhiteSpace(phone.Text)) ? false : true;
-
+        private void appendErrorMessage(string errorMessage)
+        {
+            errorMessage = errorMessage + "\n\r";
+            if (!lblErrors.Text.Contains(errorMessage))
+            {
+                lblErrors.Text += errorMessage;
+            }
+        }
     }
 }

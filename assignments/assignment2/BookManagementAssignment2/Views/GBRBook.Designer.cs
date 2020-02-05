@@ -263,6 +263,8 @@
             this.txtAuthorFullName.TabIndex = 3;
             this.txtAuthorFullName.Tag = "Author Full Name";
             this.txtAuthorFullName.Leave += new System.EventHandler(this.txtGrammerValidation);
+            this.txtAuthorFullName.Validating += new System.ComponentModel.CancelEventHandler(this.txtAuthorFullNameValidating);
+            this.txtAuthorFullName.Validated += new System.EventHandler(this.txtAuthorFullNameValidated);
             // 
             // txtDatePublished
             // 

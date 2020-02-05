@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using System.Net.Mail;
 
 namespace BookManagementAssignment2.Service
 {
@@ -93,6 +94,47 @@ namespace BookManagementAssignment2.Service
             return PascalCase(input);
         }
 
+        /// <summary>
+        /// Validates if the supplied input has more than two names.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="errorMessage">The error message, if false</param>
+        /// <returns></returns>
+        internal static bool GBRValidateAuthorName(string input, out string errorMessage)
+        {
+            if (input.Split(' ').Length > 1)
+            {
+                errorMessage = "";
+                return true;
+            }
+            if (input.Split(' ').Length == 0)
+            {
+                errorMessage = "Author full name required";
+                return false;
+            }
+            errorMessage = "Need at least one first name and one last name";
+            return false;
+        }
+
+        internal static bool GBRValidateEmail(string input, out string errorMessage)
+        {
+            try
+            {
+                errorMessage = "";
+                MailAddress testEmail = new MailAddress(input);
+                return true;
+            }
+            catch (FormatException)
+            {
+                errorMessage = "Need a valid email address.";
+                return false;
+            }
+            catch (Exception ex) when (ex is ArgumentNullException || ex is ArgumentException)
+            {
+                errorMessage = "Provide an email address.";
+                return false;
+            }
+        }
         private static string GBRPunctuationRemover(string input)
         {
             Regex regex = new Regex("\\p{P}"); // general case for punctuation
