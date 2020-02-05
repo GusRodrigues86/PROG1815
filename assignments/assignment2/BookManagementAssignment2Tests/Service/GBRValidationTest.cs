@@ -1,4 +1,4 @@
-using static BookManagementAssignment2.Service.GBRValidation;
+using static GBRValidation.Service.GBRValidation;
 using NUnit.Framework;
 using System;
 

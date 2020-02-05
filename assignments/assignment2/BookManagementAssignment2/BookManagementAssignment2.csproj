@@ -46,7 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Service\GBRValidation.cs" />
     <Compile Include="Views\GBRBook.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +81,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GBRValidation\GBRValidation.csproj">
+      <Project>{832d8f39-018f-4e4e-9d4e-704877588725}</Project>
+      <Name>GBRValidation</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

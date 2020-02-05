@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.Net.Mail;
 
-namespace BookManagementAssignment2.Service
+namespace GBRValidation.Service
 {
     public static class GBRValidation
     {
@@ -30,6 +30,17 @@ namespace BookManagementAssignment2.Service
         /// <returns></returns>
         public static bool GBRPostalCodeValidation(ref string input)
         {
+            // Canadian Postal code
+            Regex regex = new Regex(@"\^[ABCEGHJKLMNPRSTVXY][0-9][ABCEGHJKLMNPRSTVWXYZ]\s?[0-9][ABCEGHJKLMNPRSTVWXYZ][0-9]$", RegexOptions.IgnoreCase);
+            if (regex.IsMatch(input))
+            {
+                if (input.Length == 6)
+                {
+                    input = input.Substring(0, 3) + " " + input.Substring(3,3);
+                }
+                input.ToUpper();
+                return true;
+            }
             return false;
         }
 
@@ -51,7 +62,7 @@ namespace BookManagementAssignment2.Service
                 return true;
             }
             // regex to allow phone numbers as 123 123 1234 with and without whitespaces or white spaced replaced by . or - or combinations of it.
-            Regex regex = new Regex("^(\\d{3})([-\\s.])?(\\d{3})([-\\s.])?(\\d{4})$");
+            Regex regex = new Regex(@"^(\d{3})([-\s.])?(\d{3})([-\s.])?(\d{4})$");
             return regex.IsMatch(input);
         }
 
@@ -69,7 +80,7 @@ namespace BookManagementAssignment2.Service
                 return true;
             }
 
-            Regex regex = new Regex("\\d{13}");
+            Regex regex = new Regex(@"\d{13}");
             return regex.IsMatch(input);
         }
 
@@ -100,7 +111,7 @@ namespace BookManagementAssignment2.Service
         /// <param name="input"></param>
         /// <param name="errorMessage">The error message, if false</param>
         /// <returns></returns>
-        internal static bool GBRValidateAuthorName(string input, out string errorMessage)
+        public static bool GBRValidateAuthorName(string input, out string errorMessage)
         {
             if (input.Split(' ').Length > 1)
             {
@@ -116,31 +127,37 @@ namespace BookManagementAssignment2.Service
             return false;
         }
 
-        internal static bool GBRValidateEmail(string input, out string errorMessage)
+        /// <summary>
+        /// Validates the supplied email
+        /// </summary>
+        /// <param name="input">User input</param>
+        /// <param name="errorMessage"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
+        public static bool GBRValidateEmail(string input)
         {
             try
             {
-                errorMessage = "";
                 MailAddress testEmail = new MailAddress(input);
                 return true;
             }
             catch (FormatException)
             {
-                errorMessage = "Need a valid email address.";
                 return false;
             }
             catch (Exception ex) when (ex is ArgumentNullException || ex is ArgumentException)
             {
-                errorMessage = "Provide an email address.";
                 return false;
             }
         }
-        private static string GBRPunctuationRemover(string input)
-        {
-            Regex regex = new Regex("\\p{P}"); // general case for punctuation
-            input = regex.Replace(input, " ");
-            return input;
-        }
+
+        /// <summary>
+        /// Remove any punctuation from the string.
+        /// </summary>
+        /// <param name="input">the string to</param>
+        /// <returns></returns>
+        public static string GBRPunctuationRemover(string input) =>
+            new Regex(@"\p{P}").Replace(input, " ");
 
         /// <summary>
         /// Converts user input to Pascal Case.

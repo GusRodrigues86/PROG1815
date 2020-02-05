@@ -13,7 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static BookManagementAssignment2.Service.GBRValidation; // validator service as static import
+using static GBRValidation.Service.GBRValidation; // validator service as static import
 
 namespace BookManagementAssignment2
 {

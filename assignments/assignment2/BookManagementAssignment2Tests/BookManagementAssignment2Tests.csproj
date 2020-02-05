@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BookManagementAssignment2\BookManagementAssignment2.csproj" />
+    <ProjectReference Include="..\GBRValidation\GBRValidation.csproj" />
   </ItemGroup>
 
 </Project>
