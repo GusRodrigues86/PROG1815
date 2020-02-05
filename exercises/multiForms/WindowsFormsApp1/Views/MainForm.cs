@@ -1,5 +1,4 @@
-﻿using SimpleCalculator;
-using System;
+﻿using System;
 using System.Windows.Forms;
 
 namespace WindowsFormsApp1
@@ -31,9 +30,21 @@ namespace WindowsFormsApp1
         private void calculatorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // thanks Microsoft and crazy namespace rules.
-            Calculator calculator = new Calculator();
+            SimpleCalculator.Calculator calculator = new SimpleCalculator.Calculator();
             calculator.MdiParent = this;
             calculator.Show();
+        }
+
+        /// <summary>
+        /// Loads the parts maintenance form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void partsMaintenanceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Parts parts = new Parts();
+            parts.MdiParent = this;
+            parts.Show();
         }
     }
 }
