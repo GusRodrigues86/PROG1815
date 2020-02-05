@@ -75,7 +75,7 @@ namespace BookManagementAssignment2Tests
         [Test]
         public void LetterFollowedByPunctuation_ReturnCapitalLetterOnly()
         {
-            string[] punctuations = { 
+            string[] punctuations = {
                 "a;", "b.", "c,", "d:", "e?", "f!", "g{", "h}", "i(", "j)", "k\'", "l\"","m-", "n/"
             };
 
@@ -83,6 +83,17 @@ namespace BookManagementAssignment2Tests
             {
                 string expected = Char.ToString((char) (i + 65));
                 Assert.AreEqual(expected, GBRTitleGrammer(punctuations[i]));
+            }
+        }
+
+        [Test]
+        public void PunctuatedWords_ReturnPascalCased()
+        {
+            string[] words = { "intra-word", "intra_word", "intra::word", "intra::-word" };
+            string expected = "Intra Word";
+            foreach (string word in words)
+            {
+                Assert.AreEqual(expected, GBRTitleGrammer(word));
             }
         }
 
@@ -130,7 +141,7 @@ namespace BookManagementAssignment2Tests
         [Test]
         public void RandomCaseWords_ReturnsPascalCasedWord()
         {
-            string[] input = {"PotAtO", "sAlaD","toSs", "THRoW", "pUnCH" };
+            string[] input = { "PotAtO", "sAlaD", "toSs", "THRoW", "pUnCH" };
             string[] expected = { "Potato", "Salad", "Toss", "Throw", "Punch" };
 
             for (int i = 0; i < input.Length; i++)
@@ -143,10 +154,67 @@ namespace BookManagementAssignment2Tests
 
         /* ISBN Validation tests
          */
+        [Test]
+        public void EmptyOrNullISBN_ReturnsTrue()
+        {
+            Assert.IsTrue(GBRISBNValidation(null));
+            Assert.IsTrue(GBRISBNValidation(""));
+            Assert.IsTrue(GBRISBNValidation("  "));
+        }
+
+        [Test]
+        public void LessThan13DigitsStringISNB_ReturnsFalse()
+        {
+            string input = "132154";
+            Assert.IsFalse(GBRISBNValidation(input)); // False
+        }
+
+        [Test]
+        public void ISBNWith13DigitsString_ReturnsTrue()
+        {
+            string input = "1234567890123";
+            Assert.IsTrue(GBRISBNValidation(input)); // True
+        }
+
+        [Test]
+        public void ISBNWithMoreThan13DigitsString_ReturnsFalse()
+        {
+            string input = "123456789012345";
+            Assert.IsTrue(GBRISBNValidation(input)); // False
+        }
 
         /* Phone Number Validation tests
          */
-
+        [Test]
+        public void NullEmptyOrWhitespecedPhoneNumber_ReturnTrue()
+        {
+            Assert.IsTrue(GBRPhoneNumberValidation(null));
+            Assert.IsTrue(GBRPhoneNumberValidation(String.Empty));
+            Assert.IsTrue(GBRPhoneNumberValidation("   "));
+        }
+        [Test]
+        public void WrongPhoneFormats_ReturnsFalse()
+        {
+            string[] phones = { "1234.123.1234", "13324 12 1231", "12 123154 123", "asd as", "123~132.1231" };
+            foreach (string phone in phones)
+            {
+                Assert.IsFalse(GBRPhoneNumberValidation(phone));
+            }
+        }
+        [Test]
+        public void ValidPhoneFormats_ReturnTrue()
+        {
+            string[] phones = {
+                "123 123 1234", "123 123.1324", "123 132-1234", "123 1231234",
+                "123-123-1234", "123-123.1324", "123-132 1234", "123-1231234",
+                "123.123.1234", "123.123-1324", "123.132 1234", "123.1231234",
+                "123123 1234", "123123-1324", "123132.1234", "123.1231234",
+            };
+            foreach (string phone in phones)
+            {
+                Assert.IsTrue(GBRPhoneNumberValidation(phone));
+            }
+        }
         /* Postal Code Validation tests
          */
     }

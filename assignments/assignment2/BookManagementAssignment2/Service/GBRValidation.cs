@@ -33,7 +33,7 @@ namespace BookManagementAssignment2.Service
         }
 
         /// <summary>
-        /// Takes the user input and validates if is a valid phone number.
+        /// Takes the user input and validates if is a valid phone number. Empty phone number is valid as well
         /// 
         /// <para>Valid phone numbers are valid if:</para>
         /// <para>123-456-7890</para>
@@ -45,7 +45,13 @@ namespace BookManagementAssignment2.Service
         /// patterns</returns>
         public static bool GBRPhoneNumberValidation(string input)
         {
-            return false;
+            if (IsNullOrWhiteSpace(input))
+            {
+                return true;
+            }
+            // regex to allow phone numbers as 123 123 1234 with and without whitespaces or white spaced replaced by . or - or combinations of it.
+            Regex regex = new Regex("^(\\d{3})([-\\s.])?(\\d{3})([-\\s.])?(\\d{4})$");
+            return regex.IsMatch(input);
         }
 
         /// <summary>
@@ -57,7 +63,13 @@ namespace BookManagementAssignment2.Service
         /// <returns>True if and only if is a valid ISBN number</returns>
         public static bool GBRISBNValidation(string input)
         {
-            return false;
+            if (IsNullOrWhiteSpace(input))
+            {
+                return true;
+            }
+
+            Regex regex = new Regex("\\d{13}");
+            return regex.IsMatch(input);
         }
 
         /// <summary>
@@ -83,8 +95,8 @@ namespace BookManagementAssignment2.Service
 
         private static string GBRPunctuationRemover(string input)
         {
-            Regex regex = new Regex("\\p{P}");
-            input = regex.Replace(input, "");
+            Regex regex = new Regex("\\p{P}"); // general case for punctuation
+            input = regex.Replace(input, " ");
             return input;
         }
 
@@ -100,7 +112,7 @@ namespace BookManagementAssignment2.Service
             // we may have empty strings being supplied.
             if (IsNullOrWhiteSpace(input))
             { return Empty; }
-            input = input.ToLowerInvariant();
+            input = input.Trim().ToLowerInvariant();
             string[] array = input.Split(' ');
 
             // for larges input, SB is more efficient than any string concatenation.
@@ -109,14 +121,19 @@ namespace BookManagementAssignment2.Service
 
             for (int i = 0; i < array.Length; i++)
             {
-                char[] temp = array[i].Trim().ToCharArray();
-                temp[0] = (char) (temp[0] - 32);
-                sb.Append(temp);
-
-                // add whitespace between words
-                if ((i + 1) != array.Length)
+                // we may receive a double spaced word.
+                if (!IsNullOrWhiteSpace(array[i]))
                 {
-                    sb.Append(" ");
+                    char[] temp = array[i].Trim().ToCharArray();
+                    temp[0] = (char) (temp[0] - 32);
+                    sb.Append(temp);
+
+                    // add whitespace between words
+                    if ((i + 1) != array.Length)
+                    {
+                        sb.Append(" ");
+                    }
+
                 }
             }
 
