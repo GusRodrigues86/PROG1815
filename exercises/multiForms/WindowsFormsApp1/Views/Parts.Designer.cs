@@ -34,11 +34,12 @@
             this.lblPartId = new System.Windows.Forms.Label();
             this.lblPrice = new System.Windows.Forms.Label();
             this.lblErrors = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtCost = new System.Windows.Forms.TextBox();
+            this.txtDescription = new System.Windows.Forms.TextBox();
+            this.txtPartID = new System.Windows.Forms.TextBox();
+            this.txtPrice = new System.Windows.Forms.TextBox();
             this.btnFill = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -97,40 +98,40 @@
             this.lblErrors.AutoSize = true;
             this.lblErrors.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrors.ForeColor = System.Drawing.Color.Red;
-            this.lblErrors.Location = new System.Drawing.Point(12, 205);
+            this.lblErrors.Location = new System.Drawing.Point(12, 182);
             this.lblErrors.Margin = new System.Windows.Forms.Padding(3, 4, 3, 3);
             this.lblErrors.Name = "lblErrors";
             this.lblErrors.Size = new System.Drawing.Size(19, 13);
             this.lblErrors.TabIndex = 5;
             this.lblErrors.Text = "...";
             // 
-            // textBox1
+            // txtCost
             // 
-            this.textBox1.Location = new System.Drawing.Point(89, 49);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(169, 20);
-            this.textBox1.TabIndex = 6;
+            this.txtCost.Location = new System.Drawing.Point(89, 49);
+            this.txtCost.Name = "txtCost";
+            this.txtCost.Size = new System.Drawing.Size(169, 20);
+            this.txtCost.TabIndex = 6;
             // 
-            // textBox2
+            // txtDescription
             // 
-            this.textBox2.Location = new System.Drawing.Point(89, 75);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(169, 20);
-            this.textBox2.TabIndex = 7;
+            this.txtDescription.Location = new System.Drawing.Point(89, 75);
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(169, 20);
+            this.txtDescription.TabIndex = 7;
             // 
-            // textBox3
+            // txtPartID
             // 
-            this.textBox3.Location = new System.Drawing.Point(89, 101);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(169, 20);
-            this.textBox3.TabIndex = 8;
+            this.txtPartID.Location = new System.Drawing.Point(89, 101);
+            this.txtPartID.Name = "txtPartID";
+            this.txtPartID.Size = new System.Drawing.Size(169, 20);
+            this.txtPartID.TabIndex = 8;
             // 
-            // textBox4
+            // txtPrice
             // 
-            this.textBox4.Location = new System.Drawing.Point(89, 127);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(169, 20);
-            this.textBox4.TabIndex = 9;
+            this.txtPrice.Location = new System.Drawing.Point(89, 127);
+            this.txtPrice.Name = "txtPrice";
+            this.txtPrice.Size = new System.Drawing.Size(169, 20);
+            this.txtPrice.TabIndex = 9;
             // 
             // btnFill
             // 
@@ -141,16 +142,26 @@
             this.btnFill.Text = "Fill";
             this.btnFill.UseVisualStyleBackColor = true;
             // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(170, 153);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 11;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            // 
             // Parts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(350, 311);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnFill);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtPrice);
+            this.Controls.Add(this.txtPartID);
+            this.Controls.Add(this.txtDescription);
+            this.Controls.Add(this.txtCost);
             this.Controls.Add(this.lblErrors);
             this.Controls.Add(this.lblPrice);
             this.Controls.Add(this.lblPartId);
@@ -172,10 +183,11 @@
         private System.Windows.Forms.Label lblPartId;
         private System.Windows.Forms.Label lblPrice;
         private System.Windows.Forms.Label lblErrors;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtCost;
+        private System.Windows.Forms.TextBox txtDescription;
+        private System.Windows.Forms.TextBox txtPartID;
+        private System.Windows.Forms.TextBox txtPrice;
         private System.Windows.Forms.Button btnFill;
+        private System.Windows.Forms.Button btnSave;
     }
 }

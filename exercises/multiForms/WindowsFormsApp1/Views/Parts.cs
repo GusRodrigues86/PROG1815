@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DTClassLibrary;
 
 namespace WindowsFormsApp1
 {
@@ -17,5 +18,19 @@ namespace WindowsFormsApp1
             InitializeComponent();
         }
 
+
+        private string Edit()
+        {
+            string errors = "";
+            if (!Validation.IsInteger(txtPartID.Text))
+            {
+                errors += "Part ID needs to be an integer\r\n";
+                if (errors.Length == 0)
+                {
+                    txtPartID.Focus();
+                }
+            }
+            return errors;
+        }
     }
 }

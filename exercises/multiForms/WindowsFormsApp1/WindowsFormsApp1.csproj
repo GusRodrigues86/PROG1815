@@ -93,6 +93,10 @@
       <Project>{9d5e55f0-8700-4851-a863-bb409be3f036}</Project>
       <Name>Calculator</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DTClassLibrary\DTClassLibrary.csproj">
+      <Project>{1a5d414f-b6dc-4252-a812-4d2ae8b45181}</Project>
+      <Name>DTClassLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
