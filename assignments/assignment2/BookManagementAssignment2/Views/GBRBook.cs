@@ -89,6 +89,9 @@ namespace BookManagementAssignment2
             }
         }
 
+        /// <summary>
+        /// Validates the form
+        /// </summary>
         private void ValidateForm()
         {
             lblErrors.Text = "";
