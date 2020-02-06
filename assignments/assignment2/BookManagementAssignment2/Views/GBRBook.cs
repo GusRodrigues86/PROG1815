@@ -42,7 +42,6 @@ namespace BookManagementAssignment2
         /// <param name="e"></param>
         private void btnSubmitForm(object sender, EventArgs e)
         {
-            ValidateForm(sender, e); 
 
         }
 
@@ -80,51 +79,6 @@ namespace BookManagementAssignment2
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true; // signals that it was handled
-            }
-        }
-
-        /// <summary>
-        /// Validates the form
-        /// </summary>
-        private void ValidateForm(object sender, EventArgs e)
-        {
-            lblErrors.Text = "";
-        }
-
-        /// <summary>
-        /// Validates the user input for the Author name.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void txtAuthorFullNameValidating(object sender, CancelEventArgs e)
-        {
-            string errorMsg;
-            TextBox authorName = (TextBox) sender;
-            authorName.Text = GBRTitleGrammer(authorName.Text);
-            if (!GBRValidateAuthorName(authorName.Text, out errorMsg))
-            {
-                e.Cancel = true;
-                authorName.Select(0, authorName.Text.Length);
-
-                errorProvider.SetError(txtAuthorFullName, errorMsg);
-                appendErrorMessage(errorMsg);
-            }
-        }
-
-        /// <summary>
-        /// Clear any errors in the Author name that has been fixed
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void txtAuthorFullNameValidated(object sender, EventArgs e) =>
-            errorProvider.SetError(txtAuthorFullName, "");
-
-        private void appendErrorMessage(string errorMessage)
-        {
-            errorMessage = errorMessage + "\n\r";
-            if (!lblErrors.Text.Contains(errorMessage))
-            {
-                lblErrors.Text += errorMessage;
             }
         }
     }

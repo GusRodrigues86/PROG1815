@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.lblBookTitle = new System.Windows.Forms.Label();
             this.lblISBN = new System.Windows.Forms.Label();
             this.lblDatePublished = new System.Windows.Forms.Label();
@@ -59,8 +58,6 @@
             this.btnSubmit = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblErrors = new System.Windows.Forms.Label();
-            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // lblBookTitle
@@ -263,8 +260,6 @@
             this.txtAuthorFullName.TabIndex = 3;
             this.txtAuthorFullName.Tag = "Author Full Name";
             this.txtAuthorFullName.Leave += new System.EventHandler(this.txtGrammerValidation);
-            this.txtAuthorFullName.Validating += new System.ComponentModel.CancelEventHandler(this.txtAuthorFullNameValidating);
-            this.txtAuthorFullName.Validated += new System.EventHandler(this.txtAuthorFullNameValidated);
             // 
             // txtDatePublished
             // 
@@ -289,7 +284,7 @@
             this.txtMailingAddress.Size = new System.Drawing.Size(310, 20);
             this.txtMailingAddress.TabIndex = 5;
             this.txtMailingAddress.Tag = "Mailing Address";
-            this.txtMailingAddress.Validated += new System.EventHandler(this.txtGrammerValidation);
+            this.txtMailingAddress.Leave += new System.EventHandler(this.txtGrammerValidation);
             // 
             // txtStreetRRoute
             // 
@@ -327,6 +322,7 @@
             this.txtCountry.Size = new System.Drawing.Size(310, 20);
             this.txtCountry.TabIndex = 8;
             this.txtCountry.Tag = "Country";
+            this.txtCountry.Leave += new System.EventHandler(this.txtGrammerValidation);
             // 
             // txtProvinceCode
             // 
@@ -497,11 +493,6 @@
             this.lblErrors.TabIndex = 0;
             this.lblErrors.Text = "...";
             // 
-            // errorProvider
-            // 
-            this.errorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
-            this.errorProvider.ContainerControl = this;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -546,7 +537,6 @@
             this.Name = "MainForm";
             this.Padding = new System.Windows.Forms.Padding(8, 24, 8, 12);
             this.Text = "Book Management";
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -584,7 +574,6 @@
         private System.Windows.Forms.Button btnPreFill;
         private System.Windows.Forms.Button btnSubmit;
         private System.Windows.Forms.Button btnClose;
-        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }
 
