@@ -31,14 +31,13 @@ namespace GBRValidation.Service
         public static bool GBRPostalCodeValidation(ref string input)
         {
             // Canadian Postal code
-            Regex regex = new Regex(@"\^[ABCEGHJKLMNPRSTVXY][0-9][ABCEGHJKLMNPRSTVWXYZ]\s?[0-9][ABCEGHJKLMNPRSTVWXYZ][0-9]$", RegexOptions.IgnoreCase);
+            Regex regex = new Regex(@"^[ABCEGHJKLMNPRSTVXY][0-9][ABCEGHJKLMNPRSTVWXYZ]\s?[0-9][ABCEGHJKLMNPRSTVWXYZ][0-9]$", RegexOptions.IgnoreCase);
             if (regex.IsMatch(input))
             {
                 if (input.Length == 6)
                 {
-                    input = input.Substring(0, 3) + " " + input.Substring(3,3);
+                    input = input.Substring(0, 3).ToUpper() + " " + input.Substring(3,3).ToUpper();
                 }
-                input.ToUpper();
                 return true;
             }
             return false;

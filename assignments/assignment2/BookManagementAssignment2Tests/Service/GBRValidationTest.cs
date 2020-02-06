@@ -215,7 +215,49 @@ namespace BookManagementAssignment2Tests
                 Assert.IsTrue(GBRPhoneNumberValidation(phone));
             }
         }
+        
         /* Postal Code Validation tests
          */
+        [Test]
+        public void InvalidFormat_ReturnsFalse()
+        {
+            string invalid = "AA7 2A2";
+
+            Assert.IsFalse(GBRPostalCodeValidation(ref invalid));
+            Assert.AreEqual("AA7 2A2", invalid);
+        }
+        [Test]
+        public void ValidFormat_ReturnsTrueAndMutatesString()
+        {
+            string valid = "N2C2A2";
+            bool expected = GBRPostalCodeValidation(ref valid);
+
+            Assert.IsTrue(expected);
+            Assert.AreEqual("N2C 2A2", valid);
+            Assert.AreNotEqual("N2C2A2", valid);
+        }
+        [Test]
+        public void InvalidPostalCodeStartsWithAInvalidLetter_ReturnsFalseAndNoMutation()
+        {
+            string[] invalidLetters = { "D","F","I","O","Q","U","W","Z" };
+            string extra = "2C2A2";
+
+            foreach (string invalid in invalidLetters)
+            {
+                string invalidZip = invalid + extra;
+                Assert.IsFalse(GBRPostalCodeValidation(ref invalidZip));
+            }
+        }
+        [Test]
+        public void InvalidPostalCodeInvalidLetter_ReturnsFalseAndNoMutation()
+        {
+            string[] invalidLetters = { "D", "F", "I", "O", "Q", "U", "W", "Z" };
+            for (int i = 0; i < invalidLetters.Length; i++)
+            {
+
+                string invalidZip = invalidLetters[i]+"2"+invalidLetters[i]+"2"+invalidLetters[i] + "2";
+                Assert.IsFalse(GBRPostalCodeValidation(ref invalidZip));
+            }
+        }
     }
 }
