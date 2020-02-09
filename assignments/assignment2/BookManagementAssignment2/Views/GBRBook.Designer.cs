@@ -320,10 +320,12 @@
             this.txtProvinceCode.ForeColor = System.Drawing.SystemColors.Window;
             this.txtProvinceCode.Location = new System.Drawing.Point(143, 249);
             this.txtProvinceCode.Margin = new System.Windows.Forms.Padding(6, 4, 12, 4);
+            this.txtProvinceCode.MaxLength = 2;
             this.txtProvinceCode.Name = "txtProvinceCode";
             this.txtProvinceCode.Size = new System.Drawing.Size(310, 20);
             this.txtProvinceCode.TabIndex = 9;
             this.txtProvinceCode.Tag = "Province Code";
+            this.txtProvinceCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnlyLettersInput);
             // 
             // txtPostalCode
             // 
@@ -336,6 +338,7 @@
             this.txtPostalCode.Size = new System.Drawing.Size(155, 20);
             this.txtPostalCode.TabIndex = 10;
             this.txtPostalCode.Tag = "Postal Code";
+            this.txtPostalCode.Leave += new System.EventHandler(this.PostalCodeValidator);
             // 
             // txtCellPhone
             // 

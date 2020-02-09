@@ -74,7 +74,7 @@ namespace BookManagementAssignment2
         }
 
         /// <summary>
-        /// Only allows digits
+        /// Allows only digits
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -87,7 +87,25 @@ namespace BookManagementAssignment2
             }
         }
 
+        /// <summary>
+        /// Allow only letters to be tiped
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnlyLettersInput(object sender, KeyPressEventArgs e)
+        {
+            // IsControl are "non printable" char (less than 32 in the ascii table)
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar))
+            {
+                e.Handled = true; // signals that it was handled
+            }
+        }
 
+        /// <summary>
+        /// Appends an error message. The error field is the field that caused the error.
+        /// </summary>
+        /// <param name="errorField">The field error for comparisson</param>
+        /// <param name="errorMessage">The error message to append</param>
         private void AppendErrorMessage(string errorField, string errorMessage)
         {
             if (!lblErrors.Text.Contains(errorField))
@@ -119,6 +137,7 @@ namespace BookManagementAssignment2
                         if (String.IsNullOrWhiteSpace(textBox.Text.Trim()))
                         {
                             AppendErrorMessage(textboxTag, $"{textboxTag} can't be empty.");
+                            txtBookTitle.Focus(); // force focus to book title
                         }
                     }
                     #endregion
@@ -129,6 +148,7 @@ namespace BookManagementAssignment2
                         if (String.IsNullOrWhiteSpace(textBox.Text.Trim()))
                         {
                             AppendErrorMessage(textboxTag, $"{textboxTag} can't be empty.");
+                            txtISBN.Focus();
                         }
                         // validating with validation tools
                         else
@@ -137,6 +157,7 @@ namespace BookManagementAssignment2
                             {
                                 AppendErrorMessage(textboxTag, $"Invalid {textboxTag}. " +
                                     $"It must contains 13 digits");
+                                txtISBN.Focus();
                             }
                         }
                     }
@@ -147,6 +168,7 @@ namespace BookManagementAssignment2
                         if (String.IsNullOrWhiteSpace(textBox.Text.Trim()))
                         {
                             AppendErrorMessage(textboxTag, $"{textboxTag} can't be empty.");
+                            txtAuthorFullName.Focus();
                         }
                         #region Full Name Validation
                         else
@@ -156,6 +178,7 @@ namespace BookManagementAssignment2
                             {
                                 AppendErrorMessage("Author full name",
                                     "Author full name required.");
+                                txtAuthorFullName.Focus();
                             }
                         }
                         #endregion
@@ -167,14 +190,15 @@ namespace BookManagementAssignment2
                         if (String.IsNullOrWhiteSpace(textBox.Text.Trim()))
                         {
                             AppendErrorMessage(textboxTag, $"{textboxTag} can't be empty.");
+                            txtDatePublished.Focus();
                         }
                         #region Date Formatting and Range
                         else
                         {
                             if (!GBRDateValidation(textBox.Text.Trim()))
                             {
-
                                 AppendErrorMessage("Date", "Date invalid. Must be dd mmm yyyy and less than today.");
+                                txtDatePublished.Focus();
                             }
                         }
                         #endregion
@@ -194,6 +218,7 @@ namespace BookManagementAssignment2
                         {
                             AppendErrorMessage("Routes",
                                 "Street/Rural Routes is required if email is not provided.");
+                            txtStreetRRoute.Focus();
                         }
                         #endregion
                         #region Province Code validation
@@ -202,6 +227,11 @@ namespace BookManagementAssignment2
                         {
                             AppendErrorMessage("Province",
                                 "Province Code is required if email is not provided.");
+                            txtProvinceCode.Focus();
+                        }
+                        else
+                        {
+                            txtProvinceCode.Text = txtProvinceCode.Text.ToUpper();
                         }
                         #endregion
                         #region Postal Code validation
@@ -209,6 +239,11 @@ namespace BookManagementAssignment2
                         if (String.IsNullOrWhiteSpace(txtPostalCode.Text))
                         {
                             AppendErrorMessage("Postal", "Postal Code is required if email is not provided.");
+                            txtPostalCode.Focus();
+                        }
+                        else
+                        {
+                            PostalCodeValidator(sender, e);
                         }
                         #endregion
                     }
@@ -216,10 +251,13 @@ namespace BookManagementAssignment2
                     #region Email Validation
                     if (textboxTag.Equals("Email"))
                     {
+                        PostalCodeValidator(sender, e);
                         if (!GBRValidateEmail(textBox.Text.Trim()))
                         {
-                            AppendErrorMessage(textboxTag, $"The provided email address is invalid.");
+                            AppendErrorMessage(textboxTag, $"The provided Email address is invalid.");
+                            txtEmail.Focus();
                         }
+                        txtEmail.Text = txtEmail.Text.ToLower();
                     }
                     #endregion
                     #region Phone Validation
@@ -240,6 +278,7 @@ namespace BookManagementAssignment2
                             if (!GBRPhoneNumberValidation(cellPhone))
                             {
                                 AppendErrorMessage("phone", "Cell phone format error.");
+                                txtCellPhone.Focus();
                             }
                             else
                             {
@@ -265,6 +304,7 @@ namespace BookManagementAssignment2
                             if (!GBRPhoneNumberValidation(homePhone))
                             {
                                 AppendErrorMessage("phone", "Home phone format error.");
+                                txtHomePhone.Focus();
                             }
                             else
                             {
@@ -287,6 +327,34 @@ namespace BookManagementAssignment2
                     }
                     #endregion
                 }
+            }
+        }
+
+        /// <summary>
+        /// Validates and, if valid, mutates the postal code to upper case.
+        /// Otherwise, show error
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PostalCodeValidator(object sender, EventArgs e)
+        {
+            if (String.IsNullOrWhiteSpace(txtPostalCode.Text))
+            {
+                return;
+            }
+            else
+            {
+                string postalCode = txtPostalCode.Text;
+                if (GBRPostalCodeValidation(ref postalCode))
+                {
+                    txtPostalCode.Text = postalCode;
+                }
+                else 
+                {
+                    AppendErrorMessage("Postal", "Postal Code provided is invalid.");
+                    txtPostalCode.Focus();
+                }
+
             }
         }
     }
