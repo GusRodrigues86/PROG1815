@@ -251,13 +251,7 @@ namespace BookManagementAssignment2
                     #region Email Validation
                     if (textboxTag.Equals("Email"))
                     {
-                        PostalCodeValidator(sender, e);
-                        if (!GBRValidateEmail(textBox.Text.Trim()))
-                        {
-                            AppendErrorMessage(textboxTag, $"The provided Email address is invalid.");
-                            txtEmail.Focus();
-                        }
-                        txtEmail.Text = txtEmail.Text.ToLower();
+                        EmailValidator(sender, e);
                     }
                     #endregion
                     #region Phone Validation
@@ -331,6 +325,21 @@ namespace BookManagementAssignment2
         }
 
         /// <summary>
+        /// Validates an email address. if valid, mutates to lower case.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void EmailValidator(object sender, EventArgs e)
+        {
+            if (!GBRValidateEmail(txtEmail.Text.Trim()))
+            {
+                AppendErrorMessage("Email", $"The provided Email address is invalid.");
+                txtEmail.Focus();
+            }
+            txtEmail.Text = txtEmail.Text.ToLower();
+        }
+
+        /// <summary>
         /// Validates and, if valid, mutates the postal code to upper case.
         /// Otherwise, show error
         /// </summary>
@@ -357,6 +366,7 @@ namespace BookManagementAssignment2
 
             }
         }
+
     }
 }
 

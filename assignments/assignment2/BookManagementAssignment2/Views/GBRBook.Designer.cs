@@ -409,6 +409,7 @@
             this.txtEmail.Size = new System.Drawing.Size(250, 20);
             this.txtEmail.TabIndex = 13;
             this.txtEmail.Tag = "Email";
+            this.txtEmail.Leave += new System.EventHandler(this.EmailValidator);
             // 
             // lblEmail
             // 
