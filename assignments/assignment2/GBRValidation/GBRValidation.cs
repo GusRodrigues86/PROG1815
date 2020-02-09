@@ -33,8 +33,8 @@ namespace GBRValidation.Service
             }
 
             Regex dateRegex = new Regex(
-                @"^\d{1,2}\s" + // dd
-                @"(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s" +  // mmm
+                @"^\d{1,2}[\w\s]" + // dd
+                @"(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[\w\s]" +  // mmm
                 @"[0-9]{1,4}$", // yyyy
                 RegexOptions.IgnoreCase);
             if (!dateRegex.IsMatch(input))
