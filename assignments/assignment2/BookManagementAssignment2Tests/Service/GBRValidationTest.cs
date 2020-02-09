@@ -193,9 +193,24 @@ namespace BookManagementAssignment2Tests
             Assert.IsTrue(GBRPhoneNumberValidation("   "));
         }
         [Test]
+        public void WeirdBugWithTilAndDot()
+        {
+            bool bug = GBRPhoneNumberValidation("123~132.1231");
+            bool bug2 = GBRPhoneNumberValidation("1234.132.1231");
+            Assert.IsFalse(bug);
+            Assert.IsFalse(bug2);
+        }
+
+        [Test]
         public void WrongPhoneFormats_ReturnsFalse()
         {
-            string[] phones = { "1234.123.1234", "13324 12 1231", "12 123154 123", "asd as", "123~132.1231" };
+            string[] phones = { 
+            "1234.123.1234", "13324 12 1231", "12 123154 123", "asd as",
+                "123~132.1231",
+            "123-123.1324", "123-132 1234", "123-1231234",
+            "123 123 1234", "123 123.1324", "123 132-1234", "123 1231234",
+            "123.123-1324", "123.132 1234", "123.1231234",
+            "123123 1234", "123123-1324", "123132.1234", "123.1231234",  };
             foreach (string phone in phones)
             {
                 Assert.IsFalse(GBRPhoneNumberValidation(phone));
@@ -204,18 +219,13 @@ namespace BookManagementAssignment2Tests
         [Test]
         public void ValidPhoneFormats_ReturnTrue()
         {
-            string[] phones = {
-                "123 123 1234", "123 123.1324", "123 132-1234", "123 1231234",
-                "123-123-1234", "123-123.1324", "123-132 1234", "123-1231234",
-                "123.123.1234", "123.123-1324", "123.132 1234", "123.1231234",
-                "123123 1234", "123123-1324", "123132.1234", "123.1231234",
-            };
+            string[] phones = {"123-123-1234", "123.123.1234", "1234567890"};
             foreach (string phone in phones)
             {
                 Assert.IsTrue(GBRPhoneNumberValidation(phone));
             }
         }
-        
+
         /* Postal Code Validation tests
          */
         [Test]
@@ -239,7 +249,7 @@ namespace BookManagementAssignment2Tests
         [Test]
         public void InvalidPostalCodeStartsWithAInvalidLetter_ReturnsFalseAndNoMutation()
         {
-            string[] invalidLetters = { "D","F","I","O","Q","U","W","Z" };
+            string[] invalidLetters = { "D", "F", "I", "O", "Q", "U", "W", "Z" };
             string extra = "2C2A2";
 
             foreach (string invalid in invalidLetters)
@@ -255,9 +265,42 @@ namespace BookManagementAssignment2Tests
             for (int i = 0; i < invalidLetters.Length; i++)
             {
 
-                string invalidZip = invalidLetters[i]+"2"+invalidLetters[i]+"2"+invalidLetters[i] + "2";
+                string invalidZip = invalidLetters[i] + "2" + invalidLetters[i] + "2" + invalidLetters[i] + "2";
                 Assert.IsFalse(GBRPostalCodeValidation(ref invalidZip));
             }
         }
+
+        /*Test cases for email
+         */
+        [Test]
+        public void NullEmptyOrWhitespecedEmail_ReturnTrue()
+        {
+            Assert.IsTrue(GBRValidateEmail(null));
+            Assert.IsTrue(GBRValidateEmail(""));
+            Assert.IsTrue(GBRValidateEmail("  "));
+        }
+        [Test]
+        public void ValidEmails_ReturnTrue()
+        {
+            string[] emails = { "test@email.com", "email@email.edu", "email@email.ca", "test.email@valid.com", "test_email@valid.com.br", "weird@test.co.uk" };
+            foreach (var email in emails)
+            {
+                Assert.IsTrue(GBRValidateEmail(email));
+
+            }
+        }
+        [Test]
+        public void IncompletedEmail_ReturnFalse()
+        {
+            string[] emails = { "test@email", "@email.edu", "email@email_ca", "test.email@valid com", "test_email valid.com.br", "weird*Test.ly" };
+            foreach (var email in emails)
+            {
+                Assert.IsFalse(GBRValidateEmail(email));
+
+            }
+        }
+
+        /* Test cases for date
+         */
     }
 }

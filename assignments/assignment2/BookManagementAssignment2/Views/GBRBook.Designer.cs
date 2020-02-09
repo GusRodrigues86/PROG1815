@@ -43,7 +43,6 @@
             this.txtAuthorFullName = new System.Windows.Forms.TextBox();
             this.txtDatePublished = new System.Windows.Forms.TextBox();
             this.txtMailingAddress = new System.Windows.Forms.TextBox();
-            this.txtStreetRRoute = new System.Windows.Forms.TextBox();
             this.txtTown = new System.Windows.Forms.TextBox();
             this.txtCountry = new System.Windows.Forms.TextBox();
             this.txtProvinceCode = new System.Windows.Forms.TextBox();
@@ -58,6 +57,7 @@
             this.btnSubmit = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblErrors = new System.Windows.Forms.Label();
+            this.txtStreetRRoute = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // lblBookTitle
@@ -258,7 +258,7 @@
             this.txtAuthorFullName.Name = "txtAuthorFullName";
             this.txtAuthorFullName.Size = new System.Drawing.Size(637, 20);
             this.txtAuthorFullName.TabIndex = 3;
-            this.txtAuthorFullName.Tag = "Author Full Name";
+            this.txtAuthorFullName.Tag = "Author Name";
             this.txtAuthorFullName.Leave += new System.EventHandler(this.txtGrammerValidation);
             // 
             // txtDatePublished
@@ -268,6 +268,7 @@
             this.txtDatePublished.ForeColor = System.Drawing.SystemColors.Window;
             this.txtDatePublished.Location = new System.Drawing.Point(143, 109);
             this.txtDatePublished.Margin = new System.Windows.Forms.Padding(6, 4, 12, 4);
+            this.txtDatePublished.MaxLength = 11;
             this.txtDatePublished.Name = "txtDatePublished";
             this.txtDatePublished.Size = new System.Drawing.Size(310, 20);
             this.txtDatePublished.TabIndex = 4;
@@ -285,18 +286,6 @@
             this.txtMailingAddress.TabIndex = 5;
             this.txtMailingAddress.Tag = "Mailing Address";
             this.txtMailingAddress.Leave += new System.EventHandler(this.txtGrammerValidation);
-            // 
-            // txtStreetRRoute
-            // 
-            this.txtStreetRRoute.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
-            this.txtStreetRRoute.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtStreetRRoute.ForeColor = System.Drawing.SystemColors.Window;
-            this.txtStreetRRoute.Location = new System.Drawing.Point(143, 165);
-            this.txtStreetRRoute.Margin = new System.Windows.Forms.Padding(6, 4, 12, 4);
-            this.txtStreetRRoute.Name = "txtStreetRRoute";
-            this.txtStreetRRoute.Size = new System.Drawing.Size(310, 20);
-            this.txtStreetRRoute.TabIndex = 6;
-            this.txtStreetRRoute.Tag = "Street/Rural Routes";
             // 
             // txtTown
             // 
@@ -346,7 +335,7 @@
             this.txtPostalCode.Name = "txtPostalCode";
             this.txtPostalCode.Size = new System.Drawing.Size(155, 20);
             this.txtPostalCode.TabIndex = 10;
-            this.txtPostalCode.Tag = "PostalCode";
+            this.txtPostalCode.Tag = "Postal Code";
             // 
             // txtCellPhone
             // 
@@ -355,10 +344,11 @@
             this.txtCellPhone.ForeColor = System.Drawing.SystemColors.Window;
             this.txtCellPhone.Location = new System.Drawing.Point(617, 165);
             this.txtCellPhone.Margin = new System.Windows.Forms.Padding(6, 4, 12, 4);
+            this.txtCellPhone.MaxLength = 12;
             this.txtCellPhone.Name = "txtCellPhone";
             this.txtCellPhone.Size = new System.Drawing.Size(163, 20);
             this.txtCellPhone.TabIndex = 12;
-            this.txtCellPhone.Tag = "CellPhone";
+            this.txtCellPhone.Tag = "Phone";
             // 
             // txtHomePhone
             // 
@@ -367,10 +357,11 @@
             this.txtHomePhone.ForeColor = System.Drawing.SystemColors.Window;
             this.txtHomePhone.Location = new System.Drawing.Point(617, 137);
             this.txtHomePhone.Margin = new System.Windows.Forms.Padding(6, 4, 12, 4);
+            this.txtHomePhone.MaxLength = 12;
             this.txtHomePhone.Name = "txtHomePhone";
             this.txtHomePhone.Size = new System.Drawing.Size(163, 20);
             this.txtHomePhone.TabIndex = 11;
-            this.txtHomePhone.Tag = "HomePhone";
+            this.txtHomePhone.Tag = "Phone";
             // 
             // lblCellPhone
             // 
@@ -464,7 +455,7 @@
             this.btnSubmit.TabIndex = 15;
             this.btnSubmit.Text = "Submit";
             this.btnSubmit.UseVisualStyleBackColor = true;
-            this.btnSubmit.Click += new System.EventHandler(this.btnSubmitForm);
+            this.btnSubmit.Enter += new System.EventHandler(this.ValidateBeforeSubmit);
             // 
             // btnClose
             // 
@@ -492,6 +483,18 @@
             this.lblErrors.Size = new System.Drawing.Size(16, 13);
             this.lblErrors.TabIndex = 0;
             this.lblErrors.Text = "...";
+            // 
+            // txtStreetRRoute
+            // 
+            this.txtStreetRRoute.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
+            this.txtStreetRRoute.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtStreetRRoute.ForeColor = System.Drawing.SystemColors.Window;
+            this.txtStreetRRoute.Location = new System.Drawing.Point(143, 165);
+            this.txtStreetRRoute.Margin = new System.Windows.Forms.Padding(6, 4, 12, 4);
+            this.txtStreetRRoute.Name = "txtStreetRRoute";
+            this.txtStreetRRoute.Size = new System.Drawing.Size(310, 20);
+            this.txtStreetRRoute.TabIndex = 6;
+            this.txtStreetRRoute.Tag = "Street";
             // 
             // MainForm
             // 
@@ -563,7 +566,6 @@
         private System.Windows.Forms.TextBox txtAuthorFullName;
         private System.Windows.Forms.TextBox txtDatePublished;
         private System.Windows.Forms.TextBox txtMailingAddress;
-        private System.Windows.Forms.TextBox txtStreetRRoute;
         private System.Windows.Forms.TextBox txtTown;
         private System.Windows.Forms.TextBox txtCountry;
         private System.Windows.Forms.TextBox txtProvinceCode;
@@ -574,6 +576,7 @@
         private System.Windows.Forms.Button btnPreFill;
         private System.Windows.Forms.Button btnSubmit;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.TextBox txtStreetRRoute;
     }
 }
 

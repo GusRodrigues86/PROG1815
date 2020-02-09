@@ -17,6 +17,47 @@ namespace GBRValidation.Service
 {
     public static class GBRValidation
     {
+
+
+
+        /// <summary>
+        /// Validate user date input to format dd mmm yyyy
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public static bool GBRDateValidation(string input)
+        {
+            if (String.IsNullOrWhiteSpace(input))
+            {
+                return false;
+            }
+
+            Regex dateRegex = new Regex(
+                @"^\d{1,2}\s" + // dd
+                @"(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s" +  // mmm
+                @"[0-9]{1,4}$", // yyyy
+                RegexOptions.IgnoreCase);
+            if (!dateRegex.IsMatch(input))
+            {
+                return false;
+            }
+            DateTime today = DateTime.Today;
+            // if today < provided, invalid
+            try
+            {
+                DateTime provided = DateTime.Parse(input);
+                if (DateTime.Compare(today, provided) < 0)
+                {
+                    return false;
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
         /// <summary>
         /// Takes the user input and validates if is a valid canadian postal code
         /// <para>Valid canadian postal codes are:</para>
@@ -36,7 +77,7 @@ namespace GBRValidation.Service
             {
                 if (input.Length == 6)
                 {
-                    input = input.Substring(0, 3).ToUpper() + " " + input.Substring(3,3).ToUpper();
+                    input = input.Substring(0, 3).ToUpper() + " " + input.Substring(3, 3).ToUpper();
                 }
                 return true;
             }
@@ -60,9 +101,12 @@ namespace GBRValidation.Service
             {
                 return true;
             }
-            // regex to allow phone numbers as 123 123 1234 with and without whitespaces or white spaced replaced by . or - or combinations of it.
-            Regex regex = new Regex(@"^(\d{3})([-\s.])?(\d{3})([-\s.])?(\d{4})$");
-            return regex.IsMatch(input);
+            // regex to allow phone numbers as 123-123-1234
+            Regex regex = new Regex(@"^\d{3}[-]\d{3}[-]\d{4}$");
+            // regex to allow phone numbers as 123.123.1234
+            Regex regex2 = new Regex(@"^\d{3}[.]\d{3}[.]\d{4}$");
+            Regex regex3 = new Regex(@"^\d{10}$");
+            return (regex.IsMatch(input.Trim()) || regex2.IsMatch(input.Trim()) || regex3.IsMatch(input.Trim()));
         }
 
         /// <summary>
@@ -110,24 +154,21 @@ namespace GBRValidation.Service
         /// <param name="input"></param>
         /// <param name="errorMessage">The error message, if false</param>
         /// <returns></returns>
-        public static bool GBRValidateAuthorName(string input, out string errorMessage)
+        public static bool GBRValidateAuthorName(string input)
         {
             if (input.Split(' ').Length > 1)
             {
-                errorMessage = "";
                 return true;
             }
             if (input.Split(' ').Length == 0)
             {
-                errorMessage = "Author full name required";
                 return false;
             }
-            errorMessage = "Need at least one first name and one last name";
             return false;
         }
 
         /// <summary>
-        /// Validates the supplied email
+        /// Validates the supplied email. Empty email is also valid.
         /// </summary>
         /// <param name="input">User input</param>
         /// <param name="errorMessage"></param>
@@ -135,20 +176,31 @@ namespace GBRValidation.Service
         /// <exception cref="ArgumentException"></exception>
         public static bool GBRValidateEmail(string input)
         {
-            try
+            if (IsNullOrWhiteSpace(input))
             {
-                MailAddress testEmail = new MailAddress(input);
                 return true;
             }
-            catch (FormatException)
+            // this class MailAdress may be terrible option.
+            // user@host is a valid email by the mail address docs. tests fails if apply this convention.
+            // lets try this MS case
+            // https://github.com/Microsoft/referencesource/blob/master/System.ComponentModel.DataAnnotations/DataAnnotations/EmailAddressAttribute.cs
+            var regex = new Regex(
+                @"^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$"
+                );
+            if (regex.IsMatch(input))
             {
-                return false;
+                return true;
             }
-            catch (Exception ex) when (ex is ArgumentNullException || ex is ArgumentException)
-            {
-                return false;
-            }
+            return false;
         }
+
+        /// <summary>
+        /// Validate if the Title is null or whitespaced. Otherwise, true.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public static bool GBRValidateBookTitle(string input) =>
+            (IsNullOrWhiteSpace(input)) ? false : true;
 
         /// <summary>
         /// Remove any punctuation from the string.
@@ -206,3 +258,4 @@ namespace GBRValidation.Service
 
     }
 }
+
