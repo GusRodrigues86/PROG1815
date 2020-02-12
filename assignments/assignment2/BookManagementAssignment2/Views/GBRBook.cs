@@ -322,6 +322,23 @@ namespace BookManagementAssignment2
                     #endregion
                 }
             }
+
+            #region Valid form
+            if (String.IsNullOrWhiteSpace(lblErrors.Text))
+            {
+                MessageBox.Show("Form is valid", "Valid form", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                foreach (var control in Controls)
+                {
+                    // clear form
+                    if (control is TextBox)
+                    {
+                        var field = (TextBox) control;
+                        field.Clear();
+                    }
+                }
+                txtBookTitle.Focus();
+            }
+            #endregion
         }
 
         /// <summary>
