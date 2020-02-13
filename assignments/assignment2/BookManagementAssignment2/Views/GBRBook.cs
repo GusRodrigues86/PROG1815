@@ -5,13 +5,6 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using static GBRValidation.Service.GBRValidation; // validator service as static import
 
@@ -114,7 +107,6 @@ namespace BookManagementAssignment2
 
             }
         }
-
 
         /// <summary>
         /// Validate the form. If all data is valid, then submits the form.
@@ -370,7 +362,7 @@ namespace BookManagementAssignment2
             }
             else
             {
-                string postalCode = txtPostalCode.Text;
+                string postalCode = txtPostalCode.Text.Trim();
                 if (GBRPostalCodeValidation(ref postalCode))
                 {
                     txtPostalCode.Text = postalCode;
@@ -380,7 +372,6 @@ namespace BookManagementAssignment2
                     AppendErrorMessage("Postal", "Postal Code provided is invalid.");
                     txtPostalCode.Focus();
                 }
-
             }
         }
 

@@ -6,24 +6,20 @@
 
 using System;
 using static System.String; // static use of String parsers
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Text.RegularExpressions;
-using System.Net.Mail;
 
 namespace GBRValidation.Service
 {
+    /// <summary>
+    /// Holds validation methods to be used with Book Form of assignment 2
+    /// </summary>
     public static class GBRValidation
     {
-
-
-
         /// <summary>
         /// Validate user date input to format dd mmm yyyy
         /// </summary>
-        /// <param name="input"></param>
+        /// <param name="input">the input in format dd mmm yyyy</param>
         /// <returns></returns>
         public static bool GBRDateValidation(string input)
         {
@@ -67,8 +63,8 @@ namespace GBRValidation.Service
         /// </list>
         /// <para>A valid postal code will be formatted to A2A 2A2</para>
         /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
+        /// <param name="input">The user input</param>
+        /// <returns>True if and only if the validation is good</returns>
         public static bool GBRPostalCodeValidation(ref string input)
         {
             // Canadian Postal code
@@ -79,7 +75,10 @@ namespace GBRValidation.Service
                 {
                     input = input.Substring(0, 3).ToUpper() + " " + input.Substring(3, 3).ToUpper();
                 }
-                input = input.ToUpper();
+                else
+                {
+                    input = input.ToUpper();
+                }
                 return true;
             }
             return false;
@@ -146,17 +145,17 @@ namespace GBRValidation.Service
             // input not null -> trim beggining and end and Pascal Case it.
             input = input.Trim(); // remove any leading and trailing whitespaces.
             input = GBRPunctuationRemover(input);
-            return PascalCase(input);
+            return GBRPascalCase(input);
         }
 
         /// <summary>
         /// Validates if the supplied input has more than two names.
         /// </summary>
-        /// <param name="input"></param>
-        /// <param name="errorMessage">The error message, if false</param>
-        /// <returns></returns>
+        /// <param name="input">the Author name</param>
+        /// <returns>True if and only if the author name is compose of 2 or more names</returns>
         public static bool GBRValidateAuthorName(string input)
         {
+            input = input.Trim();
             if (input.Split(' ').Length > 1)
             {
                 return true;
@@ -172,9 +171,7 @@ namespace GBRValidation.Service
         /// Validates the supplied email. Empty email is also valid.
         /// </summary>
         /// <param name="input">User input</param>
-        /// <param name="errorMessage"></param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentException"></exception>
+        /// <returns>True if and only if the input is a valid email address</returns>
         public static bool GBRValidateEmail(string input)
         {
             if (IsNullOrWhiteSpace(input))
@@ -185,10 +182,10 @@ namespace GBRValidation.Service
             // user@host is a valid email by the mail address docs. tests fails if apply this convention.
             // lets try this MS case
             // https://github.com/Microsoft/referencesource/blob/master/System.ComponentModel.DataAnnotations/DataAnnotations/EmailAddressAttribute.cs
-            var regex = new Regex(
+            Regex emailRegex = new Regex(
                 @"^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$"
                 , RegexOptions.IgnoreCase);
-            if (regex.IsMatch(input))
+            if (emailRegex.IsMatch(input))
             {
                 return true;
             }
@@ -212,24 +209,25 @@ namespace GBRValidation.Service
             new Regex(@"\p{P}").Replace(input, " ");
 
         /// <summary>
-        /// Converts user input to Pascal Case.
+        /// Converts the supplied string into Pascal Case.
         /// 
         /// <para>The input must be non-null. and without leading or trailing whitespaces.</para>
         /// </summary>
         /// <param name="input">The word to be converted to Pascal Case</param>
         /// <returns>The word that was converted to Pascal Case</returns>
-        private static string PascalCase(string input)
+        private static string GBRPascalCase(string input)
         {
             // we may have empty strings being supplied.
             if (IsNullOrWhiteSpace(input))
-            { return Empty; }
+            {
+                return Empty;
+            }
             input = input.Trim().ToLowerInvariant();
             string[] array = input.Split(' ');
 
             // for larges input, SB is more efficient than any string concatenation.
             // StringBuilder will never be larger than the original input
             StringBuilder sb = new StringBuilder(input.Length);
-
             for (int i = 0; i < array.Length; i++)
             {
                 // we may receive a double spaced word.
@@ -249,14 +247,10 @@ namespace GBRValidation.Service
                     {
                         sb.Append(" ");
                     }
-
                 }
             }
-
             return sb.ToString();
         }
-
-
     }
 }
 
