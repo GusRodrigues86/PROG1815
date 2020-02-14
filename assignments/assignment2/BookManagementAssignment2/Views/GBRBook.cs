@@ -113,6 +113,7 @@ namespace BookManagementAssignment2
         /// </summary>
         private void ValidateBeforeSubmit(object sender, EventArgs e)
         {
+            bool hasErrors = false;
             lblErrors.Text = "";
             foreach (var control in Controls)
             {
@@ -128,6 +129,7 @@ namespace BookManagementAssignment2
                     {
                         if (String.IsNullOrWhiteSpace(textBox.Text.Trim()))
                         {
+                            hasErrors = true;
                             AppendErrorMessage(textboxTag, $"{textboxTag} can't be empty.");
                             txtBookTitle.Focus(); // force focus to book title
                         }
@@ -139,6 +141,7 @@ namespace BookManagementAssignment2
                         // empty is invalid...
                         if (String.IsNullOrWhiteSpace(textBox.Text.Trim()))
                         {
+                            hasErrors = true;
                             AppendErrorMessage(textboxTag, $"{textboxTag} can't be empty.");
                             txtISBN.Focus();
                         }
@@ -147,6 +150,7 @@ namespace BookManagementAssignment2
                         {
                             if (!GBRISBNValidation(textBox.Text.Trim()))
                             {
+                                hasErrors = true;
                                 AppendErrorMessage(textboxTag, $"Invalid {textboxTag}. " +
                                     $"It must contains 13 digits");
                                 txtISBN.Focus();
@@ -159,6 +163,7 @@ namespace BookManagementAssignment2
                     {
                         if (String.IsNullOrWhiteSpace(textBox.Text.Trim()))
                         {
+                            hasErrors = true;
                             AppendErrorMessage(textboxTag, $"{textboxTag} can't be empty.");
                             txtAuthorFullName.Focus();
                         }
@@ -168,6 +173,7 @@ namespace BookManagementAssignment2
                             // author full name validation
                             if (!GBRValidateAuthorName(textBox.Text.Trim())) // single name
                             {
+                                hasErrors = true;
                                 AppendErrorMessage("Author full name",
                                     "Author full name required.");
                                 txtAuthorFullName.Focus();
@@ -181,6 +187,7 @@ namespace BookManagementAssignment2
                     {
                         if (String.IsNullOrWhiteSpace(textBox.Text.Trim()))
                         {
+                            hasErrors = true;
                             AppendErrorMessage(textboxTag, $"{textboxTag} can't be empty.");
                             txtDatePublished.Focus();
                         }
@@ -189,6 +196,7 @@ namespace BookManagementAssignment2
                         {
                             if (!GBRDateValidation(textBox.Text.Trim()))
                             {
+                                hasErrors = true;
                                 AppendErrorMessage("Date", "Date invalid. Must be dd mmm yyyy and less than today.");
                                 txtDatePublished.Focus();
                             }
@@ -208,6 +216,7 @@ namespace BookManagementAssignment2
                         // street
                         if (String.IsNullOrWhiteSpace(txtStreetRRoute.Text))
                         {
+                            hasErrors = true;
                             AppendErrorMessage("Routes",
                                 "Street/Rural Routes is required if email is not provided.");
                             txtStreetRRoute.Focus();
@@ -217,6 +226,7 @@ namespace BookManagementAssignment2
                         // province code
                         if (String.IsNullOrWhiteSpace(txtProvinceCode.Text))
                         {
+                            hasErrors = true;
                             AppendErrorMessage("Province",
                                 "Province Code is required if email is not provided.");
                             txtProvinceCode.Focus();
@@ -230,6 +240,7 @@ namespace BookManagementAssignment2
                         // postal code
                         if (String.IsNullOrWhiteSpace(txtPostalCode.Text))
                         {
+                            hasErrors = true;
                             AppendErrorMessage("Postal", "Postal Code is required if email is not provided.");
                             txtPostalCode.Focus();
                         }
@@ -255,6 +266,7 @@ namespace BookManagementAssignment2
                         if (String.IsNullOrWhiteSpace(homePhone) &&
                             String.IsNullOrWhiteSpace(cellPhone))
                         {
+                            hasErrors = true;
                             AppendErrorMessage("phone", "Either home or cell phone is required... both are OK also.");
                         }
                         #region Cell phone validation
@@ -263,6 +275,7 @@ namespace BookManagementAssignment2
                         {
                             if (!GBRPhoneNumberValidation(cellPhone))
                             {
+                                hasErrors = true;
                                 AppendErrorMessage("phone", "Cell phone format error.");
                                 txtCellPhone.Focus();
                             }
@@ -289,6 +302,7 @@ namespace BookManagementAssignment2
                         {
                             if (!GBRPhoneNumberValidation(homePhone))
                             {
+                                hasErrors = true;
                                 AppendErrorMessage("phone", "Home phone format error.");
                                 txtHomePhone.Focus();
                             }
@@ -315,22 +329,18 @@ namespace BookManagementAssignment2
                 }
             }
 
-            #region Valid form
-            if (String.IsNullOrWhiteSpace(lblErrors.Text))
+            if (!hasErrors)
             {
-                MessageBox.Show("Form is valid", "Valid form", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                foreach (var control in Controls)
-                {
-                    // clear form
-                    if (control is TextBox)
-                    {
-                        var field = (TextBox) control;
-                        field.Clear();
-                    }
-                }
-                txtBookTitle.Focus();
+                SubmitForm();
             }
-            #endregion
+        }
+
+        /// <summary>
+        /// Place valid form message for the user.
+        /// </summary>
+        private void SubmitForm()
+        {
+            lblErrors.Text = "Form is valid. Thank you!";
         }
 
         /// <summary>
