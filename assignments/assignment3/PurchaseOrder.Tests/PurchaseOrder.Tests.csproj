@@ -15,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\IOAssignment\PurchaseOrder.UI.csproj" />
     <ProjectReference Include="..\PurchaseOrder.Domain\PurchaseOrder.Domain.csproj" />
+    <ProjectReference Include="..\PurchaseOrder.Util\PurchaseOrder.Util.csproj" />
   </ItemGroup>
 
 </Project>
