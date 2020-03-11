@@ -17,6 +17,7 @@ namespace PurchaseOrder.Tests
     /// </summary>
     public class PurchaseTests
     {
+        #region Field and Initialization
         private Purchase purchase;
         [SetUp]
         public void Init()
@@ -31,17 +32,15 @@ namespace PurchaseOrder.Tests
                 unit: "Hours",
                 unitCost: 35.0);
         }
-
-        /* Tests for the Purchase ID
-         */
+        #endregion
+        #region Tests for the Purchase ID
         [Test]
         public void PurchaseContainsAnID()
         {
             Assert.AreEqual(1, purchase.GetId());
         }
-
-        /* Tests for the Purchase Date
-         */
+        #endregion
+        #region Tests for the Purchase Date
         [Test]
         public void PurchaseContainsADate()
         {
@@ -62,7 +61,7 @@ namespace PurchaseOrder.Tests
         [Test]
         public void YestedayIsAValidDate()
         {
-            var newOrder = new Purchase(2, date: new DateTime(2019,1,1), 
+            var newOrder = new Purchase(2, date: new DateTime(2019, 1, 1),
                         "Seller", "Shipped", 1.0, "Hours", 10);
             var janFirst = new DateTime(2019, 1, 1);
             Assert.AreEqual(janFirst, newOrder.GetDate());
@@ -76,25 +75,22 @@ namespace PurchaseOrder.Tests
             Assert.AreNotEqual(newDate, purchase.GetDate());
         }
 
-
-        /* Tests for the Seller
-         */
+        #endregion
+        #region Tests for the Seller
         [Test]
         public void PurchaseContainsASeller()
         {
             Assert.AreEqual("Test Seller", purchase.GetSeller());
         }
-
-        /* Tests for the ShippedTo
-         */
+        #endregion
+        #region Tests for the ShippedTo
         [Test]
         public void PurchaseContainsShippedTo()
         {
             Assert.AreEqual("Test destination", purchase.GetShippedTo());
         }
-
-        /* Tests for the Ordered
-         */
+        #endregion
+        #region Tests for the Ordered
         [Test]
         public void PurchaseContainsOrdered()
         {
@@ -108,10 +104,10 @@ namespace PurchaseOrder.Tests
                 {
                     new Purchase(1,
                         date: DateTime.Today,
-                        seller: "Seller", 
+                        seller: "Seller",
                         shippedTo: "Shipped",
-                        ordered: -1.0, 
-                        unit: "Hours", 
+                        ordered: -1.0,
+                        unit: "Hours",
                         unitCost: 10);
                 }
                 ).ParamName.Equals("Ordered");
@@ -132,17 +128,15 @@ namespace PurchaseOrder.Tests
                 }
                 ).ParamName.Equals("Ordered");
         }
-
-        /* Tests for the Unit of purchase
-         */
+        #endregion
+        #region Tests for the Unit of purchase
         [Test]
         public void PurchaseContainsUnit()
         {
             Assert.AreEqual("Hours", purchase.GetUnit());
         }
-
-        /* Tests for the Unit Price
-         */
+        #endregion
+        #region Tests for the Unit Price
         [Test]
         public void PurchaseContainsUnitPrice()
         {
@@ -156,10 +150,10 @@ namespace PurchaseOrder.Tests
                 {
                     new Purchase(1,
                         date: DateTime.Today,
-                        seller: "Seller", 
+                        seller: "Seller",
                         shippedTo: "Shipped",
-                        ordered: 1.0, 
-                        unit: "Hours", 
+                        ordered: 1.0,
+                        unit: "Hours",
                         unitCost: -10);
                 }
                 ).ParamName.Equals("UnitCost");
@@ -180,25 +174,22 @@ namespace PurchaseOrder.Tests
                 }
                 ).ParamName.Equals("UnitCost");
         }
-
-        /* Tests for the Before tax
-         */
+        #endregion
+        #region Tests for the Before tax
         [Test]
         public void PurchaseContainsAmountCost()
         {
             Assert.AreEqual(350, purchase.GetBeforeTaxes());
         }
-
-        /* Tests for the Before tax
-         */
+        #endregion
+        #region Tests for the Total
         [Test]
         public void PurchaseContainsTotalWithTax()
         {
             Assert.AreEqual(395.5, purchase.GetTotal(), 0.1d);
         }
-
-        /* Tests for the ToString
-         */
+        #endregion
+        #region Tests for the ToString
         [Test]
         public void TestToString()
         {
@@ -225,5 +216,6 @@ namespace PurchaseOrder.Tests
 
             Assert.AreEqual(expected, purchase.ToString());
         }
+        #endregion
     }
 }

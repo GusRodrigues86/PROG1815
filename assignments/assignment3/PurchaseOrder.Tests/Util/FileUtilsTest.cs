@@ -34,7 +34,7 @@ namespace PurchaseOrder.Tests.Util
             }
         }
         #endregion
-
+        #region Open file
         [Test]
         public void CantFindFileThrowsException()
         {
@@ -70,6 +70,8 @@ namespace PurchaseOrder.Tests.Util
                 Assert.Fail(ex.Message);
             }
         }
+        #endregion
+        #region File Creation
         [Test]
         public void CanCreatFileIfDoesntExist()
         {
@@ -82,5 +84,6 @@ namespace PurchaseOrder.Tests.Util
             string fileName = pathToProject + @"/Util/hello.csv";
             Assert.IsFalse(FileUtils.CreateFile(fileName));
         }
+        #endregion
     }
 }
