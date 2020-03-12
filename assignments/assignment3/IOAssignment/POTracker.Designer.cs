@@ -30,8 +30,11 @@
         {
             this.rtextErrors = new System.Windows.Forms.RichTextBox();
             this.gBoxDelete = new System.Windows.Forms.GroupBox();
+            this.btnDeletePO = new System.Windows.Forms.Button();
+            this.textBox8 = new System.Windows.Forms.TextBox();
             this.lblNumberDelete = new System.Windows.Forms.Label();
             this.gBoxInsert = new System.Windows.Forms.GroupBox();
+            this.btnInsert = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.datePickerInsert = new System.Windows.Forms.DateTimePicker();
             this.textBox6 = new System.Windows.Forms.TextBox();
@@ -49,14 +52,11 @@
             this.lblDate = new System.Windows.Forms.Label();
             this.lblNumberInsert = new System.Windows.Forms.Label();
             this.gBoxOpenFile = new System.Windows.Forms.GroupBox();
+            this.btnCreateOpen = new System.Windows.Forms.Button();
+            this.radioOpenExisting = new System.Windows.Forms.RadioButton();
+            this.radioCreateNew = new System.Windows.Forms.RadioButton();
             this.lblFilenameAndPath = new System.Windows.Forms.Label();
             this.txtFilenameAndPath = new System.Windows.Forms.TextBox();
-            this.radioCreateNew = new System.Windows.Forms.RadioButton();
-            this.radioOpenExisting = new System.Windows.Forms.RadioButton();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.btnDeletePO = new System.Windows.Forms.Button();
-            this.btnInsert = new System.Windows.Forms.Button();
-            this.btnCreateOpen = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
@@ -84,6 +84,22 @@
             this.gBoxDelete.TabIndex = 1;
             this.gBoxDelete.TabStop = false;
             this.gBoxDelete.Text = "Delete Purchase Order";
+            // 
+            // btnDeletePO
+            // 
+            this.btnDeletePO.Location = new System.Drawing.Point(101, 45);
+            this.btnDeletePO.Name = "btnDeletePO";
+            this.btnDeletePO.Size = new System.Drawing.Size(75, 23);
+            this.btnDeletePO.TabIndex = 12;
+            this.btnDeletePO.Text = "Delete";
+            this.btnDeletePO.UseVisualStyleBackColor = true;
+            // 
+            // textBox8
+            // 
+            this.textBox8.Location = new System.Drawing.Point(101, 19);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(115, 20);
+            this.textBox8.TabIndex = 11;
             // 
             // lblNumberDelete
             // 
@@ -121,6 +137,15 @@
             this.gBoxInsert.TabIndex = 2;
             this.gBoxInsert.TabStop = false;
             this.gBoxInsert.Text = "Insert Purchase Order";
+            // 
+            // btnInsert
+            // 
+            this.btnInsert.Location = new System.Drawing.Point(104, 272);
+            this.btnInsert.Name = "btnInsert";
+            this.btnInsert.Size = new System.Drawing.Size(75, 23);
+            this.btnInsert.TabIndex = 10;
+            this.btnInsert.Text = "Insert";
+            this.btnInsert.UseVisualStyleBackColor = true;
             // 
             // comboBox1
             // 
@@ -274,6 +299,37 @@
             this.gBoxOpenFile.TabStop = false;
             this.gBoxOpenFile.Text = "File Open Options";
             // 
+            // btnCreateOpen
+            // 
+            this.btnCreateOpen.Location = new System.Drawing.Point(191, 14);
+            this.btnCreateOpen.Name = "btnCreateOpen";
+            this.btnCreateOpen.Size = new System.Drawing.Size(150, 23);
+            this.btnCreateOpen.TabIndex = 22;
+            this.btnCreateOpen.Text = "Create / Open File";
+            this.btnCreateOpen.UseVisualStyleBackColor = true;
+            // 
+            // radioOpenExisting
+            // 
+            this.radioOpenExisting.AutoSize = true;
+            this.radioOpenExisting.Location = new System.Drawing.Point(95, 19);
+            this.radioOpenExisting.Name = "radioOpenExisting";
+            this.radioOpenExisting.Size = new System.Drawing.Size(90, 17);
+            this.radioOpenExisting.TabIndex = 1;
+            this.radioOpenExisting.TabStop = true;
+            this.radioOpenExisting.Text = "Open Existing";
+            this.radioOpenExisting.UseVisualStyleBackColor = true;
+            // 
+            // radioCreateNew
+            // 
+            this.radioCreateNew.AutoSize = true;
+            this.radioCreateNew.Location = new System.Drawing.Point(6, 19);
+            this.radioCreateNew.Name = "radioCreateNew";
+            this.radioCreateNew.Size = new System.Drawing.Size(81, 17);
+            this.radioCreateNew.TabIndex = 0;
+            this.radioCreateNew.TabStop = true;
+            this.radioCreateNew.Text = "Create New";
+            this.radioCreateNew.UseVisualStyleBackColor = true;
+            // 
             // lblFilenameAndPath
             // 
             this.lblFilenameAndPath.AutoSize = true;
@@ -289,62 +345,6 @@
             this.txtFilenameAndPath.Name = "txtFilenameAndPath";
             this.txtFilenameAndPath.Size = new System.Drawing.Size(278, 20);
             this.txtFilenameAndPath.TabIndex = 1;
-            // 
-            // radioCreateNew
-            // 
-            this.radioCreateNew.AutoSize = true;
-            this.radioCreateNew.Location = new System.Drawing.Point(6, 19);
-            this.radioCreateNew.Name = "radioCreateNew";
-            this.radioCreateNew.Size = new System.Drawing.Size(81, 17);
-            this.radioCreateNew.TabIndex = 0;
-            this.radioCreateNew.TabStop = true;
-            this.radioCreateNew.Text = "Create New";
-            this.radioCreateNew.UseVisualStyleBackColor = true;
-            // 
-            // radioOpenExisting
-            // 
-            this.radioOpenExisting.AutoSize = true;
-            this.radioOpenExisting.Location = new System.Drawing.Point(95, 19);
-            this.radioOpenExisting.Name = "radioOpenExisting";
-            this.radioOpenExisting.Size = new System.Drawing.Size(90, 17);
-            this.radioOpenExisting.TabIndex = 1;
-            this.radioOpenExisting.TabStop = true;
-            this.radioOpenExisting.Text = "Open Existing";
-            this.radioOpenExisting.UseVisualStyleBackColor = true;
-            // 
-            // textBox8
-            // 
-            this.textBox8.Location = new System.Drawing.Point(101, 19);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(115, 20);
-            this.textBox8.TabIndex = 11;
-            // 
-            // btnDeletePO
-            // 
-            this.btnDeletePO.Location = new System.Drawing.Point(101, 45);
-            this.btnDeletePO.Name = "btnDeletePO";
-            this.btnDeletePO.Size = new System.Drawing.Size(75, 23);
-            this.btnDeletePO.TabIndex = 12;
-            this.btnDeletePO.Text = "Delete";
-            this.btnDeletePO.UseVisualStyleBackColor = true;
-            // 
-            // btnInsert
-            // 
-            this.btnInsert.Location = new System.Drawing.Point(104, 272);
-            this.btnInsert.Name = "btnInsert";
-            this.btnInsert.Size = new System.Drawing.Size(75, 23);
-            this.btnInsert.TabIndex = 10;
-            this.btnInsert.Text = "Insert";
-            this.btnInsert.UseVisualStyleBackColor = true;
-            // 
-            // btnCreateOpen
-            // 
-            this.btnCreateOpen.Location = new System.Drawing.Point(191, 14);
-            this.btnCreateOpen.Name = "btnCreateOpen";
-            this.btnCreateOpen.Size = new System.Drawing.Size(150, 23);
-            this.btnCreateOpen.TabIndex = 22;
-            this.btnCreateOpen.Text = "Create / Open File";
-            this.btnCreateOpen.UseVisualStyleBackColor = true;
             // 
             // button3
             // 

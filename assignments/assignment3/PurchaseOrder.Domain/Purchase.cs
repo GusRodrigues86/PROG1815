@@ -59,7 +59,7 @@ namespace PurchaseOrder.Domain
         private const double taxes = 0.13;
         #endregion
 
-        #region Constructor
+        #region Constructors
         /// <summary>
         /// Creates an Purchase object
         /// </summary>
@@ -85,14 +85,33 @@ namespace PurchaseOrder.Domain
             this.Subtotal = this.UnitCost * this.Ordered;
 
         }
+
+        /// <summary>
+        /// Creates a deep copy of the supplied purchase.
+        /// </summary>
+        /// <param name="purchase">The original object to be copied</param>
+        private Purchase(Purchase purchase)
+        {
+            this.Id = purchase.GetId();
+            this.Date = purchase.GetDate();
+            this.Seller = purchase.GetSeller();
+            this.ShippedTo = purchase.GetShippedTo();
+            this.Ordered = purchase.GetOrdered();
+            this.Unit = purchase.GetUnit();
+            this.UnitCost = purchase.GetUnitPrice();
+            this.Description = purchase.GetDescription();
+            CheckRep();
+            // if valid, calculate
+            this.Subtotal = this.UnitCost * this.Ordered;
+        }
         #endregion
 
-        #region Getters
+        #region Getters or observers
         /// <summary>
         /// Return the Purchase Id
         /// </summary>
         /// <returns>The Purchase Id</returns>
-        public double GetId() => this.Id;
+        public int GetId() => this.Id;
 
         /// <summary>
         /// Returns the Date of the purchase
@@ -147,6 +166,16 @@ namespace PurchaseOrder.Domain
         /// </summary>
         /// <returns>The total after taxes</returns>
         public double GetTotal() => this.Subtotal * (1+taxes);
+        #endregion
+        #region Producer
+        /// <summary>
+        /// Creates a deep copy of the purchase.
+        /// </summary>
+        /// <returns>A copy of this object</returns>
+        public Purchase Copy()
+        {
+            return new Purchase(this);
+        }
         #endregion
 
         #region Overrides

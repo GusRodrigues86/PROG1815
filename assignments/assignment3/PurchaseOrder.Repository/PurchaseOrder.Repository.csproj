@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PurchaseOrder.Domain\PurchaseOrder.Domain.csproj" />
+    <ProjectReference Include="..\PurchaseOrder.Util\PurchaseOrder.Util.csproj" />
+  </ItemGroup>
+
+</Project>

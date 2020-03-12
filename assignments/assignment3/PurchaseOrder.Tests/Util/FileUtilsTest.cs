@@ -10,6 +10,7 @@ namespace PurchaseOrder.Tests.Util
     class FileUtilsTest
     {
         private string pathToProject;
+        string fileName;
         #region Before and After
         [SetUp]
         public void Init()
@@ -18,6 +19,10 @@ namespace PurchaseOrder.Tests.Util
             pathToProject = Directory.GetParent(pathToProject).FullName;
             pathToProject = Directory.GetParent(pathToProject).FullName;
             pathToProject = Directory.GetParent(pathToProject).FullName;
+
+            fileName = pathToProject;
+            ;
+
             // checks if there is any test file saved.
             if (File.Exists(pathToProject + @"/Util/TestText.txt"))
             {
@@ -41,17 +46,17 @@ namespace PurchaseOrder.Tests.Util
             Assert.Throws<FileNotFoundException>(
                 () =>
                 {
-                    FileUtils.CSVReader("file");
+                    FileUtils.FileReader("file");
                 });
             Assert.Throws<ArgumentNullException>(
                 () =>
                 {
-                    FileUtils.CSVReader(null);
+                    FileUtils.FileReader(null);
                 });
             Assert.Throws<DirectoryNotFoundException>(
                 () =>
                 {
-                    FileUtils.CSVReader(@"Z:\doesnt\exist.file");
+                    FileUtils.FileReader(@"Z:\doesnt\exist.file");
                 });
         }
         [Test]
@@ -59,7 +64,7 @@ namespace PurchaseOrder.Tests.Util
         {
             try
             {
-                using (StreamReader file = FileUtils.CSVReader(pathToProject + @"./Util/hello.csv"))
+                using (StreamReader file = FileUtils.FileReader(pathToProject + @"./Util/hello.csv"))
                 {
                     string splited = file.ReadLine();
                     Assert.AreEqual("Hello,World", splited);
@@ -75,14 +80,38 @@ namespace PurchaseOrder.Tests.Util
         [Test]
         public void CanCreatFileIfDoesntExist()
         {
-            string fileName = pathToProject + @"/Util/TestText.txt";
+            fileName += @"/Util/TestText.txt";
             Assert.IsTrue(FileUtils.CreateFile(fileName));
         }
         [Test]
         public void IfFileAlreadyExistisReturnsFalse()
         {
-            string fileName = pathToProject + @"/Util/hello.csv";
+            fileName += @"/Util/hello.csv";
             Assert.IsFalse(FileUtils.CreateFile(fileName));
+        }
+        #endregion
+        #region File Writing
+        [Test]
+        public void WriteAStringToDummyFile()
+        {
+            fileName += @"/Util/TestText.txt";
+            try
+            {
+                FileUtils.CreateFile(fileName);
+                bool write = FileUtils.AppendToFile<string>(fileName, "Test");
+                Assert.IsTrue(write);
+
+                using (StreamReader reader = FileUtils.FileReader(fileName))
+                {
+                    var line = reader.ReadLine();
+                    Assert.AreEqual("Test", line);
+                }
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail(ex.StackTrace);
+            }
+
         }
         #endregion
     }
