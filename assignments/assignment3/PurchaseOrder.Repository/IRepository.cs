@@ -41,5 +41,10 @@ namespace PurchaseOrder.Repository
         /// <param name="entity">to be found.</param>
         /// <returns>True iff the persistence unit contains the entity.</returns>
         bool HasItem(T entity);
+        /// <summary>
+        /// Returns the actual ammount of itens in the system
+        /// </summary>
+        /// <returns>The total ammount of unique itens in the system.</returns>
+        int Size();
     }
 }
