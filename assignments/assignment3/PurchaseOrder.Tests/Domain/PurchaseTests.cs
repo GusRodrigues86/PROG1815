@@ -201,15 +201,15 @@ namespace PurchaseOrder.Tests
 
             StringBuilder builder = new StringBuilder();
             builder.Append("[");
-            builder.Append($"id: {id} ");
-            builder.Append($"Date: {date} ");
-            builder.Append($"Purchased From: {seller} ");
-            builder.Append($"Ship to: {shippedTo} ");
-            builder.Append($"Description: {description} ");
-            builder.Append($"Ordered: {ordered} ");
-            builder.Append($"Unit: {unit} ");
-            builder.Append($"Unit Price: {unitCost} ");
-            builder.Append(@"Ammount: $350.00 ");
+            builder.Append($"id: {id}\\,");
+            builder.Append($"Date: {date}\\,");
+            builder.Append($"Purchased From: {seller}\\,");
+            builder.Append($"Ship to: {shippedTo}\\,");
+            builder.Append($"Description: {description}\\,");
+            builder.Append($"Ordered: {ordered}\\,");
+            builder.Append($"Unit: {unit}\\,");
+            builder.Append($"Unit Price: {unitCost}\\,");
+            builder.Append(@"Ammount: $350.00\,");
             builder.Append(@"Total Ammount: $395.50");
             builder.Append("]");
             string expected = builder.ToString();

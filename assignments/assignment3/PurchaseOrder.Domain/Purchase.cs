@@ -191,15 +191,15 @@ namespace PurchaseOrder.Domain
 
             StringBuilder builder = new StringBuilder();
             builder.Append("[");
-            builder.Append($"id: {Id} ");
-            builder.Append($"Date: {Date.ToString("yyyy-MM-dd")} ");
-            builder.Append($"Purchased From: {Seller} ");
-            builder.Append($"Ship to: {ShippedTo} ");
-            builder.Append($"Description: {Description} ");
-            builder.Append($"Ordered: {Ordered} ");
-            builder.Append($"Unit: {Unit} ");
-            builder.Append($"Unit Price: {price} ");
-            builder.Append($"Ammount: {beforeTax} ");
+            builder.Append($"id: {Id}\\,");
+            builder.Append($"Date: {Date.ToString("yyyy-MM-dd")}\\,");
+            builder.Append($"Purchased From: {Seller}\\,");
+            builder.Append($"Ship to: {ShippedTo}\\,");
+            builder.Append($"Description: {Description}\\,");
+            builder.Append($"Ordered: {Ordered}\\,");
+            builder.Append($"Unit: {Unit}\\,");
+            builder.Append($"Unit Price: {price}\\,");
+            builder.Append($"Ammount: {beforeTax}\\,");
             builder.Append($"Total Ammount: {total}");
             builder.Append("]");
 

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using PurchaseOrder.Util;
+using PurchaseOrder.Domain;
 
 namespace PurchaseOrder.Tests.Util
 {
@@ -82,6 +83,7 @@ namespace PurchaseOrder.Tests.Util
         {
             fileName += @"/Util/TestText.txt";
             Assert.IsTrue(FileUtils.CreateFile(fileName));
+            Assert.IsTrue(File.Exists(fileName));
         }
         [Test]
         public void IfFileAlreadyExistisReturnsFalse()
@@ -113,6 +115,39 @@ namespace PurchaseOrder.Tests.Util
             }
 
         }
+
+        [Test]
+        public void WriteAPurchaseToFile()
+        {
+            fileName += @"/Util/PurchaseFile.txt";
+            var order = new Purchase(
+                id: 1,
+                date: DateTime.Today,
+                seller: "Test Seller",
+                shippedTo: "Test destination",
+                description: "",
+                ordered: 10,
+                unit: "Hours",
+                unitCost: 35.0);
+            try
+            {
+                FileUtils.CreateFile(fileName);
+                bool write = FileUtils.AppendToFile<string>(fileName, order.ToString());
+                Assert.IsTrue(write);
+
+                using (StreamReader reader = FileUtils.FileReader(fileName))
+                {
+                    var line = reader.ReadLine();
+                    Assert.AreEqual(order.ToString(), line);
+                }
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail(ex.StackTrace);
+            }
+
+        }
         #endregion
+
     }
 }
