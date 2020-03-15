@@ -28,13 +28,13 @@ namespace PurchaseOrder.Repository
         /// </summary>
         /// <param name="entity"></param>
         /// <returns>The updated entity</returns>
-        T Update(T entity);
+        bool Update(T entity);
         /// <summary>
         /// Removes the element from the persistence unit.
         /// </summary>
-        /// <param name="entity"></param>
+        /// <param name="key">The ID of the object to be removed</param>
         /// <returns>True iff the persistence unit was changed because of the operation.</returns>
-        bool Delete(T entity);
+        bool Delete(int key);
         /// <summary>
         /// Search for the desired entity.
         /// </summary>
