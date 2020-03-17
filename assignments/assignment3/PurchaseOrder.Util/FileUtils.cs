@@ -15,7 +15,7 @@ namespace PurchaseOrder.Util
         /// Opens a fileStream for the desired file.
         /// </summary>
         /// <param name="fileName"></param>
-        /// <returns>Thte StreamReader with the file</returns>
+        /// <returns>The StreamReader with the file</returns>
         /// <exception cref="ArgumentException"></exception>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="FileNotFoundException"></exception>
@@ -25,10 +25,10 @@ namespace PurchaseOrder.Util
             new StreamReader(fileName);
 
         /// <summary>
-        /// Creates a file if It doesnt exist.
+        /// Creates a file. If not specied, it won't overwrite if already exists.
         /// </summary>
-        /// <param name="path">The path to the file</param>
         /// <param name="fileName">The file name</param>
+        /// <param name="forceOverwrite">If overwrites existing file.</param>
         /// <returns>True iff able to create file.</returns>
         /// <exception cref="UnauthorizedAccessException"></exception>
         /// <exception cref="ArgumentException"></ exception >
@@ -37,9 +37,14 @@ namespace PurchaseOrder.Util
         /// <exception cref="DirectoryNotFoundException"></exception>
         /// <exception cref="IOException"></ exception >
         /// <exception cref="NotSupportedException"></exception>
-        public static bool CreateFile(string fileName)
+        public static bool CreateFile(string fileName, bool forceOverwrite=false)
         {
             if (!File.Exists(fileName))
+            {
+                File.Create(fileName).Close();
+                return true;
+            }
+            else if (File.Exists(fileName) && forceOverwrite)
             {
                 File.Create(fileName).Close();
                 return true;
@@ -102,6 +107,14 @@ namespace PurchaseOrder.Util
                 list.ForEach(e => writer.WriteLine(e.ToString()));
                 return true;
             }
+        }
+        /// <summary>
+        /// Creates the default Folder inside the project.
+        /// </summary>
+        /// <param name="currentPath"></param>
+        public static void CreateDefaultFolder(string currentPath)
+        {
+            Directory.CreateDirectory(currentPath + @"\Order");
         }
     }
 }

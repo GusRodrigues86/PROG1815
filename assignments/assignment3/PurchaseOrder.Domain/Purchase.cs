@@ -87,6 +87,39 @@ namespace PurchaseOrder.Domain
 
         }
 
+        public Purchase(string file)
+        {
+            var numberFormat = new CultureInfo("en-CA", false).NumberFormat;
+            var fileStructure = file.Split('\t');
+            this.Id = int.Parse(fileStructure[0]);
+            this.Date = DateTime.Parse(fileStructure[1]);
+            this.Seller = fileStructure[2];
+            this.ShippedTo = fileStructure[3];
+            this.Ordered = double.Parse(fileStructure[4], numberFormat);
+            this.Unit = fileStructure[5];
+            this.UnitCost = double.Parse(fileStructure[6],numberFormat);
+            // description may contain \t. to prevent, append all items from 9 and going on.
+            StringBuilder builder = new StringBuilder();
+            for (int i = 9; i < fileStructure.Length; i++)
+            {
+                builder.Append(fileStructure[i]);
+            }
+            var desc = builder.ToString();
+            if (desc.Length == 6)
+            {
+                this.Description = string.Empty;
+            }
+            else
+            {
+                this.Description =  desc.Substring(6);
+            }
+
+            ;
+            CheckRep();
+            // if valid, calculate
+            this.Subtotal = this.UnitCost * this.Ordered;
+        }
+
         /// <summary>
         /// Creates a deep copy of the supplied purchase.
         /// </summary>
@@ -105,6 +138,8 @@ namespace PurchaseOrder.Domain
             // if valid, calculate
             this.Subtotal = this.UnitCost * this.Ordered;
         }
+
+
         #endregion
 
         #region Getters or observers
@@ -185,23 +220,21 @@ namespace PurchaseOrder.Domain
         {
             // formatting
             CultureInfo canCulture = CultureInfo.CreateSpecificCulture("en-CA");
-            string price = this.UnitCost.ToString("c2", canCulture);
-            string beforeTax = this.Subtotal.ToString("c2", canCulture);
-            string total = GetTotal().ToString("c2", canCulture);
+            string price = this.UnitCost.ToString("N2", canCulture);
+            string beforeTax = this.Subtotal.ToString("N2", canCulture);
+            string total = GetTotal().ToString("N2", canCulture);
 
             StringBuilder builder = new StringBuilder();
-            builder.Append("[");
-            builder.Append($"id: {Id}\\,");
-            builder.Append($"Date: {Date.ToString("yyyy-MM-dd")}\\,");
-            builder.Append($"Purchased From: {Seller}\\,");
-            builder.Append($"Ship to: {ShippedTo}\\,");
-            builder.Append($"Description: {Description}\\,");
-            builder.Append($"Ordered: {Ordered}\\,");
-            builder.Append($"Unit: {Unit}\\,");
-            builder.Append($"Unit Price: {price}\\,");
-            builder.Append($"Ammount: {beforeTax}\\,");
-            builder.Append($"Total Ammount: {total}");
-            builder.Append("]");
+            builder.Append($"{Id}\t");
+            builder.Append($"{Date.ToString("yyyy-MM-dd")}\t");
+            builder.Append($"{Seller}\t");
+            builder.Append($"{ShippedTo}\t");
+            builder.Append($"{Ordered}\t");
+            builder.Append($"{Unit}\t");
+            builder.Append($"{price}\t");
+            builder.Append($"{beforeTax}\t");
+            builder.Append($"{total}\t");
+            builder.Append($"desc: {Description}");
 
             return builder.ToString();
         }

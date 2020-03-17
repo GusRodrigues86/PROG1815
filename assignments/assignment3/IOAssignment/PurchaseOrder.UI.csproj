@@ -66,6 +66,7 @@
     <EmbeddedResource Include="POTracker.resx">
       <DependentUpon>POTracker.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\PurchaseOrder.Repository.InMemoryRepository.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -83,6 +84,14 @@
     <ProjectReference Include="..\PurchaseOrder.Domain\PurchaseOrder.Domain.csproj">
       <Project>{f272bdef-96b9-425c-8de7-17c60c4ee1e5}</Project>
       <Name>PurchaseOrder.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PurchaseOrder.Repository\PurchaseOrder.Repository.csproj">
+      <Project>{a98fef84-af55-4876-8791-28a00eb967bd}</Project>
+      <Name>PurchaseOrder.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PurchaseOrder.Util\PurchaseOrder.Util.csproj">
+      <Project>{b969b197-7016-4290-9f67-d8a3e6c20101}</Project>
+      <Name>PurchaseOrder.Util</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

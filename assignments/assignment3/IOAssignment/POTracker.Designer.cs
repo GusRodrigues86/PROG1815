@@ -61,6 +61,16 @@
             this.btnDisplayOrders = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnEmptyFile = new System.Windows.Forms.Button();
+            this.listPurchaseData = new System.Windows.Forms.ListView();
+            this.chNumber = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chFrom = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chTo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chOrdered = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chUnit = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chUnitPrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chAmmount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chTotal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.gBoxDelete.SuspendLayout();
             this.gBoxInsert.SuspendLayout();
             this.gBoxOpenFile.SuspendLayout();
@@ -223,6 +233,7 @@
             resources.ApplyResources(this.btnCreateOpen, "btnCreateOpen");
             this.btnCreateOpen.Name = "btnCreateOpen";
             this.btnCreateOpen.UseVisualStyleBackColor = true;
+            this.btnCreateOpen.Click += new System.EventHandler(this.CreateOpenClick);
             // 
             // radioOpenExisting
             // 
@@ -266,10 +277,70 @@
             this.btnEmptyFile.Name = "btnEmptyFile";
             this.btnEmptyFile.UseVisualStyleBackColor = true;
             // 
+            // listPurchaseData
+            // 
+            this.listPurchaseData.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.chNumber,
+            this.chDate,
+            this.chFrom,
+            this.chTo,
+            this.chOrdered,
+            this.chUnit,
+            this.chUnitPrice,
+            this.chAmmount,
+            this.chTotal});
+            this.listPurchaseData.FullRowSelect = true;
+            this.listPurchaseData.GridLines = true;
+            this.listPurchaseData.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.listPurchaseData.HideSelection = false;
+            resources.ApplyResources(this.listPurchaseData, "listPurchaseData");
+            this.listPurchaseData.MultiSelect = false;
+            this.listPurchaseData.Name = "listPurchaseData";
+            this.listPurchaseData.UseCompatibleStateImageBehavior = false;
+            this.listPurchaseData.View = System.Windows.Forms.View.Details;
+            this.listPurchaseData.SelectedIndexChanged += new System.EventHandler(this.listPurchaseData_SelectedIndexChanged);
+            // 
+            // chNumber
+            // 
+            resources.ApplyResources(this.chNumber, "chNumber");
+            // 
+            // chDate
+            // 
+            resources.ApplyResources(this.chDate, "chDate");
+            // 
+            // chFrom
+            // 
+            resources.ApplyResources(this.chFrom, "chFrom");
+            // 
+            // chTo
+            // 
+            resources.ApplyResources(this.chTo, "chTo");
+            // 
+            // chOrdered
+            // 
+            resources.ApplyResources(this.chOrdered, "chOrdered");
+            // 
+            // chUnit
+            // 
+            resources.ApplyResources(this.chUnit, "chUnit");
+            // 
+            // chUnitPrice
+            // 
+            resources.ApplyResources(this.chUnitPrice, "chUnitPrice");
+            // 
+            // chAmmount
+            // 
+            resources.ApplyResources(this.chAmmount, "chAmmount");
+            // 
+            // chTotal
+            // 
+            resources.ApplyResources(this.chTotal, "chTotal");
+            // 
             // POTrackerForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.listPurchaseData);
             this.Controls.Add(this.btnEmptyFile);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnDisplayOrders);
@@ -327,6 +398,16 @@
         private System.Windows.Forms.Button btnDisplayOrders;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnEmptyFile;
+        private System.Windows.Forms.ListView listPurchaseData;
+        private System.Windows.Forms.ColumnHeader chNumber;
+        private System.Windows.Forms.ColumnHeader chDate;
+        private System.Windows.Forms.ColumnHeader chFrom;
+        private System.Windows.Forms.ColumnHeader chTo;
+        private System.Windows.Forms.ColumnHeader chOrdered;
+        private System.Windows.Forms.ColumnHeader chUnit;
+        private System.Windows.Forms.ColumnHeader chUnitPrice;
+        private System.Windows.Forms.ColumnHeader chAmmount;
+        private System.Windows.Forms.ColumnHeader chTotal;
     }
 }
 

@@ -131,7 +131,7 @@ namespace PurchaseOrder.Tests.Util
                 unitCost: 35.0);
             try
             {
-                FileUtils.CreateFile(fileName);
+                FileUtils.CreateFile(fileName, true);
                 bool write = FileUtils.AppendToFile<string>(fileName, order.ToString());
                 Assert.IsTrue(write);
 
