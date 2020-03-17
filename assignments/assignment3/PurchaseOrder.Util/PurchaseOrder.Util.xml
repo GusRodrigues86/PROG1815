@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PurchaseOrder.Util</name>
+    </assembly>
+    <members>
+        <member name="T:PurchaseOrder.Util.FileUtils">
+            <summary>
+            Holds readers for the project.
+            </summary>
+        </member>
+        <member name="M:PurchaseOrder.Util.FileUtils.FileReader(System.String)">
+            <summary>
+            Opens a fileStream for the desired file.
+            </summary>
+            <param name="fileName"></param>
+            <returns>The StreamReader with the file</returns>
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.IO.FileNotFoundException"></exception>
+            <exception cref="T:System.IO.DirectoryNotFoundException"></exception>
+            <exception cref="T:System.IO.IOException"></exception>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:PurchaseOrder.Util.FileUtils.CreateFile(System.String,System.Boolean)" -->
+        <!-- Badly formed XML comment ignored for member "M:PurchaseOrder.Util.FileUtils.AppendToFile``1(System.String,``0)" -->
+        <!-- Badly formed XML comment ignored for member "M:PurchaseOrder.Util.FileUtils.SaveAllRecords``1(System.String,System.Collections.Generic.List{``0})" -->
+        <member name="M:PurchaseOrder.Util.FileUtils.CreateDefaultFolder(System.String)">
+            <summary>
+            Creates the default Folder inside the project.
+            </summary>
+            <param name="currentPath"></param>
+        </member>
+    </members>
+</doc>

@@ -104,17 +104,7 @@ namespace PurchaseOrder.Domain
             {
                 builder.Append(fileStructure[i]);
             }
-            var desc = builder.ToString();
-            if (desc.Length == 6)
-            {
-                this.Description = string.Empty;
-            }
-            else
-            {
-                this.Description =  desc.Substring(6);
-            }
-
-            ;
+            this.Description = builder.ToString().Substring(6);
             CheckRep();
             // if valid, calculate
             this.Subtotal = this.UnitCost * this.Ordered;

@@ -31,11 +31,11 @@ namespace PurchaseOrder.Util
         /// <param name="forceOverwrite">If overwrites existing file.</param>
         /// <returns>True iff able to create file.</returns>
         /// <exception cref="UnauthorizedAccessException"></exception>
-        /// <exception cref="ArgumentException"></ exception >
+        /// <exception cref="ArgumentException"></exception>
         /// <exception cref="ArgumentNullException"></exception>
-        /// <exception cref="PathTooLongException"></ exception >
+        /// <exception cref="PathTooLongException"></exception >
         /// <exception cref="DirectoryNotFoundException"></exception>
-        /// <exception cref="IOException"></ exception >
+        /// <exception cref="IOException"></exception>
         /// <exception cref="NotSupportedException"></exception>
         public static bool CreateFile(string fileName, bool forceOverwrite=false)
         {
@@ -55,16 +55,16 @@ namespace PurchaseOrder.Util
         /// <summary>
         /// Appends item to the file.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="file"></param>
-        /// <param name="list"></param>
+        /// <typeparam name="T">The type of the item</typeparam>
+        /// <param name="file">the path and filename to be appended.</param>
+        /// <param name="item">The item to append.</param>
         /// <returns>True iff able to append.</returns>
         /// <exception cref="UnauthorizedAccessException"></exception>
-        /// <exception cref="ArgumentException"></ exception >
+        /// <exception cref="ArgumentException"></exception>
         /// <exception cref="ArgumentNullException"></exception>
-        /// <exception cref="PathTooLongException"></ exception >
+        /// <exception cref="PathTooLongException"></exception >
         /// <exception cref="DirectoryNotFoundException"></exception>
-        /// <exception cref="IOException"></ exception >
+        /// <exception cref="IOException"></exception>
         /// <exception cref="NotSupportedException"></exception>
         public static bool AppendToFile<T>(string file, T item)
         {
@@ -84,16 +84,16 @@ namespace PurchaseOrder.Util
         /// <summary>
         /// Write all item in the list to the file.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="file"></param>
-        /// <param name="list"></param>
+        /// <typeparam name="T">The type of the list</typeparam>
+        /// <param name="file">the file to be saved.</param>
+        /// <param name="list">the list with objects to be saved</param>
         /// <returns>True iff able to append.</returns>
         /// <exception cref="UnauthorizedAccessException"></exception>
-        /// <exception cref="ArgumentException"></ exception >
+        /// <exception cref="ArgumentException"></exception >
         /// <exception cref="ArgumentNullException"></exception>
-        /// <exception cref="PathTooLongException"></ exception >
+        /// <exception cref="PathTooLongException"></exception >
         /// <exception cref="DirectoryNotFoundException"></exception>
-        /// <exception cref="IOException"></ exception >
+        /// <exception cref="IOException"></exception>
         /// <exception cref="NotSupportedException"></exception>
         public static bool SaveAllRecords<T>(string file, List<T> list)
         {
