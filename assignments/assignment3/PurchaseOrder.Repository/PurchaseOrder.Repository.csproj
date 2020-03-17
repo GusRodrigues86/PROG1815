@@ -4,6 +4,10 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Users\Gustavo\Conestoga\net\PROG1815\assignments\assignment3\PurchaseOrder.Repository\PurchaseOrder.Repository.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\PurchaseOrder.Domain\PurchaseOrder.Domain.csproj" />
     <ProjectReference Include="..\PurchaseOrder.Util\PurchaseOrder.Util.csproj" />
