@@ -70,6 +70,13 @@
             <param name="ordered">Amound ordered</param>
             <param name="unit">Unit of the order</param>
             <param name="unitCost">Cost of the order</param>
+            <param name="description">The order description</param>
+        </member>
+        <member name="M:PurchaseOrder.Domain.Purchase.#ctor(System.String)">
+            <summary>
+            Creates a Purchase object from the string saved on file.
+            </summary>
+            <param name="file">the ToString saved on file.</param>
         </member>
         <member name="M:PurchaseOrder.Domain.Purchase.#ctor(PurchaseOrder.Domain.Purchase)">
             <summary>
@@ -143,6 +150,27 @@
             </summary>
             <returns>A copy of this object</returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:PurchaseOrder.Domain.Purchase.CheckRep" -->
+        <member name="M:PurchaseOrder.Domain.Purchase.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:PurchaseOrder.Domain.Purchase.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:PurchaseOrder.Domain.Purchase.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:PurchaseOrder.Domain.Purchase.CheckRep">
+            <summary>
+            Invariant of an order.
+            if any of the parameters bellow are violated, the program will throw exception and prevent the formation of the corrupted purchase
+            <para> Id &gt; 0 </para>
+            <para>Date &lt;= DateTime.Today</para>
+            <para>Seller != Whitespace</para>
+            <para>ShippedTo != Whitespace</para>
+            <para>Ordered > 0</para>
+            <para>Unit = "Hours"</para>
+            <para>UnitCost &gt; 0</para>
+            </summary>
+        </member>
     </members>
 </doc>

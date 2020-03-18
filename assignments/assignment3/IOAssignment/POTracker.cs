@@ -14,15 +14,25 @@ using System.Globalization;
 
 namespace IOAssignment
 {
+    /// <summary>
+    /// POTracker represents a form that show all purchase order (PO).
+    /// </summary>
     public partial class POTrackerForm : Form
     {
-        private InMemoryRepository repository;
+        // the persistence object
+        private InMemoryRepository Repository;
         // culture invariant due system
-        private static CultureInfo culture = new CultureInfo("en-CA", false);
+        private static readonly CultureInfo Culture = new CultureInfo("en-CA", false);
+        // the program path
+        private static readonly string CurrentPath = Directory.GetCurrentDirectory();
+        // the default location and filne name
+        private const string DefaultFile = @"\Order\Orders.txt";
 
+        ///<inheritdoc/>
         public POTrackerForm()
         {
             InitializeComponent();
+            txtFilenameAndPath.Focus();
         }
 
         // Load state of the form -> Fields are disable until file is read or created.
@@ -33,6 +43,104 @@ namespace IOAssignment
             rtextErrors.Clear();
         }
 
+        // Create/Open Btn is pressed
+        private void CreateOpenClick(object sender, EventArgs e)
+        {
+            // clean errors
+            rtextErrors.Clear();
+
+            bool overwriteFile = false;
+            txtFilenameAndPath.Text += "";
+            var caller = (Button) sender;
+            // warns of override in new file
+            if (radioCreateNew.Checked || caller.Tag != null)
+            {
+                if (WarnOfOverride() == DialogResult.No)
+                {
+                    return;
+                }
+            }
+
+            // checks the type of file creation
+            if (String.IsNullOrWhiteSpace(txtFilenameAndPath.Text))
+            {
+                string defaultPathFile = CurrentPath + DefaultFile;
+                txtFilenameAndPath.Text = defaultPathFile;
+                // dir doesn't exists...
+                CreateFolder(CurrentPath + @"\Order");
+
+                if (radioCreateNew.Checked)
+                {
+                    CreateFile(defaultPathFile, overwriteFile);
+                }
+                ReadAndLoadRepository(defaultPathFile);
+
+            }
+            // otherwise, try to read file
+            else
+            {
+                string path = txtFilenameAndPath.Text.Trim();
+                // after file is read, create repository
+                if (File.Exists(path))
+                {
+                    // read and create repo
+                    ReadExistingRepository(txtFilenameAndPath.Text);
+                    LoadMode(false);
+                    return;
+                }
+                else
+                {
+                    if (path.Contains(".txt"))
+                    {
+                        path = txtFilenameAndPath.Text.Substring(0, txtFilenameAndPath.Text.LastIndexOf('\\'));
+                    }
+                    else
+                    {
+                        txtFilenameAndPath.Text += @"\Orders.txt";
+                    }
+
+                    CreateFolder(path);
+                    // creates an Order.txt file in the location.
+                    CreateFile(txtFilenameAndPath.Text, false);
+                    ReadExistingRepository(txtFilenameAndPath.Text);
+                    LoadMode(false);
+                    return;
+                }
+            }
+        }
+
+        // selects item from the list
+        private void listPurchaseData_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var numberCulture = Culture.NumberFormat;
+
+            // safecast to purchase
+            try
+            {
+                var selectedItem = (Purchase) listPurchaseData.SelectedItems[0].Tag;
+                txtIdNumber.Text = selectedItem.GetId().ToString();
+                datePickerPurchase.Value = selectedItem.GetDate();
+                txtFrom.Text = selectedItem.GetSeller();
+                txtTo.Text = selectedItem.GetShippedTo();
+                txtDescription.Text = selectedItem.GetDescription();
+                txtOrdered.Text = selectedItem.GetOrdered().ToString("F2", numberCulture);
+                comboUnit.SelectedIndex = 0;
+                txtPrice.Text = selectedItem.GetUnitPrice().ToString("F2", numberCulture);
+            }
+            catch (Exception)
+            {
+                // do nothing. just clicked on a empty row.
+            }
+        }
+
+        // Closes the form
+        private void btnClose_Click(object sender, EventArgs e) =>
+            Application.Exit();
+
+        // updates the form
+        private void btnDisplayOrders_Click(object sender, EventArgs e) =>
+            UpdateListView();
+        
         // Set the state of the form for loading.
         private void LoadMode(bool state)
         {
@@ -55,75 +163,23 @@ namespace IOAssignment
             btnEmptyFile.Enabled = !state;
         }
 
-        // Create/Open Btn is pressed
-        private void CreateOpenClick(object sender, EventArgs e)
+
+        // Read file from location and load repository
+        private void ReadAndLoadRepository(string path)
         {
-            bool overwriteFile = false;
-            txtFilenameAndPath.Text += "";
-            string defaultFile = @"\Order\Orders.txt";
-            // checks the file name/dir, if none, check for files and try to create a new folder with file
-            var currentPath = Directory.GetCurrentDirectory();
-            // warns of override in new file
-            if (radioCreateNew.Checked)
+            if (File.Exists(path))
             {
-                var result = WarnOfOverride();
-                if (result == DialogResult.Yes)
-                {
-                    overwriteFile = true;
-                }
-                else
-                {
-                    return;
-                }
+                // read and create repo
+                ReadExistingRepository(path);
+                LoadMode(false);
+                return;
             }
-            
-            // checks the type of file creation
-            if (String.IsNullOrWhiteSpace(txtFilenameAndPath.Text))
-            {
-                txtFilenameAndPath.Text = currentPath + defaultFile;
-                // dir doesn't exists...
-                if (!Directory.Exists(currentPath + @"\Order"))
-                {
-                    CreateFolder(currentPath);
-                }
-
-                if (File.Exists(currentPath + defaultFile))
-                {
-                    // if existing file will be overwriten
-                    if (radioCreateNew.Checked)
-                    {
-                        CreateFile(txtFilenameAndPath.Text, overwriteFile);
-                    }
-                    // read and create repo
-                    ReadExistingRepository(currentPath + defaultFile);
-                    LoadMode(false);
-                    return;
-                }
-                else
-                {
-                    CreateFile(txtFilenameAndPath.Text, overwriteFile);
-                    CreateEmptyRepository();
-                    LoadMode(false);
-                    return;
-                }
-
-            }
-            // otherwise, try to read file
             else
             {
-                // after file is read, create repository
-                if (File.Exists(txtFilenameAndPath.Text))
-                {
-                    // read and create repo
-                    ReadExistingRepository(txtFilenameAndPath.Text);
-                    LoadMode(false);
-                    return;
-                }
-                else
-                {
-                    rtextErrors.AppendText("Couldn't find the file.");
-                    return;
-                }
+                CreateFile(path);
+                CreateEmptyRepository();
+                LoadMode(false);
+                return;
             }
         }
 
@@ -140,11 +196,11 @@ namespace IOAssignment
             }
             catch (IOException ex)
             {
-                if (ex.InnerException is PathTooLongException)
+                if (ex is PathTooLongException)
                 {
                     rtextErrors.AppendText("Path is too long!");
                 }
-                else if (ex.InnerException is DirectoryNotFoundException)
+                else if (ex is DirectoryNotFoundException)
                 {
                     rtextErrors.AppendText("Couldn't find the directory");
                 }
@@ -156,19 +212,19 @@ namespace IOAssignment
             }
             catch (Exception ex)
             {
-                if (ex.InnerException is UnauthorizedAccessException)
+                if (ex is UnauthorizedAccessException)
                 {
                     rtextErrors.AppendText("I'm not authorized to read that file");
                 }
-                else if (ex.InnerException is ArgumentException)
+                else if (ex is ArgumentException)
                 {
                     rtextErrors.AppendText("Invalid file");
                 }
-                else if (ex.InnerException is ArgumentNullException)
+                else if (ex is ArgumentNullException)
                 {
                     rtextErrors.AppendText("Invalid path and filename");
                 }
-                else if (ex.InnerException is NotSupportedException)
+                else if (ex is NotSupportedException)
                 {
                     rtextErrors.AppendText("Not supported");
                 }
@@ -186,15 +242,15 @@ namespace IOAssignment
         {
             try
             {
-                FileUtils.CreateDefaultFolder(pathToFolder);
+                FileUtils.CreateFolder(pathToFolder);
             }
             catch (IOException ex)
             {
-                if (ex.InnerException is PathTooLongException)
+                if (ex is PathTooLongException)
                 {
                     rtextErrors.AppendText("Path is too long!");
                 }
-                else if (ex.InnerException is DirectoryNotFoundException)
+                else if (ex is DirectoryNotFoundException)
                 {
                     rtextErrors.AppendText("Couldn't find the directory");
                 }
@@ -206,19 +262,19 @@ namespace IOAssignment
             }
             catch (Exception ex)
             {
-                if (ex.InnerException is UnauthorizedAccessException)
+                if (ex is UnauthorizedAccessException)
                 {
                     rtextErrors.AppendText("I'm not authorized to read that file");
                 }
-                else if (ex.InnerException is ArgumentException)
+                else if (ex is ArgumentException)
                 {
                     rtextErrors.AppendText("Invalid file");
                 }
-                else if (ex.InnerException is ArgumentNullException)
+                else if (ex is ArgumentNullException)
                 {
                     rtextErrors.AppendText("Invalid path and filename");
                 }
-                else if (ex.InnerException is NotSupportedException)
+                else if (ex is NotSupportedException)
                 {
                     rtextErrors.AppendText("Not supported");
                 }
@@ -252,11 +308,11 @@ namespace IOAssignment
             }
             catch (IOException ex)
             {
-                if (ex.InnerException is PathTooLongException)
+                if (ex is PathTooLongException)
                 {
                     rtextErrors.AppendText("Path is too long!");
                 }
-                else if (ex.InnerException is DirectoryNotFoundException)
+                else if (ex is DirectoryNotFoundException)
                 {
                     rtextErrors.AppendText("Couldn't find the directory");
                 }
@@ -268,19 +324,19 @@ namespace IOAssignment
             }
             catch (Exception ex)
             {
-                if (ex.InnerException is UnauthorizedAccessException)
+                if (ex is UnauthorizedAccessException)
                 {
                     rtextErrors.AppendText("I'm not authorized to read that file");
                 }
-                else if (ex.InnerException is ArgumentException)
+                else if (ex is ArgumentException)
                 {
                     rtextErrors.AppendText("Invalid file");
                 }
-                else if (ex.InnerException is ArgumentNullException)
+                else if (ex is ArgumentNullException)
                 {
                     rtextErrors.AppendText("Invalid path and filename");
                 }
-                else if (ex.InnerException is NotSupportedException)
+                else if (ex is NotSupportedException)
                 {
                     rtextErrors.AppendText("Not supported");
                 }
@@ -291,22 +347,23 @@ namespace IOAssignment
                 }
             }
 
-            repository = new InMemoryRepository(orders);
+            Repository = new InMemoryRepository(orders);
             UpdateListView();
         }
         // creates a new, empty repository
         private void CreateEmptyRepository()
         {
-            repository = new InMemoryRepository(new List<Purchase>());
+            Repository = new InMemoryRepository(new List<Purchase>());
         }
 
         // updates the list view
-        public void UpdateListView()
+        private void UpdateListView()
         {
+            listPurchaseData.Items.Clear();
 
-            var numberCulture = culture.NumberFormat;
+            var numberCulture = Culture.NumberFormat;
 
-            repository.GetAll().ForEach((order) =>
+            Repository.GetAll().ForEach((order) =>
             {
                 var row = new string[] {
                 order.GetId().ToString(),
@@ -325,24 +382,5 @@ namespace IOAssignment
 
             });
         }
-
-        // selects item from the list
-        private void listPurchaseData_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var numberCulture = culture.NumberFormat;
-
-            // safecast to purchase
-            var selectedItem = (Purchase) listPurchaseData.SelectedItems[0].Tag;
-            txtIdNumber.Text = selectedItem.GetId().ToString();
-            datePickerPurchase.Value = selectedItem.GetDate();
-            txtFrom.Text = selectedItem.GetSeller();
-            txtTo.Text = selectedItem.GetShippedTo();
-            txtDescription.Text = selectedItem.GetDescription();
-            txtOrdered.Text = selectedItem.GetOrdered().ToString("F2", numberCulture);
-            comboUnit.SelectedIndex = 0;
-            txtPrice.Text = selectedItem.GetUnitPrice().ToString("F2", numberCulture);
-        }
-
-
     }
 }

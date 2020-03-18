@@ -146,6 +146,7 @@
             // datePickerPurchase
             // 
             resources.ApplyResources(this.datePickerPurchase, "datePickerPurchase");
+            this.datePickerPurchase.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.datePickerPurchase.Name = "datePickerPurchase";
             this.datePickerPurchase.Value = new System.DateTime(2020, 3, 9, 0, 0, 0, 0);
             // 
@@ -264,21 +265,27 @@
             resources.ApplyResources(this.btnDisplayOrders, "btnDisplayOrders");
             this.btnDisplayOrders.Name = "btnDisplayOrders";
             this.btnDisplayOrders.UseVisualStyleBackColor = true;
+            this.btnDisplayOrders.Click += new System.EventHandler(this.btnDisplayOrders_Click);
             // 
             // btnClose
             // 
             resources.ApplyResources(this.btnClose, "btnClose");
             this.btnClose.Name = "btnClose";
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnEmptyFile
             // 
             resources.ApplyResources(this.btnEmptyFile, "btnEmptyFile");
             this.btnEmptyFile.Name = "btnEmptyFile";
+            this.btnEmptyFile.Tag = "empty";
             this.btnEmptyFile.UseVisualStyleBackColor = true;
+            this.btnEmptyFile.Click += new System.EventHandler(this.CreateOpenClick);
             // 
             // listPurchaseData
             // 
+            this.listPurchaseData.BackColor = System.Drawing.SystemColors.Window;
+            this.listPurchaseData.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.listPurchaseData.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.chNumber,
             this.chDate,
@@ -289,11 +296,11 @@
             this.chUnitPrice,
             this.chAmmount,
             this.chTotal});
+            resources.ApplyResources(this.listPurchaseData, "listPurchaseData");
             this.listPurchaseData.FullRowSelect = true;
             this.listPurchaseData.GridLines = true;
             this.listPurchaseData.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.listPurchaseData.HideSelection = false;
-            resources.ApplyResources(this.listPurchaseData, "listPurchaseData");
             this.listPurchaseData.MultiSelect = false;
             this.listPurchaseData.Name = "listPurchaseData";
             this.listPurchaseData.UseCompatibleStateImageBehavior = false;
@@ -351,6 +358,7 @@
             this.Controls.Add(this.gBoxDelete);
             this.Controls.Add(this.rtextErrors);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "POTrackerForm";
             this.Load += new System.EventHandler(this.POTrackerForm_Load);
             this.gBoxDelete.ResumeLayout(false);

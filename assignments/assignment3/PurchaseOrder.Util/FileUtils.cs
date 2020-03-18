@@ -111,10 +111,10 @@ namespace PurchaseOrder.Util
         /// <summary>
         /// Creates the default Folder inside the project.
         /// </summary>
-        /// <param name="currentPath"></param>
-        public static void CreateDefaultFolder(string currentPath)
+        /// <param name="currentPath">The path to be created.</param>
+        public static void CreateFolder(string currentPath)
         {
-            Directory.CreateDirectory(currentPath + @"\Order");
+            Directory.CreateDirectory(currentPath);
         }
     }
 }

@@ -4,18 +4,43 @@
         <name>PurchaseOrder.Repository</name>
     </assembly>
     <members>
+        <member name="T:PurchaseOrder.Repository.InMemoryRepository">
+            <summary>
+            Creates a persistence unit in memory called InMemoryRepository that uses an IRepository of Purchases.
+            </summary>
+        </member>
         <member name="M:PurchaseOrder.Repository.InMemoryRepository.#ctor(System.Collections.Generic.List{PurchaseOrder.Domain.Purchase})">
             <summary>
             Creates a new Memor InMemoryRepository with the values from the supplied non-empty list
             </summary>
             <param name="list">List of Items from the memory</param>
         </member>
+        <member name="M:PurchaseOrder.Repository.InMemoryRepository.Create(PurchaseOrder.Domain.Purchase)">
+            <inheritdoc/>
+        </member>
+        <member name="M:PurchaseOrder.Repository.InMemoryRepository.GetAll">
+            <inheritdoc/>
+        </member>
+        <member name="M:PurchaseOrder.Repository.InMemoryRepository.GetById(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:PurchaseOrder.Repository.InMemoryRepository.HasItem(PurchaseOrder.Domain.Purchase)">
+            <inheritdoc/>
+        </member>
         <member name="M:PurchaseOrder.Repository.InMemoryRepository.Update(PurchaseOrder.Domain.Purchase)">
+            <inheritdoc/>
+        </member>
+        <member name="M:PurchaseOrder.Repository.InMemoryRepository.Delete(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:PurchaseOrder.Repository.InMemoryRepository.Size">
+            <inheritdoc/>
+        </member>
+        <member name="T:PurchaseOrder.Repository.IRepository`1">
             <summary>
-            Updates the purchase information.
+            The expected behaviour of all Repositories
             </summary>
-            <param name="pruchase">The entity that will be updated.</param>
-            <returns>True IFF the operation updates the value.</returns>
+            <typeparam name="T">The type that will be saved in the repository</typeparam>
         </member>
         <member name="M:PurchaseOrder.Repository.IRepository`1.Create(`0)">
             <summary>
