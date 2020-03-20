@@ -78,7 +78,9 @@
             // 
             // rtextErrors
             // 
+            this.rtextErrors.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             resources.ApplyResources(this.rtextErrors, "rtextErrors");
+            this.rtextErrors.ForeColor = System.Drawing.Color.Red;
             this.rtextErrors.Name = "rtextErrors";
             // 
             // gBoxDelete
@@ -95,6 +97,7 @@
             resources.ApplyResources(this.btnDeletePO, "btnDeletePO");
             this.btnDeletePO.Name = "btnDeletePO";
             this.btnDeletePO.UseVisualStyleBackColor = true;
+            this.btnDeletePO.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // txtDeleteNumber
             // 
@@ -234,7 +237,7 @@
             resources.ApplyResources(this.btnCreateOpen, "btnCreateOpen");
             this.btnCreateOpen.Name = "btnCreateOpen";
             this.btnCreateOpen.UseVisualStyleBackColor = true;
-            this.btnCreateOpen.Click += new System.EventHandler(this.CreateOpenClick);
+            this.btnCreateOpen.Click += new System.EventHandler(this.CreateOpen_Click);
             // 
             // radioOpenExisting
             // 
@@ -280,7 +283,7 @@
             this.btnEmptyFile.Name = "btnEmptyFile";
             this.btnEmptyFile.Tag = "empty";
             this.btnEmptyFile.UseVisualStyleBackColor = true;
-            this.btnEmptyFile.Click += new System.EventHandler(this.CreateOpenClick);
+            this.btnEmptyFile.Click += new System.EventHandler(this.CreateOpen_Click);
             // 
             // listPurchaseData
             // 

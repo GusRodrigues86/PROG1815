@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using PurchaseOrder.Util;
 using PurchaseOrder.Domain;
 using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace IOAssignment
 {
@@ -19,14 +20,18 @@ namespace IOAssignment
     /// </summary>
     public partial class POTrackerForm : Form
     {
+        #region Fields
         // the persistence object
         private InMemoryRepository Repository;
+        #region Static fields/Constants
         // culture invariant due system
-        private static readonly CultureInfo Culture = new CultureInfo("en-CA", false);
+        private static readonly CultureInfo CULTURE = new CultureInfo("en-CA", false);
         // the program path
-        private static readonly string CurrentPath = Directory.GetCurrentDirectory();
+        private static readonly string CURRENT_PATH = Directory.GetCurrentDirectory();
         // the default location and filne name
-        private const string DefaultFile = @"\Order\Orders.txt";
+        private const string DEFAULT_FILE = @"\Order\Orders.txt";
+        #endregion
+        #endregion
 
         ///<inheritdoc/>
         public POTrackerForm()
@@ -41,10 +46,11 @@ namespace IOAssignment
             datePickerPurchase.Value = DateTime.Today;
             LoadMode(true);
             rtextErrors.Clear();
+            txtFilenameAndPath.AppendText(CURRENT_PATH + DEFAULT_FILE);
         }
 
         // Create/Open Btn is pressed
-        private void CreateOpenClick(object sender, EventArgs e)
+        private void CreateOpen_Click(object sender, EventArgs e)
         {
             // clean errors
             rtextErrors.Clear();
@@ -64,10 +70,10 @@ namespace IOAssignment
             // checks the type of file creation
             if (String.IsNullOrWhiteSpace(txtFilenameAndPath.Text))
             {
-                string defaultPathFile = CurrentPath + DefaultFile;
+                string defaultPathFile = CURRENT_PATH + DEFAULT_FILE;
                 txtFilenameAndPath.Text = defaultPathFile;
                 // dir doesn't exists...
-                CreateFolder(CurrentPath + @"\Order");
+                CreateFolder(CURRENT_PATH + @"\Order");
 
                 if (radioCreateNew.Checked)
                 {
@@ -112,7 +118,7 @@ namespace IOAssignment
         // selects item from the list
         private void listPurchaseData_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var numberCulture = Culture.NumberFormat;
+            var numberCulture = CULTURE.NumberFormat;
 
             // safecast to purchase
             try
@@ -140,7 +146,7 @@ namespace IOAssignment
         // updates the form
         private void btnDisplayOrders_Click(object sender, EventArgs e) =>
             UpdateListView();
-        
+
         // Set the state of the form for loading.
         private void LoadMode(bool state)
         {
@@ -361,7 +367,7 @@ namespace IOAssignment
         {
             listPurchaseData.Items.Clear();
 
-            var numberCulture = Culture.NumberFormat;
+            var numberCulture = CULTURE.NumberFormat;
 
             Repository.GetAll().ForEach((order) =>
             {
@@ -382,5 +388,107 @@ namespace IOAssignment
 
             });
         }
+
+        // Removes and save repository to file
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            rtextErrors.Clear();
+            string input = txtDeleteNumber.Text + "".Trim();
+
+            if (!ValidateId(input))
+            {
+                rtextErrors.AppendText("Invalid ID.");
+                txtDeleteNumber.Focus();
+                return;
+            }
+            int purchaseId = int.Parse(input);
+            // number must exists in the repository
+            if (Repository.FindById(purchaseId))
+            {
+                // remove
+                if (RemoveFromRepository(purchaseId))
+                {
+                    txtDeleteNumber.Clear();
+                    // save repository
+                    SaveRepositoryToFile();
+                    // update
+                    UpdateListView();
+                }
+                MessageBox.Show("Purchase Order successfully removed.", "Purchase order deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Purchase Order not found.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        // remove Item from the repository
+        private bool RemoveFromRepository(int toRemove) =>
+            Repository.Delete(toRemove);
+
+        // saves the current repository to file
+        private void SaveRepositoryToFile()
+        {
+            string path = txtFilenameAndPath.Text + "";
+            if (string.IsNullOrWhiteSpace(path))
+            {
+                path = CURRENT_PATH + DEFAULT_FILE;
+                txtFilenameAndPath.Text = path;
+            }
+            try
+            {
+                FileUtils.SaveAllRecords<Purchase>(path, Repository.GetAll());
+            }
+            catch (IOException ex)
+            {
+                if (ex is PathTooLongException)
+                {
+                    rtextErrors.AppendText("Path is too long!");
+                    rtextErrors.AppendText($"{path}");
+                }
+                else if (ex is DirectoryNotFoundException)
+                {
+                    rtextErrors.AppendText("Couldn't find the directory");
+                    rtextErrors.AppendText($"{path}");
+                }
+                else
+                {
+                    rtextErrors.AppendText("Something bad happened.");
+                    rtextErrors.AppendText(ex.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex is UnauthorizedAccessException)
+                {
+                    rtextErrors.AppendText("I'm not authorized to read that file");
+                    rtextErrors.AppendText($"{path}");
+                }
+                else if (ex is ArgumentException)
+                {
+                    rtextErrors.AppendText("Invalid file");
+                    rtextErrors.AppendText($"{path}");
+                }
+                else if (ex is ArgumentNullException)
+                {
+                    rtextErrors.AppendText("Invalid path and filename");
+                    rtextErrors.AppendText($"{path}");
+                }
+                else if (ex is NotSupportedException)
+                {
+                    rtextErrors.AppendText("Not supported");
+                }
+                else
+                {
+                    rtextErrors.AppendText("Something bad happened.");
+                    rtextErrors.AppendText(ex.Message);
+                }
+            }
+        }
+
+        // Validates if the input is a string of digits only.
+        private bool ValidateId(string input) =>
+            new Regex(@"\d+").IsMatch(input);
+
     }
 }

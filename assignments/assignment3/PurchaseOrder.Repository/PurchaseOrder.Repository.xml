@@ -36,6 +36,13 @@
         <member name="M:PurchaseOrder.Repository.InMemoryRepository.Size">
             <inheritdoc/>
         </member>
+        <member name="M:PurchaseOrder.Repository.InMemoryRepository.FindById(System.Int32)">
+            <summary>
+            Searchs the persistence unit by int id.
+            </summary>
+            <param name="id">The id to be searched</param>
+            <returns>True iff there is an object with the supplied ID.</returns>
+        </member>
         <member name="T:PurchaseOrder.Repository.IRepository`1">
             <summary>
             The expected behaviour of all Repositories

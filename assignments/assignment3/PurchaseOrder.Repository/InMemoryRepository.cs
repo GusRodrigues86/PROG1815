@@ -103,5 +103,13 @@ namespace PurchaseOrder.Repository
         ///<inheritdoc/>
         public int Size() => 
             this.MemoryDB.Keys.Count;
+
+        /// <summary>
+        /// Searchs the persistence unit by int id.
+        /// </summary>
+        /// <param name="id">The id to be searched</param>
+        /// <returns>True iff there is an object with the supplied ID.</returns>
+        public bool FindById(int id) =>
+            MemoryDB.ContainsKey(id);
     }
 }
