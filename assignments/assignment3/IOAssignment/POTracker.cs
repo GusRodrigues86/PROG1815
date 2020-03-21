@@ -543,24 +543,44 @@ namespace IOAssignment
             {
                 hasErrors = true;
                 rtextErrors.AppendText("Invalid Id.\n");
+                txtIdNumber.Focus();
             }
             if (!Validation.ValidDate(inputPurchaseDate))
             {
+                if (!hasErrors)
+                {
+                    datePickerPurchase.Focus();
+
+                }
                 hasErrors = true;
                 rtextErrors.AppendText("Date cannot be in the future.\n");
             }
             if (!Validation.ValidNonEmptyInput(inputPurchaseFrom))
             {
+                if (!hasErrors)
+                {
+                    txtTo.Focus();
+
+                }
                 hasErrors = true;
                 rtextErrors.AppendText("Purchase from cannot be empty.\n");
             }
             if (!Validation.ValidNonEmptyInput(inputPurchaseTo))
             {
+                if (!hasErrors)
+                {
+                    txtFrom.Focus();
+
+                }
                 hasErrors = true;
                 rtextErrors.AppendText("Ship to cannot be empty.\n");
             }
             if (!Validation.InputIsDecimal(inputOrdered))
             {
+                if (!hasErrors)
+                {
+                    txtOrdered.Focus();
+                }
                 hasErrors = true;
                 rtextErrors.AppendText("Ammount ordered to cannot be empty.\n");
             }
@@ -568,12 +588,22 @@ namespace IOAssignment
             {
                 if (!Validation.IsBiggerThanZero(double.Parse(inputOrdered)))
                 {
+                    if (!hasErrors)
+                    {
+                        txtOrdered.Focus();
+
+                    }
                     hasErrors = true;
                     rtextErrors.AppendText("Ammount ordered must be bigger than 0.\n");
                 }
             }
             if (!Validation.InputIsDecimal(inputPrice))
             {
+                if (!hasErrors)
+                {
+                    txtPrice.Focus();
+
+                }
                 hasErrors = true;
                 rtextErrors.AppendText("Unit price cannot be empty.\n");
             }
@@ -581,6 +611,11 @@ namespace IOAssignment
             {
                 if (!Validation.IsBiggerThanZero(double.Parse(inputPrice)))
                 {
+                    if (!hasErrors)
+                    {
+                        txtPrice.Focus();
+
+                    }
                     hasErrors = true;
                     rtextErrors.AppendText("Unit price must be bigger than 0.\n");
                 }
