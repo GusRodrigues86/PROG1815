@@ -1,8 +1,9 @@
-﻿/* Purchase.cs
+﻿/* Assignment 3
+ * Purchase.cs
  *  Representation of a purchase
  *  
  *  Revision History
- *      Gustavo Bonifacio Rodrigues, 2020.03.10: Created
+ *      Gustavo Bonifacio Rodrigues, 2020.03.14: Created
  */
 
 using System;

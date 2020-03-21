@@ -1,4 +1,10 @@
-﻿using PurchaseOrder.Repository;
+﻿/* Assignment 3
+ *  POTracker.cs
+ * 
+ * Revision History
+ *      Gustavo Bonifacio Rodrigues, 2020.03.14: Created
+ */
+using PurchaseOrder.Repository;
 using System;
 using System.Collections.Generic;
 using System.IO;

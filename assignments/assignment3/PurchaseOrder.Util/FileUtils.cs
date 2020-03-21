@@ -1,6 +1,12 @@
-﻿using System;
+﻿/* Assignment 3
+ * FileUtils.cs
+ *  Helper methods to assist IO operation
+ *  
+ *  Revision History
+ *      Gustavo Bonifacio Rodrigues, 2020.03.14: Created
+ */
+using System;
 using System.Collections.Generic;
-using System.Text;
 using System.IO;
 
 namespace PurchaseOrder.Util
@@ -108,13 +114,12 @@ namespace PurchaseOrder.Util
                 return true;
             }
         }
+        
         /// <summary>
         /// Creates the default Folder inside the project.
         /// </summary>
         /// <param name="currentPath">The path to be created.</param>
-        public static void CreateFolder(string currentPath)
-        {
+        public static void CreateFolder(string currentPath) =>
             Directory.CreateDirectory(currentPath);
-        }
     }
 }

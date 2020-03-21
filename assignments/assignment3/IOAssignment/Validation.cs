@@ -1,9 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿/* Assignment 3
+ * Validation.cs
+ *  Helper methods to perform input validation
+ *  
+ *  Revision History
+ *      Gustavo Bonifacio Rodrigues, 2020.03.20: Created
+ */
+using System;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace IOAssignment
 {
@@ -49,13 +52,16 @@ namespace IOAssignment
         /// </summary>
         /// <param name="input">the input, as double.</param>
         /// <returns>True iff the input is bigger than zero.</returns>
-        public static bool IsBiggerThanZero(double input) => input > 0;
+        public static bool IsBiggerThanZero(double input) => 
+            input > 0;
+
         /// <summary>
         /// Validates if the input is bigger than zero.
         /// </summary>
         /// <param name="input">the input, as int.</param>
         /// <returns>True iff the input is bigger than zero.</returns>
-        public static bool IsBiggerThanZero(int input) => input > 0;
+        public static bool IsBiggerThanZero(int input) => 
+            input > 0;
 
     }
 }

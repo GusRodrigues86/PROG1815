@@ -1,8 +1,14 @@
-﻿using PurchaseOrder.Domain;
+﻿/* Assignment 3
+ * InMemoryRepository.cs
+ *  Representation an in memory storage unit
+ *  
+ *  Revision History
+ *      Gustavo Bonifacio Rodrigues, 2020.03.14: Created
+ */
+using PurchaseOrder.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace PurchaseOrder.Repository
 {
@@ -11,6 +17,9 @@ namespace PurchaseOrder.Repository
     /// </summary>
     public class InMemoryRepository : IRepository<Purchase>
     {
+        /// <summary>
+        /// The representation of the persistence unit.
+        /// </summary>
         private readonly Dictionary<int, Purchase> MemoryDB;
         
         /// <summary>
