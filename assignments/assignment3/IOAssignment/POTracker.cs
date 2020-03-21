@@ -1,17 +1,11 @@
 ﻿using PurchaseOrder.Repository;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using PurchaseOrder.Util;
 using PurchaseOrder.Domain;
 using System.Globalization;
-using System.Text.RegularExpressions;
 
 namespace IOAssignment
 {
@@ -40,6 +34,7 @@ namespace IOAssignment
             txtFilenameAndPath.Focus();
         }
 
+        #region Events
         // Load state of the form -> Fields are disable until file is read or created.
         private void POTrackerForm_Load(object sender, EventArgs e)
         {
@@ -62,9 +57,7 @@ namespace IOAssignment
             if (radioCreateNew.Checked || caller.Tag != null)
             {
                 if (WarnOfOverride() == DialogResult.No)
-                {
-                    return;
-                }
+                { return; }
             }
 
             // checks the type of file creation
@@ -90,7 +83,7 @@ namespace IOAssignment
                 if (File.Exists(path))
                 {
                     // read and create repo
-                    ReadExistingRepository(txtFilenameAndPath.Text);
+                    ReadRepositoryFromFile(txtFilenameAndPath.Text);
                     LoadMode(false);
                     return;
                 }
@@ -108,7 +101,7 @@ namespace IOAssignment
                     CreateFolder(path);
                     // creates an Order.txt file in the location.
                     CreateFile(txtFilenameAndPath.Text, false);
-                    ReadExistingRepository(txtFilenameAndPath.Text);
+                    ReadRepositoryFromFile(txtFilenameAndPath.Text);
                     LoadMode(false);
                     return;
                 }
@@ -147,36 +140,72 @@ namespace IOAssignment
         private void btnDisplayOrders_Click(object sender, EventArgs e) =>
             UpdateListView();
 
-        // Set the state of the form for loading.
-        private void LoadMode(bool state)
+
+
+        // Removes and save repository to file
+        private void btnDelete_Click(object sender, EventArgs e)
         {
-            // insertion fields
-            txtIdNumber.Enabled = !state;
-            datePickerPurchase.Enabled = !state;
-            txtFrom.Enabled = !state;
-            txtTo.Enabled = !state;
-            txtDescription.Enabled = !state;
-            txtOrdered.Enabled = !state;
-            comboUnit.SelectedIndex = 0;
-            comboUnit.Enabled = !state;
-            txtPrice.Enabled = !state;
-            // deletion fields
-            txtDeleteNumber.Enabled = !state;
-            // buttons
-            btnInsert.Enabled = !state;
-            btnDeletePO.Enabled = !state;
-            btnDisplayOrders.Enabled = !state;
-            btnEmptyFile.Enabled = !state;
+            rtextErrors.Clear();
+            string input = txtDeleteNumber.Text + "".Trim();
+
+            if (!Validation.ValidId(input))
+            {
+                rtextErrors.AppendText("Invalid ID.\n");
+                txtDeleteNumber.Focus();
+                return;
+            }
+            int purchaseId = int.Parse(input);
+            // number must exists in the repository
+            if (Repository.FindById(purchaseId))
+            {
+                // remove
+                if (RemoveFromRepository(purchaseId))
+                {
+                    txtDeleteNumber.Clear();
+                    // save repository and update listview
+                    SaveAndRefresh();
+                }
+                MessageBox.Show("Purchase Order successfully removed.", "Purchase order deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Purchase Order not found.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        // Validate form, and if valid, insert and save file
+        private void btnInsert_Click(object sender, EventArgs e)
+        {
+            if (!ValidateForm())
+            { return; }
+
+            var inputId = txtIdNumber.Text;
+            Purchase toUpdate = CreatePurchaseOrder();
+
+            if (Repository.FindById(int.Parse(inputId)))
+            {
+                // update
+                Repository.Update(toUpdate);
+                SaveAndRefresh();
+            }
+            else
+            {
+                // update
+                Repository.Create(toUpdate);
+                SaveAndRefresh();
+            }
         }
 
 
+        #endregion
+        #region Repository work
         // Read file from location and load repository
         private void ReadAndLoadRepository(string path)
         {
             if (File.Exists(path))
             {
                 // read and create repo
-                ReadExistingRepository(path);
+                ReadRepositoryFromFile(path);
                 LoadMode(false);
                 return;
             }
@@ -189,112 +218,80 @@ namespace IOAssignment
             }
         }
 
-        // warns user in case of forcing a new file
-        private DialogResult WarnOfOverride() =>
-            MessageBox.Show("It will overwrite if the file already exists.", "Overwrite Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+        // remove Item from the repository
+        private bool RemoveFromRepository(int toRemove) =>
+            Repository.Delete(toRemove);
 
-        // Creates a file and catch errors
-        private void CreateFile(string pathAndFilename, bool ToOverwrite = false)
+        // creates a new, empty repository
+        private void CreateEmptyRepository()
         {
-            try
-            {
-                FileUtils.CreateFile(pathAndFilename, ToOverwrite);
-            }
-            catch (IOException ex)
-            {
-                if (ex is PathTooLongException)
-                {
-                    rtextErrors.AppendText("Path is too long!");
-                }
-                else if (ex is DirectoryNotFoundException)
-                {
-                    rtextErrors.AppendText("Couldn't find the directory");
-                }
-                else
-                {
-                    rtextErrors.AppendText("Something bad happened.");
-                    rtextErrors.AppendText(ex.Message);
-                }
-            }
-            catch (Exception ex)
-            {
-                if (ex is UnauthorizedAccessException)
-                {
-                    rtextErrors.AppendText("I'm not authorized to read that file");
-                }
-                else if (ex is ArgumentException)
-                {
-                    rtextErrors.AppendText("Invalid file");
-                }
-                else if (ex is ArgumentNullException)
-                {
-                    rtextErrors.AppendText("Invalid path and filename");
-                }
-                else if (ex is NotSupportedException)
-                {
-                    rtextErrors.AppendText("Not supported");
-                }
-                else
-                {
-                    rtextErrors.AppendText("Something bad happened.");
-                    rtextErrors.AppendText(ex.Message);
-                }
-            }
-
+            Repository = new InMemoryRepository(new List<Purchase>());
         }
 
-        // Creates a Folder and catch any errors
-        private void CreateFolder(string pathToFolder)
+        #endregion
+        #region File IO
+        // saves the current repository to file
+        private void SaveRepositoryToFile()
         {
+            string path = txtFilenameAndPath.Text + "";
+            if (string.IsNullOrWhiteSpace(path))
+            {
+                path = CURRENT_PATH + DEFAULT_FILE;
+                txtFilenameAndPath.Text = path;
+            }
             try
             {
-                FileUtils.CreateFolder(pathToFolder);
+                FileUtils.SaveAllRecords<Purchase>(path, Repository.GetAll());
             }
             catch (IOException ex)
             {
                 if (ex is PathTooLongException)
                 {
-                    rtextErrors.AppendText("Path is too long!");
+                    rtextErrors.AppendText("Path is too long!\n");
+                    rtextErrors.AppendText($"{path}\n");
                 }
                 else if (ex is DirectoryNotFoundException)
                 {
-                    rtextErrors.AppendText("Couldn't find the directory");
+                    rtextErrors.AppendText("Couldn't find the directory.\n");
+                    rtextErrors.AppendText($"{path}.\n");
                 }
                 else
                 {
-                    rtextErrors.AppendText("Something bad happened.");
-                    rtextErrors.AppendText(ex.Message);
+                    rtextErrors.AppendText("Something bad happened.\n");
+                    rtextErrors.AppendText(ex.Message + "\n");
                 }
             }
             catch (Exception ex)
             {
                 if (ex is UnauthorizedAccessException)
                 {
-                    rtextErrors.AppendText("I'm not authorized to read that file");
+                    rtextErrors.AppendText("I'm not authorized to read that file.\n");
+                    rtextErrors.AppendText($"{path}.\n");
                 }
                 else if (ex is ArgumentException)
                 {
-                    rtextErrors.AppendText("Invalid file");
+                    rtextErrors.AppendText("Invalid file.\n");
+                    rtextErrors.AppendText($"{path}\n");
                 }
                 else if (ex is ArgumentNullException)
                 {
-                    rtextErrors.AppendText("Invalid path and filename");
+                    rtextErrors.AppendText("Invalid path and filename.\n");
+                    rtextErrors.AppendText($"{path}\n");
                 }
                 else if (ex is NotSupportedException)
                 {
-                    rtextErrors.AppendText("Not supported");
+                    rtextErrors.AppendText("Not supported.\n");
                 }
                 else
                 {
                     rtextErrors.AppendText("Something bad happened.");
-                    rtextErrors.AppendText(ex.Message);
+                    rtextErrors.AppendText(ex.Message + "\n");
                 }
             }
-
         }
 
         // Creates a repository from file
-        private void ReadExistingRepository(string pathToFiles)
+        private void ReadRepositoryFromFile(string pathToFiles)
         {
             List<Purchase> orders = new List<Purchase>();
             try
@@ -316,50 +313,173 @@ namespace IOAssignment
             {
                 if (ex is PathTooLongException)
                 {
-                    rtextErrors.AppendText("Path is too long!");
+                    rtextErrors.AppendText("Path is too long!\n");
                 }
                 else if (ex is DirectoryNotFoundException)
                 {
-                    rtextErrors.AppendText("Couldn't find the directory");
+                    rtextErrors.AppendText("Couldn't find the directory.\n");
                 }
                 else
                 {
-                    rtextErrors.AppendText("Something bad happened.");
-                    rtextErrors.AppendText(ex.Message);
+                    rtextErrors.AppendText("Something bad happened.\n");
+                    rtextErrors.AppendText(ex.Message + "\n");
                 }
             }
             catch (Exception ex)
             {
                 if (ex is UnauthorizedAccessException)
                 {
-                    rtextErrors.AppendText("I'm not authorized to read that file");
+                    rtextErrors.AppendText("I'm not authorized to read that file.\n");
                 }
                 else if (ex is ArgumentException)
                 {
-                    rtextErrors.AppendText("Invalid file");
+                    rtextErrors.AppendText("Invalid file.\n");
                 }
                 else if (ex is ArgumentNullException)
                 {
-                    rtextErrors.AppendText("Invalid path and filename");
+                    rtextErrors.AppendText("Invalid path and filename.\n");
                 }
                 else if (ex is NotSupportedException)
                 {
-                    rtextErrors.AppendText("Not supported");
+                    rtextErrors.AppendText("Not supported.\n");
                 }
                 else
                 {
-                    rtextErrors.AppendText("Something bad happened.");
-                    rtextErrors.AppendText(ex.Message);
+                    rtextErrors.AppendText("Something bad happened.\n");
+                    rtextErrors.AppendText(ex.Message + "\n");
                 }
             }
 
             Repository = new InMemoryRepository(orders);
             UpdateListView();
         }
-        // creates a new, empty repository
-        private void CreateEmptyRepository()
+
+        // Creates a file and catch errors
+        private void CreateFile(string pathAndFilename, bool ToOverwrite = false)
         {
-            Repository = new InMemoryRepository(new List<Purchase>());
+            try
+            {
+                FileUtils.CreateFile(pathAndFilename, ToOverwrite);
+            }
+            catch (IOException ex)
+            {
+                if (ex is PathTooLongException)
+                {
+                    rtextErrors.AppendText("Path is too long!\n");
+                }
+                else if (ex is DirectoryNotFoundException)
+                {
+                    rtextErrors.AppendText("Couldn't find the directory\n");
+                }
+                else
+                {
+                    rtextErrors.AppendText("Something bad happened.\n");
+                    rtextErrors.AppendText(ex.Message + "\n");
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex is UnauthorizedAccessException)
+                {
+                    rtextErrors.AppendText("I'm not authorized to read that file.\n");
+                }
+                else if (ex is ArgumentException)
+                {
+                    rtextErrors.AppendText("Invalid file.\n");
+                }
+                else if (ex is ArgumentNullException)
+                {
+                    rtextErrors.AppendText("Invalid path and filename.\n");
+                }
+                else if (ex is NotSupportedException)
+                {
+                    rtextErrors.AppendText("Not supported.\n");
+                }
+                else
+                {
+                    rtextErrors.AppendText("Something bad happened.\n");
+                    rtextErrors.AppendText(ex.Message + "\n");
+                }
+            }
+
+        }
+
+        // Creates a Folder and catch any errors
+        private void CreateFolder(string pathToFolder)
+        {
+            try
+            {
+                FileUtils.CreateFolder(pathToFolder);
+            }
+            catch (IOException ex)
+            {
+                if (ex is PathTooLongException)
+                {
+                    rtextErrors.AppendText("Path is too long!.\n");
+                }
+                else if (ex is DirectoryNotFoundException)
+                {
+                    rtextErrors.AppendText("Couldn't find the directory.\n");
+                }
+                else
+                {
+                    rtextErrors.AppendText("Something bad happened.\n");
+                    rtextErrors.AppendText(ex.Message + "\n");
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex is UnauthorizedAccessException)
+                {
+                    rtextErrors.AppendText("I'm not authorized to read that file.\n");
+                }
+                else if (ex is ArgumentException)
+                {
+                    rtextErrors.AppendText("Invalid file.\n");
+                }
+                else if (ex is ArgumentNullException)
+                {
+                    rtextErrors.AppendText("Invalid path and filename.\n");
+                }
+                else if (ex is NotSupportedException)
+                {
+                    rtextErrors.AppendText("Not supported.\n");
+                }
+                else
+                {
+                    rtextErrors.AppendText("Something bad happened.\n");
+                    rtextErrors.AppendText(ex.Message + "\n");
+                }
+            }
+
+        }
+
+        #endregion
+        #region Utility
+        // warns user in case of forcing a new file
+        private DialogResult WarnOfOverride() =>
+            MessageBox.Show("It will overwrite if the file already exists.", "Overwrite Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+
+        // Creates an Purchase order from a valid form
+        private Purchase CreatePurchaseOrder()
+        {
+            int purchaseId = int.Parse(txtIdNumber.Text.Trim());
+            DateTime purchaseDate = datePickerPurchase.Value;
+            string purchaseFrom = txtFrom.Text.Trim();
+            string purchaseTo = txtTo.Text.Trim();
+            string description = txtDescription.Text.Trim();
+            double purchaseOrdered = double.Parse(txtOrdered.Text.Trim(), CULTURE.NumberFormat);
+            double purchasePrice = double.Parse(txtPrice.Text.Trim(), CULTURE.NumberFormat);
+            string unit = comboUnit.SelectedItem.ToString();
+            return new Purchase(purchaseId, purchaseDate, purchaseFrom, purchaseTo, purchaseOrdered, comboUnit.SelectedItem.ToString(), purchasePrice, description);
+        }
+        #endregion
+        #region Form tools
+        // save repository to file and refresh listview
+        private void SaveAndRefresh()
+        {
+            SaveRepositoryToFile();
+            UpdateListView();
         }
 
         // updates the list view
@@ -389,106 +509,93 @@ namespace IOAssignment
             });
         }
 
-        // Removes and save repository to file
-        private void btnDelete_Click(object sender, EventArgs e)
+        // Validates the input form and append 
+        private bool ValidateForm()
         {
             rtextErrors.Clear();
-            string input = txtDeleteNumber.Text + "".Trim();
+            bool hasErrors = false;
+            #region Form info
+            var inputId = txtIdNumber.Text + "";
+            var inputPurchaseDate = datePickerPurchase.Value;
+            var inputPurchaseFrom = txtFrom.Text + "";
+            var inputPurchaseTo = txtTo.Text + "";
+            var inputOrdered = txtOrdered.Text + "";
+            var inputPrice = txtPrice.Text + "";
+            #endregion
 
-            if (!ValidateId(input))
+            #region Validation
+            if (!Validation.ValidId(inputId))
             {
-                rtextErrors.AppendText("Invalid ID.");
-                txtDeleteNumber.Focus();
-                return;
+                hasErrors = true;
+                rtextErrors.AppendText("Invalid Id.\n");
             }
-            int purchaseId = int.Parse(input);
-            // number must exists in the repository
-            if (Repository.FindById(purchaseId))
+            if (!Validation.ValidDate(inputPurchaseDate))
             {
-                // remove
-                if (RemoveFromRepository(purchaseId))
-                {
-                    txtDeleteNumber.Clear();
-                    // save repository
-                    SaveRepositoryToFile();
-                    // update
-                    UpdateListView();
-                }
-                MessageBox.Show("Purchase Order successfully removed.", "Purchase order deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                hasErrors = true;
+                rtextErrors.AppendText("Date cannot be in the future.\n");
+            }
+            if (!Validation.ValidNonEmptyInput(inputPurchaseFrom))
+            {
+                hasErrors = true;
+                rtextErrors.AppendText("Purchase from cannot be empty.\n");
+            }
+            if (!Validation.ValidNonEmptyInput(inputPurchaseTo))
+            {
+                hasErrors = true;
+                rtextErrors.AppendText("Ship to cannot be empty.\n");
+            }
+            if (!Validation.InputIsDecimal(inputOrdered))
+            {
+                hasErrors = true;
+                rtextErrors.AppendText("Ammount ordered to cannot be empty.\n");
             }
             else
             {
-                MessageBox.Show("Purchase Order not found.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                if (!Validation.IsBiggerThanZero(double.Parse(inputOrdered)))
+                {
+                    hasErrors = true;
+                    rtextErrors.AppendText("Ammount ordered must be bigger than 0.\n");
+                }
             }
+            if (!Validation.InputIsDecimal(inputPrice))
+            {
+                hasErrors = true;
+                rtextErrors.AppendText("Unit price cannot be empty.\n");
+            }
+            else
+            {
+                if (!Validation.IsBiggerThanZero(double.Parse(inputPrice)))
+                {
+                    hasErrors = true;
+                    rtextErrors.AppendText("Unit price must be bigger than 0.\n");
+                }
+            }
+            #endregion
+            return !hasErrors;
         }
 
-        // remove Item from the repository
-        private bool RemoveFromRepository(int toRemove) =>
-            Repository.Delete(toRemove);
-
-        // saves the current repository to file
-        private void SaveRepositoryToFile()
+        // Set the state of the form for loading.
+        private void LoadMode(bool state)
         {
-            string path = txtFilenameAndPath.Text + "";
-            if (string.IsNullOrWhiteSpace(path))
-            {
-                path = CURRENT_PATH + DEFAULT_FILE;
-                txtFilenameAndPath.Text = path;
-            }
-            try
-            {
-                FileUtils.SaveAllRecords<Purchase>(path, Repository.GetAll());
-            }
-            catch (IOException ex)
-            {
-                if (ex is PathTooLongException)
-                {
-                    rtextErrors.AppendText("Path is too long!");
-                    rtextErrors.AppendText($"{path}");
-                }
-                else if (ex is DirectoryNotFoundException)
-                {
-                    rtextErrors.AppendText("Couldn't find the directory");
-                    rtextErrors.AppendText($"{path}");
-                }
-                else
-                {
-                    rtextErrors.AppendText("Something bad happened.");
-                    rtextErrors.AppendText(ex.Message);
-                }
-            }
-            catch (Exception ex)
-            {
-                if (ex is UnauthorizedAccessException)
-                {
-                    rtextErrors.AppendText("I'm not authorized to read that file");
-                    rtextErrors.AppendText($"{path}");
-                }
-                else if (ex is ArgumentException)
-                {
-                    rtextErrors.AppendText("Invalid file");
-                    rtextErrors.AppendText($"{path}");
-                }
-                else if (ex is ArgumentNullException)
-                {
-                    rtextErrors.AppendText("Invalid path and filename");
-                    rtextErrors.AppendText($"{path}");
-                }
-                else if (ex is NotSupportedException)
-                {
-                    rtextErrors.AppendText("Not supported");
-                }
-                else
-                {
-                    rtextErrors.AppendText("Something bad happened.");
-                    rtextErrors.AppendText(ex.Message);
-                }
-            }
+            // insertion fields
+            txtIdNumber.Enabled = !state;
+            datePickerPurchase.Enabled = !state;
+            txtFrom.Enabled = !state;
+            txtTo.Enabled = !state;
+            txtDescription.Enabled = !state;
+            txtOrdered.Enabled = !state;
+            comboUnit.SelectedIndex = 0;
+            comboUnit.Enabled = !state;
+            txtPrice.Enabled = !state;
+            // deletion fields
+            txtDeleteNumber.Enabled = !state;
+            // buttons
+            btnInsert.Enabled = !state;
+            btnDeletePO.Enabled = !state;
+            btnDisplayOrders.Enabled = !state;
+            btnEmptyFile.Enabled = !state;
         }
-
-        // Validates if the input is a string of digits only.
-        private bool ValidateId(string input) =>
-            new Regex(@"\d+").IsMatch(input);
+        #endregion
 
     }
 }

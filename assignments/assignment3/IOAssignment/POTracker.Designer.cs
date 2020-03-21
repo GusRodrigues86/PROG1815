@@ -137,14 +137,17 @@
             resources.ApplyResources(this.btnInsert, "btnInsert");
             this.btnInsert.Name = "btnInsert";
             this.btnInsert.UseVisualStyleBackColor = true;
+            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
             // 
             // comboUnit
             // 
+            this.comboUnit.DisplayMember = "String";
             this.comboUnit.FormattingEnabled = true;
             this.comboUnit.Items.AddRange(new object[] {
             resources.GetString("comboUnit.Items")});
             resources.ApplyResources(this.comboUnit, "comboUnit");
             this.comboUnit.Name = "comboUnit";
+            this.comboUnit.ValueMember = "String";
             // 
             // datePickerPurchase
             // 
