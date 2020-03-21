@@ -142,11 +142,20 @@ namespace IOAssignment
         private void btnClose_Click(object sender, EventArgs e) =>
             Application.Exit();
 
-        // updates the form
-        private void btnDisplayOrders_Click(object sender, EventArgs e) =>
+        // updates the form and clear inputs
+        private void btnDisplayOrders_Click(object sender, EventArgs e)
+        {
             UpdateListView();
-
-
+            // clear input
+            txtDeleteNumber.Clear();
+            txtIdNumber.Clear();
+            datePickerPurchase.Value = DateTime.Today;
+            txtFrom.Clear();
+            txtTo.Clear();
+            txtDescription.Clear();
+            txtOrdered.Clear();
+            txtPrice.Clear();
+        }
 
         // Removes and save repository to file
         private void btnDelete_Click(object sender, EventArgs e)
