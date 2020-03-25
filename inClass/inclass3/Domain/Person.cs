@@ -57,10 +57,8 @@ namespace inclass5.Domain
         /// </summary>
         /// <param name="dateToCompare">The date to compare.</param>
         /// <returns>Your age in years, as an integer.</returns>
-        public int Age(DateTime dateToCompare)
-        {
-            return new DateTime(dateToCompare.Subtract(dateOfBirth).Ticks).Year - 1;
-        }
+        public int Age() =>
+            new DateTime(DateTime.Today.Subtract(dateOfBirth).Ticks).Year - 1;
         #endregion
 
     }

@@ -1,12 +1,5 @@
 ﻿using inclass5.Domain;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace inclass5
@@ -34,6 +27,7 @@ namespace inclass5
             lblErrors.Text = "";
             txtFirstName.Text += "";
             txtLastName.Text += "";
+            lblAge.Text = "";
             var firstName = txtFirstName.Text;
             var lastName = txtLastName.Text;
 
@@ -62,9 +56,10 @@ namespace inclass5
             {
                 InjectFieldsToPerson();
                 lblAge.Text = string.Empty;
-                lblAge.Text += $"{Person.Age(TODAY).ToString()}";
+                lblAge.Text += $"{Person.Age().ToString()}";
+                return;
             }
-
+            lblAge.Text = "";
         }
 
         // Inject fields values to person
@@ -89,6 +84,7 @@ namespace inclass5
                     {
                         lblErrors.Text += $"{tag} cannot be empty.\n";
                     }
+                    lblAge.Text = "";
                 }
             }
             if (sender is DateTimePicker)
@@ -100,6 +96,7 @@ namespace inclass5
                     {
                         lblErrors.Text += "Can't be born in the future.\n";
                     }
+                    lblAge.Text = "";
                 }
             }
         }
