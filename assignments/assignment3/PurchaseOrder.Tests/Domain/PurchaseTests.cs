@@ -193,29 +193,42 @@ namespace PurchaseOrder.Tests
         [Test]
         public void TestToString()
         {
-
             int id = 1, ordered = 10;
-            string unitCost = 35.0.ToString("c2", CultureInfo.CreateSpecificCulture("en-CA"));
+            string unitCost = "35.00";
             string date = DateTime.Today.ToString("yyyy-MM-dd"), seller = "Test Seller", shippedTo = "Test destination", description = "",
             unit = "Hours";
 
             StringBuilder builder = new StringBuilder();
-            builder.Append("[");
-            builder.Append($"id: {id} ");
-            builder.Append($"Date: {date} ");
-            builder.Append($"Purchased From: {seller} ");
-            builder.Append($"Ship to: {shippedTo} ");
-            builder.Append($"Description: {description} ");
-            builder.Append($"Ordered: {ordered} ");
-            builder.Append($"Unit: {unit} ");
-            builder.Append($"Unit Price: {unitCost} ");
-            builder.Append(@"Ammount: $350.00 ");
-            builder.Append(@"Total Ammount: $395.50");
-            builder.Append("]");
+            builder.Append($"{id}\t");
+            builder.Append($"{date}\t");
+            builder.Append($"{seller}\t");
+            builder.Append($"{shippedTo}\t");
+            builder.Append($"{ordered}\t");
+            builder.Append($"{unit}\t");
+            builder.Append($"{unitCost}\t");
+            builder.Append($"350.00\t");
+            builder.Append($"395.50\t");
+            builder.Append($"desc: {description}");
             string expected = builder.ToString();
 
             Assert.AreEqual(expected, purchase.ToString());
         }
+        #endregion
+        #region Constructor From File Test
+        [Test]
+        public void CreateOrderFromFileReturnsValidObject()
+        {
+            string fileLine = "1	2020-03-15	Test FromFile	Test ToObject	10	Hours	35.00	350.00	395.50	desc: ";
+            Purchase file = null;
+            Assert.DoesNotThrow(() => {
+                file = new Purchase(fileLine);
+            });
+            Assert.IsNotNull(file);
+            Assert.IsTrue(file.GetSeller().Equals("Test FromFile"));
+            Assert.IsTrue(file.GetShippedTo().Equals("Test ToObject"));
+            Assert.IsTrue(file.GetDescription().Equals(string.Empty));
+        }
+
         #endregion
     }
 }

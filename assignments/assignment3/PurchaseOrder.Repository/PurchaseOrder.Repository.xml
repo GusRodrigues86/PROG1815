@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PurchaseOrder.Repository</name>
+    </assembly>
+    <members>
+        <member name="T:PurchaseOrder.Repository.InMemoryRepository">
+            <summary>
+            Creates a persistence unit in memory called InMemoryRepository that uses an IRepository of Purchases.
+            </summary>
+        </member>
+        <member name="M:PurchaseOrder.Repository.InMemoryRepository.#ctor(System.Collections.Generic.List{PurchaseOrder.Domain.Purchase})">
+            <summary>
+            Creates a new Memor InMemoryRepository with the values from the supplied non-empty list
+            </summary>
+            <param name="list">List of Items from the memory</param>
+        </member>
+        <member name="M:PurchaseOrder.Repository.InMemoryRepository.Create(PurchaseOrder.Domain.Purchase)">
+            <inheritdoc/>
+        </member>
+        <member name="M:PurchaseOrder.Repository.InMemoryRepository.GetAll">
+            <inheritdoc/>
+        </member>
+        <member name="M:PurchaseOrder.Repository.InMemoryRepository.GetById(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:PurchaseOrder.Repository.InMemoryRepository.HasItem(PurchaseOrder.Domain.Purchase)">
+            <inheritdoc/>
+        </member>
+        <member name="M:PurchaseOrder.Repository.InMemoryRepository.Update(PurchaseOrder.Domain.Purchase)">
+            <inheritdoc/>
+        </member>
+        <member name="M:PurchaseOrder.Repository.InMemoryRepository.Delete(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:PurchaseOrder.Repository.InMemoryRepository.Size">
+            <inheritdoc/>
+        </member>
+        <member name="M:PurchaseOrder.Repository.InMemoryRepository.FindById(System.Int32)">
+            <summary>
+            Searchs the persistence unit by int id.
+            </summary>
+            <param name="id">The id to be searched</param>
+            <returns>True iff there is an object with the supplied ID.</returns>
+        </member>
+        <member name="T:PurchaseOrder.Repository.IRepository`1">
+            <summary>
+            The expected behaviour of all Repositories
+            </summary>
+            <typeparam name="T">The type that will be saved in the repository</typeparam>
+        </member>
+        <member name="M:PurchaseOrder.Repository.IRepository`1.Create(`0)">
+            <summary>
+            Save the object into the persistence unit.
+            </summary>
+            <param name="entity">Entity to be created.</param>
+            <returns>A copy to the unit that has been persisted.</returns>
+        </member>
+        <member name="M:PurchaseOrder.Repository.IRepository`1.GetAll">
+            <summary>
+            Fetch all records from the persistence unit.
+            </summary>
+            <returns>Retrieve a list with all records.</returns>
+        </member>
+        <member name="M:PurchaseOrder.Repository.IRepository`1.GetById(System.Int32)">
+            <summary>
+            Fetch entity based on the ID.
+            </summary>
+            <param name="id">The Id to be searched.</param>
+            <returns>The entity with the given Id.</returns>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException">If no such element exists</exception>
+        </member>
+        <member name="M:PurchaseOrder.Repository.IRepository`1.Update(`0)">
+            <summary>
+            Update the values in the persistence unit with the new data.
+            </summary>
+            <param name="entity">The entity to be updated.</param>
+            <returns>The updated entity</returns>
+        </member>
+        <member name="M:PurchaseOrder.Repository.IRepository`1.Delete(System.Int32)">
+            <summary>
+            Removes the element from the persistence unit.
+            </summary>
+            <param name="key">The ID of the object to be removed.</param>
+            <returns>True iff the persistence unit was changed because of the operation.</returns>
+        </member>
+        <member name="M:PurchaseOrder.Repository.IRepository`1.HasItem(`0)">
+            <summary>
+            Search for the desired entity.
+            </summary>
+            <param name="entity">to be found.</param>
+            <returns>True iff the persistence unit contains the entity.</returns>
+        </member>
+        <member name="M:PurchaseOrder.Repository.IRepository`1.Size">
+            <summary>
+            Returns the actual ammount of itens in the system.
+            </summary>
+            <returns>The total ammount of unique itens in the system.</returns>
+        </member>
+    </members>
+</doc>

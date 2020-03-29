@@ -1,0 +1,176 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PurchaseOrder.Domain</name>
+    </assembly>
+    <members>
+        <member name="T:PurchaseOrder.Domain.Purchase">
+            <summary>
+            Represents a Purchase
+            </summary>
+        </member>
+        <member name="F:PurchaseOrder.Domain.Purchase.Id">
+            <summary>
+            The ID of the purchase.
+            </summary>
+        </member>
+        <member name="F:PurchaseOrder.Domain.Purchase.Date">
+            <summary>
+            The Date of the purchase.
+            </summary>
+        </member>
+        <member name="F:PurchaseOrder.Domain.Purchase.Seller">
+            <summary>
+            Represents who selled the product.
+            </summary>
+        </member>
+        <member name="F:PurchaseOrder.Domain.Purchase.ShippedTo">
+            <summary>
+            Represents who buyed.
+            </summary>
+        </member>
+        <member name="F:PurchaseOrder.Domain.Purchase.Description">
+            <summary>
+            The product description
+            </summary>
+        </member>
+        <member name="F:PurchaseOrder.Domain.Purchase.Ordered">
+            <summary>
+            The ammount ordered
+            </summary>
+        </member>
+        <member name="F:PurchaseOrder.Domain.Purchase.Unit">
+            <summary>
+            The unit, such as Hours
+            </summary>
+        </member>
+        <member name="F:PurchaseOrder.Domain.Purchase.UnitCost">
+            <summary>
+            The cost per unit
+            </summary>
+        </member>
+        <member name="F:PurchaseOrder.Domain.Purchase.Subtotal">
+            <summary>
+            The subtotal
+            </summary>
+        </member>
+        <member name="F:PurchaseOrder.Domain.Purchase.taxes">
+            <summary>
+            The ammount after taxes.
+            </summary>
+        </member>
+        <member name="M:PurchaseOrder.Domain.Purchase.#ctor(System.Int32,System.DateTime,System.String,System.String,System.Double,System.String,System.Double,System.String)">
+            <summary>
+            Creates an Purchase object
+            </summary>
+            <param name="id">The order Id</param>
+            <param name="date">The day of the purchase</param>
+            <param name="seller">The seller</param>
+            <param name="shippedTo">Shipped to/Buyer</param>
+            <param name="ordered">Amound ordered</param>
+            <param name="unit">Unit of the order</param>
+            <param name="unitCost">Cost of the order</param>
+            <param name="description">The order description</param>
+        </member>
+        <member name="M:PurchaseOrder.Domain.Purchase.#ctor(System.String)">
+            <summary>
+            Creates a Purchase object from the string saved on file.
+            </summary>
+            <param name="file">the ToString saved on file.</param>
+        </member>
+        <member name="M:PurchaseOrder.Domain.Purchase.#ctor(PurchaseOrder.Domain.Purchase)">
+            <summary>
+            Creates a deep copy of the supplied purchase.
+            </summary>
+            <param name="purchase">The original object to be copied</param>
+        </member>
+        <member name="M:PurchaseOrder.Domain.Purchase.GetId">
+            <summary>
+            Return the Purchase Id
+            </summary>
+            <returns>The Purchase Id</returns>
+        </member>
+        <member name="M:PurchaseOrder.Domain.Purchase.GetDate">
+            <summary>
+            Returns the Date of the purchase
+            </summary>
+            <returns>The Date of the purchase</returns>
+        </member>
+        <member name="M:PurchaseOrder.Domain.Purchase.GetSeller">
+            <summary>
+            Returns who selled.
+            </summary>
+            <returns>Who selled</returns>
+        </member>
+        <member name="M:PurchaseOrder.Domain.Purchase.GetOrdered">
+            <summary>
+            Return the ammount ordered
+            </summary>
+            <returns>The ammount ordered</returns>
+        </member>
+        <member name="M:PurchaseOrder.Domain.Purchase.GetUnit">
+            <summary>
+            Returns the unit used to price the sale
+            </summary>
+            <returns>The unit used to price the sale</returns>
+        </member>
+        <member name="M:PurchaseOrder.Domain.Purchase.GetShippedTo">
+            <summary>
+            Returns the information about the recipient.
+            </summary>
+            <returns>The information of the shipped to</returns>
+        </member>
+        <member name="M:PurchaseOrder.Domain.Purchase.GetDescription">
+            <summary>
+            Returns the description of the purchase.
+            </summary>
+            <returns>The description of the purchase</returns>
+        </member>
+        <member name="M:PurchaseOrder.Domain.Purchase.GetUnitPrice">
+            <summary>
+            Returns the unit cost of the purchase.
+            </summary>
+            <returns>The unit cost of the purchase</returns>
+        </member>
+        <member name="M:PurchaseOrder.Domain.Purchase.GetBeforeTaxes">
+            <summary>
+            Calculate the total cost before taxes.
+            </summary>
+            <returns>The total before taxes</returns>
+        </member>
+        <member name="M:PurchaseOrder.Domain.Purchase.GetTotal">
+            <summary>
+            Calculate the total after taxes of 13%.
+            </summary>
+            <returns>The total after taxes</returns>
+        </member>
+        <member name="M:PurchaseOrder.Domain.Purchase.Copy">
+            <summary>
+            Creates a deep copy of the purchase.
+            </summary>
+            <returns>A copy of this object</returns>
+        </member>
+        <member name="M:PurchaseOrder.Domain.Purchase.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:PurchaseOrder.Domain.Purchase.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:PurchaseOrder.Domain.Purchase.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:PurchaseOrder.Domain.Purchase.CheckRep">
+            <summary>
+            Invariant of an order.
+            if any of the parameters bellow are violated, the program will throw exception and prevent the formation of the corrupted purchase
+            <para> Id &gt; 0 </para>
+            <para>Date &lt;= DateTime.Today</para>
+            <para>Seller != Whitespace</para>
+            <para>ShippedTo != Whitespace</para>
+            <para>Ordered > 0</para>
+            <para>Unit = "Hours"</para>
+            <para>UnitCost &gt; 0</para>
+            </summary>
+        </member>
+    </members>
+</doc>

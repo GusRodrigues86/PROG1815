@@ -1,8 +1,18 @@
-﻿using System;
+﻿/* Assignment 3
+ * IRepository<T>.cs
+ *  Representation of persistence unit behaviour
+ *  
+ *  Revision History
+ *      Gustavo Bonifacio Rodrigues, 2020.03.14: Created
+ */
 using System.Collections.Generic;
 
 namespace PurchaseOrder.Repository
 {
+    /// <summary>
+    /// The expected behaviour of all Repositories
+    /// </summary>
+    /// <typeparam name="T">The type that will be saved in the repository</typeparam>
     public interface IRepository<T>
     {
         /// <summary>

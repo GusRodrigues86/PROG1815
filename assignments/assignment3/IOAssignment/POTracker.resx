@@ -117,4 +117,1048 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="rtextErrors.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
+  </data>
+  <data name="rtextErrors.Location" type="System.Drawing.Point, System.Drawing">
+    <value>645, 386</value>
+  </data>
+  <data name="rtextErrors.Size" type="System.Drawing.Size, System.Drawing">
+    <value>320, 76</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="rtextErrors.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="rtextErrors.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;rtextErrors.Name" xml:space="preserve">
+    <value>rtextErrors</value>
+  </data>
+  <data name="&gt;&gt;rtextErrors.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RichTextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rtextErrors.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;rtextErrors.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;btnDeletePO.Name" xml:space="preserve">
+    <value>btnDeletePO</value>
+  </data>
+  <data name="&gt;&gt;btnDeletePO.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnDeletePO.Parent" xml:space="preserve">
+    <value>gBoxDelete</value>
+  </data>
+  <data name="&gt;&gt;btnDeletePO.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;txtDeleteNumber.Name" xml:space="preserve">
+    <value>txtDeleteNumber</value>
+  </data>
+  <data name="&gt;&gt;txtDeleteNumber.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtDeleteNumber.Parent" xml:space="preserve">
+    <value>gBoxDelete</value>
+  </data>
+  <data name="&gt;&gt;txtDeleteNumber.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;lblNumberDelete.Name" xml:space="preserve">
+    <value>lblNumberDelete</value>
+  </data>
+  <data name="&gt;&gt;lblNumberDelete.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblNumberDelete.Parent" xml:space="preserve">
+    <value>gBoxDelete</value>
+  </data>
+  <data name="&gt;&gt;lblNumberDelete.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="gBoxDelete.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 386</value>
+  </data>
+  <data name="gBoxDelete.Size" type="System.Drawing.Size, System.Drawing">
+    <value>237, 76</value>
+  </data>
+  <data name="gBoxDelete.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="gBoxDelete.Text" xml:space="preserve">
+    <value>Delete Purchase Order</value>
+  </data>
+  <data name="&gt;&gt;gBoxDelete.Name" xml:space="preserve">
+    <value>gBoxDelete</value>
+  </data>
+  <data name="&gt;&gt;gBoxDelete.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gBoxDelete.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;gBoxDelete.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="btnDeletePO.Location" type="System.Drawing.Point, System.Drawing">
+    <value>101, 45</value>
+  </data>
+  <data name="btnDeletePO.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="btnDeletePO.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="btnDeletePO.Text" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="&gt;&gt;btnDeletePO.Name" xml:space="preserve">
+    <value>btnDeletePO</value>
+  </data>
+  <data name="&gt;&gt;btnDeletePO.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnDeletePO.Parent" xml:space="preserve">
+    <value>gBoxDelete</value>
+  </data>
+  <data name="&gt;&gt;btnDeletePO.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="txtDeleteNumber.Location" type="System.Drawing.Point, System.Drawing">
+    <value>101, 19</value>
+  </data>
+  <data name="txtDeleteNumber.Size" type="System.Drawing.Size, System.Drawing">
+    <value>115, 20</value>
+  </data>
+  <data name="txtDeleteNumber.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;txtDeleteNumber.Name" xml:space="preserve">
+    <value>txtDeleteNumber</value>
+  </data>
+  <data name="&gt;&gt;txtDeleteNumber.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtDeleteNumber.Parent" xml:space="preserve">
+    <value>gBoxDelete</value>
+  </data>
+  <data name="&gt;&gt;txtDeleteNumber.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="lblNumberDelete.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblNumberDelete.Location" type="System.Drawing.Point, System.Drawing">
+    <value>48, 22</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="lblNumberDelete.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 8, 3, 8</value>
+  </data>
+  <data name="lblNumberDelete.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 13</value>
+  </data>
+  <data name="lblNumberDelete.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="lblNumberDelete.Text" xml:space="preserve">
+    <value>Number:</value>
+  </data>
+  <data name="&gt;&gt;lblNumberDelete.Name" xml:space="preserve">
+    <value>lblNumberDelete</value>
+  </data>
+  <data name="&gt;&gt;lblNumberDelete.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblNumberDelete.Parent" xml:space="preserve">
+    <value>gBoxDelete</value>
+  </data>
+  <data name="&gt;&gt;lblNumberDelete.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="btnInsert.Location" type="System.Drawing.Point, System.Drawing">
+    <value>104, 272</value>
+  </data>
+  <data name="btnInsert.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="btnInsert.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="btnInsert.Text" xml:space="preserve">
+    <value>Insert</value>
+  </data>
+  <data name="&gt;&gt;btnInsert.Name" xml:space="preserve">
+    <value>btnInsert</value>
+  </data>
+  <data name="&gt;&gt;btnInsert.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnInsert.Parent" xml:space="preserve">
+    <value>gBoxInsert</value>
+  </data>
+  <data name="&gt;&gt;btnInsert.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="comboUnit.Items" xml:space="preserve">
+    <value>Hours</value>
+  </data>
+  <data name="comboUnit.Location" type="System.Drawing.Point, System.Drawing">
+    <value>104, 217</value>
+  </data>
+  <data name="comboUnit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 21</value>
+  </data>
+  <data name="comboUnit.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;comboUnit.Name" xml:space="preserve">
+    <value>comboUnit</value>
+  </data>
+  <data name="&gt;&gt;comboUnit.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;comboUnit.Parent" xml:space="preserve">
+    <value>gBoxInsert</value>
+  </data>
+  <data name="&gt;&gt;comboUnit.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="datePickerPurchase.CustomFormat" xml:space="preserve">
+    <value>yyyy-MM-dd</value>
+  </data>
+  <data name="datePickerPurchase.Location" type="System.Drawing.Point, System.Drawing">
+    <value>104, 47</value>
+  </data>
+  <data name="datePickerPurchase.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 20</value>
+  </data>
+  <data name="datePickerPurchase.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;datePickerPurchase.Name" xml:space="preserve">
+    <value>datePickerPurchase</value>
+  </data>
+  <data name="&gt;&gt;datePickerPurchase.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;datePickerPurchase.Parent" xml:space="preserve">
+    <value>gBoxInsert</value>
+  </data>
+  <data name="&gt;&gt;datePickerPurchase.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="txtPrice.Location" type="System.Drawing.Point, System.Drawing">
+    <value>104, 246</value>
+  </data>
+  <data name="txtPrice.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 20</value>
+  </data>
+  <data name="txtPrice.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;txtPrice.Name" xml:space="preserve">
+    <value>txtPrice</value>
+  </data>
+  <data name="&gt;&gt;txtPrice.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtPrice.Parent" xml:space="preserve">
+    <value>gBoxInsert</value>
+  </data>
+  <data name="&gt;&gt;txtPrice.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="txtOrdered.Location" type="System.Drawing.Point, System.Drawing">
+    <value>104, 188</value>
+  </data>
+  <data name="txtOrdered.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 20</value>
+  </data>
+  <data name="txtOrdered.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;txtOrdered.Name" xml:space="preserve">
+    <value>txtOrdered</value>
+  </data>
+  <data name="&gt;&gt;txtOrdered.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtOrdered.Parent" xml:space="preserve">
+    <value>gBoxInsert</value>
+  </data>
+  <data name="&gt;&gt;txtOrdered.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="txtDescription.Location" type="System.Drawing.Point, System.Drawing">
+    <value>104, 140</value>
+  </data>
+  <data name="txtDescription.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="txtDescription.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 42</value>
+  </data>
+  <data name="txtDescription.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;txtDescription.Name" xml:space="preserve">
+    <value>txtDescription</value>
+  </data>
+  <data name="&gt;&gt;txtDescription.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtDescription.Parent" xml:space="preserve">
+    <value>gBoxInsert</value>
+  </data>
+  <data name="&gt;&gt;txtDescription.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="txtTo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>104, 108</value>
+  </data>
+  <data name="txtTo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 20</value>
+  </data>
+  <data name="txtTo.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;txtTo.Name" xml:space="preserve">
+    <value>txtTo</value>
+  </data>
+  <data name="&gt;&gt;txtTo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtTo.Parent" xml:space="preserve">
+    <value>gBoxInsert</value>
+  </data>
+  <data name="&gt;&gt;txtTo.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="txtFrom.Location" type="System.Drawing.Point, System.Drawing">
+    <value>104, 79</value>
+  </data>
+  <data name="txtFrom.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 20</value>
+  </data>
+  <data name="txtFrom.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;txtFrom.Name" xml:space="preserve">
+    <value>txtFrom</value>
+  </data>
+  <data name="&gt;&gt;txtFrom.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtFrom.Parent" xml:space="preserve">
+    <value>gBoxInsert</value>
+  </data>
+  <data name="&gt;&gt;txtFrom.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="txtIdNumber.Location" type="System.Drawing.Point, System.Drawing">
+    <value>104, 19</value>
+  </data>
+  <data name="txtIdNumber.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 20</value>
+  </data>
+  <data name="txtIdNumber.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;txtIdNumber.Name" xml:space="preserve">
+    <value>txtIdNumber</value>
+  </data>
+  <data name="&gt;&gt;txtIdNumber.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtIdNumber.Parent" xml:space="preserve">
+    <value>gBoxInsert</value>
+  </data>
+  <data name="&gt;&gt;txtIdNumber.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="label7.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>42, 249</value>
+  </data>
+  <data name="label7.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>8, 8, 8, 8</value>
+  </data>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 13</value>
+  </data>
+  <data name="label7.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Unit Price:</value>
+  </data>
+  <data name="&gt;&gt;label7.Name" xml:space="preserve">
+    <value>label7</value>
+  </data>
+  <data name="&gt;&gt;label7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label7.Parent" xml:space="preserve">
+    <value>gBoxInsert</value>
+  </data>
+  <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="label6.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>69, 220</value>
+  </data>
+  <data name="label6.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>8, 8, 8, 8</value>
+  </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 13</value>
+  </data>
+  <data name="label6.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Unit:</value>
+  </data>
+  <data name="&gt;&gt;label6.Name" xml:space="preserve">
+    <value>label6</value>
+  </data>
+  <data name="&gt;&gt;label6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label6.Parent" xml:space="preserve">
+    <value>gBoxInsert</value>
+  </data>
+  <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="label5.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>50, 191</value>
+  </data>
+  <data name="label5.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>8, 8, 8, 8</value>
+  </data>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 13</value>
+  </data>
+  <data name="label5.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Ordered:</value>
+  </data>
+  <data name="&gt;&gt;label5.Name" xml:space="preserve">
+    <value>label5</value>
+  </data>
+  <data name="&gt;&gt;label5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
+    <value>gBoxInsert</value>
+  </data>
+  <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>35, 140</value>
+  </data>
+  <data name="label4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>8, 8, 8, 8</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 13</value>
+  </data>
+  <data name="label4.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Description:</value>
+  </data>
+  <data name="&gt;&gt;label4.Name" xml:space="preserve">
+    <value>label4</value>
+  </data>
+  <data name="&gt;&gt;label4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
+    <value>gBoxInsert</value>
+  </data>
+  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>55, 111</value>
+  </data>
+  <data name="label3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>8, 8, 8, 8</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>43, 13</value>
+  </data>
+  <data name="label3.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Ship to:</value>
+  </data>
+  <data name="&gt;&gt;label3.Name" xml:space="preserve">
+    <value>label3</value>
+  </data>
+  <data name="&gt;&gt;label3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
+    <value>gBoxInsert</value>
+  </data>
+  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>11, 82</value>
+  </data>
+  <data name="label2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>8, 8, 8, 8</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>87, 13</value>
+  </data>
+  <data name="label2.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Purchased From:</value>
+  </data>
+  <data name="&gt;&gt;label2.Name" xml:space="preserve">
+    <value>label2</value>
+  </data>
+  <data name="&gt;&gt;label2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
+    <value>gBoxInsert</value>
+  </data>
+  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="lblDate.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblDate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>65, 53</value>
+  </data>
+  <data name="lblDate.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 8, 3, 8</value>
+  </data>
+  <data name="lblDate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>33, 13</value>
+  </data>
+  <data name="lblDate.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="lblDate.Text" xml:space="preserve">
+    <value>Date:</value>
+  </data>
+  <data name="&gt;&gt;lblDate.Name" xml:space="preserve">
+    <value>lblDate</value>
+  </data>
+  <data name="&gt;&gt;lblDate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblDate.Parent" xml:space="preserve">
+    <value>gBoxInsert</value>
+  </data>
+  <data name="&gt;&gt;lblDate.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="lblNumberInsert.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblNumberInsert.Location" type="System.Drawing.Point, System.Drawing">
+    <value>51, 24</value>
+  </data>
+  <data name="lblNumberInsert.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 8, 3, 8</value>
+  </data>
+  <data name="lblNumberInsert.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 13</value>
+  </data>
+  <data name="lblNumberInsert.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="lblNumberInsert.Text" xml:space="preserve">
+    <value>Number:</value>
+  </data>
+  <data name="&gt;&gt;lblNumberInsert.Name" xml:space="preserve">
+    <value>lblNumberInsert</value>
+  </data>
+  <data name="&gt;&gt;lblNumberInsert.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblNumberInsert.Parent" xml:space="preserve">
+    <value>gBoxInsert</value>
+  </data>
+  <data name="&gt;&gt;lblNumberInsert.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="gBoxInsert.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 63</value>
+  </data>
+  <data name="gBoxInsert.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>8, 8, 8, 8</value>
+  </data>
+  <data name="gBoxInsert.Size" type="System.Drawing.Size, System.Drawing">
+    <value>222, 312</value>
+  </data>
+  <data name="gBoxInsert.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="gBoxInsert.Text" xml:space="preserve">
+    <value>Insert Purchase Order</value>
+  </data>
+  <data name="&gt;&gt;gBoxInsert.Name" xml:space="preserve">
+    <value>gBoxInsert</value>
+  </data>
+  <data name="&gt;&gt;gBoxInsert.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gBoxInsert.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;gBoxInsert.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;btnCreateOpen.Name" xml:space="preserve">
+    <value>btnCreateOpen</value>
+  </data>
+  <data name="&gt;&gt;btnCreateOpen.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnCreateOpen.Parent" xml:space="preserve">
+    <value>gBoxOpenFile</value>
+  </data>
+  <data name="&gt;&gt;btnCreateOpen.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;radioOpenExisting.Name" xml:space="preserve">
+    <value>radioOpenExisting</value>
+  </data>
+  <data name="&gt;&gt;radioOpenExisting.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;radioOpenExisting.Parent" xml:space="preserve">
+    <value>gBoxOpenFile</value>
+  </data>
+  <data name="&gt;&gt;radioOpenExisting.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;radioCreateNew.Name" xml:space="preserve">
+    <value>radioCreateNew</value>
+  </data>
+  <data name="&gt;&gt;radioCreateNew.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;radioCreateNew.Parent" xml:space="preserve">
+    <value>gBoxOpenFile</value>
+  </data>
+  <data name="&gt;&gt;radioCreateNew.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="gBoxOpenFile.Location" type="System.Drawing.Point, System.Drawing">
+    <value>320, 16</value>
+  </data>
+  <data name="gBoxOpenFile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>347, 55</value>
+  </data>
+  <data name="gBoxOpenFile.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="gBoxOpenFile.Text" xml:space="preserve">
+    <value>File Open Options</value>
+  </data>
+  <data name="&gt;&gt;gBoxOpenFile.Name" xml:space="preserve">
+    <value>gBoxOpenFile</value>
+  </data>
+  <data name="&gt;&gt;gBoxOpenFile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gBoxOpenFile.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;gBoxOpenFile.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="btnCreateOpen.Location" type="System.Drawing.Point, System.Drawing">
+    <value>191, 14</value>
+  </data>
+  <data name="btnCreateOpen.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 23</value>
+  </data>
+  <data name="btnCreateOpen.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="btnCreateOpen.Text" xml:space="preserve">
+    <value>Create / Open File</value>
+  </data>
+  <data name="&gt;&gt;btnCreateOpen.Name" xml:space="preserve">
+    <value>btnCreateOpen</value>
+  </data>
+  <data name="&gt;&gt;btnCreateOpen.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnCreateOpen.Parent" xml:space="preserve">
+    <value>gBoxOpenFile</value>
+  </data>
+  <data name="&gt;&gt;btnCreateOpen.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="radioOpenExisting.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="radioOpenExisting.Location" type="System.Drawing.Point, System.Drawing">
+    <value>95, 19</value>
+  </data>
+  <data name="radioOpenExisting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 17</value>
+  </data>
+  <data name="radioOpenExisting.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="radioOpenExisting.Text" xml:space="preserve">
+    <value>Open Existing</value>
+  </data>
+  <data name="&gt;&gt;radioOpenExisting.Name" xml:space="preserve">
+    <value>radioOpenExisting</value>
+  </data>
+  <data name="&gt;&gt;radioOpenExisting.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;radioOpenExisting.Parent" xml:space="preserve">
+    <value>gBoxOpenFile</value>
+  </data>
+  <data name="&gt;&gt;radioOpenExisting.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="radioCreateNew.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="radioCreateNew.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 19</value>
+  </data>
+  <data name="radioCreateNew.Size" type="System.Drawing.Size, System.Drawing">
+    <value>81, 17</value>
+  </data>
+  <data name="radioCreateNew.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="radioCreateNew.Text" xml:space="preserve">
+    <value>Create New</value>
+  </data>
+  <data name="&gt;&gt;radioCreateNew.Name" xml:space="preserve">
+    <value>radioCreateNew</value>
+  </data>
+  <data name="&gt;&gt;radioCreateNew.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;radioCreateNew.Parent" xml:space="preserve">
+    <value>gBoxOpenFile</value>
+  </data>
+  <data name="&gt;&gt;radioCreateNew.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="lblFilenameAndPath.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblFilenameAndPath.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 16</value>
+  </data>
+  <data name="lblFilenameAndPath.Size" type="System.Drawing.Size, System.Drawing">
+    <value>95, 13</value>
+  </data>
+  <data name="lblFilenameAndPath.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblFilenameAndPath.Text" xml:space="preserve">
+    <value>Filename and Path</value>
+  </data>
+  <data name="&gt;&gt;lblFilenameAndPath.Name" xml:space="preserve">
+    <value>lblFilenameAndPath</value>
+  </data>
+  <data name="&gt;&gt;lblFilenameAndPath.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblFilenameAndPath.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lblFilenameAndPath.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="txtFilenameAndPath.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 32</value>
+  </data>
+  <data name="txtFilenameAndPath.Size" type="System.Drawing.Size, System.Drawing">
+    <value>278, 20</value>
+  </data>
+  <data name="txtFilenameAndPath.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;txtFilenameAndPath.Name" xml:space="preserve">
+    <value>txtFilenameAndPath</value>
+  </data>
+  <data name="&gt;&gt;txtFilenameAndPath.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtFilenameAndPath.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;txtFilenameAndPath.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="btnDisplayOrders.Location" type="System.Drawing.Point, System.Drawing">
+    <value>259, 408</value>
+  </data>
+  <data name="btnDisplayOrders.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>6, 0, 6, 0</value>
+  </data>
+  <data name="btnDisplayOrders.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 23</value>
+  </data>
+  <data name="btnDisplayOrders.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="btnDisplayOrders.Text" xml:space="preserve">
+    <value>Display Purchase Orders</value>
+  </data>
+  <data name="&gt;&gt;btnDisplayOrders.Name" xml:space="preserve">
+    <value>btnDisplayOrders</value>
+  </data>
+  <data name="&gt;&gt;btnDisplayOrders.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnDisplayOrders.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnDisplayOrders.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="btnClose.Location" type="System.Drawing.Point, System.Drawing">
+    <value>423, 408</value>
+  </data>
+  <data name="btnClose.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>6, 0, 6, 0</value>
+  </data>
+  <data name="btnClose.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 23</value>
+  </data>
+  <data name="btnClose.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="btnClose.Text" xml:space="preserve">
+    <value>Close Form</value>
+  </data>
+  <data name="&gt;&gt;btnClose.Name" xml:space="preserve">
+    <value>btnClose</value>
+  </data>
+  <data name="&gt;&gt;btnClose.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnClose.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnClose.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="btnEmptyFile.Location" type="System.Drawing.Point, System.Drawing">
+    <value>539, 408</value>
+  </data>
+  <data name="btnEmptyFile.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>6, 0, 6, 0</value>
+  </data>
+  <data name="btnEmptyFile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 23</value>
+  </data>
+  <data name="btnEmptyFile.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="btnEmptyFile.Text" xml:space="preserve">
+    <value>Empty File</value>
+  </data>
+  <data name="&gt;&gt;btnEmptyFile.Name" xml:space="preserve">
+    <value>btnEmptyFile</value>
+  </data>
+  <data name="&gt;&gt;btnEmptyFile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnEmptyFile.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnEmptyFile.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="listPurchaseData.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt</value>
+  </data>
+  <data name="listPurchaseData.Location" type="System.Drawing.Point, System.Drawing">
+    <value>249, 78</value>
+  </data>
+  <data name="listPurchaseData.Size" type="System.Drawing.Size, System.Drawing">
+    <value>716, 302</value>
+  </data>
+  <data name="listPurchaseData.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;listPurchaseData.Name" xml:space="preserve">
+    <value>listPurchaseData</value>
+  </data>
+  <data name="&gt;&gt;listPurchaseData.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;listPurchaseData.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;listPurchaseData.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="chNumber.Text" xml:space="preserve">
+    <value>Number</value>
+  </data>
+  <data name="chDate.Text" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="chDate.Width" type="System.Int32, mscorlib">
+    <value>70</value>
+  </data>
+  <data name="chFrom.Text" xml:space="preserve">
+    <value>Purchase From</value>
+  </data>
+  <data name="chFrom.Width" type="System.Int32, mscorlib">
+    <value>100</value>
+  </data>
+  <data name="chTo.Text" xml:space="preserve">
+    <value>Ship To</value>
+  </data>
+  <data name="chTo.Width" type="System.Int32, mscorlib">
+    <value>100</value>
+  </data>
+  <data name="chOrdered.Text" xml:space="preserve">
+    <value>Ordered</value>
+  </data>
+  <data name="chUnit.Text" xml:space="preserve">
+    <value>Unit</value>
+  </data>
+  <data name="chUnitPrice.Text" xml:space="preserve">
+    <value>Unit Price</value>
+  </data>
+  <data name="chUnitPrice.Width" type="System.Int32, mscorlib">
+    <value>80</value>
+  </data>
+  <data name="chAmmount.Text" xml:space="preserve">
+    <value>Ammount</value>
+  </data>
+  <data name="chAmmount.Width" type="System.Int32, mscorlib">
+    <value>90</value>
+  </data>
+  <data name="chTotal.Text" xml:space="preserve">
+    <value>Total Ammount</value>
+  </data>
+  <data name="chTotal.Width" type="System.Int32, mscorlib">
+    <value>90</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>984, 481</value>
+  </data>
+  <data name="$this.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>16, 16, 16, 16</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Purchase Order Tracker</value>
+  </data>
+  <data name="&gt;&gt;chNumber.Name" xml:space="preserve">
+    <value>chNumber</value>
+  </data>
+  <data name="&gt;&gt;chNumber.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chDate.Name" xml:space="preserve">
+    <value>chDate</value>
+  </data>
+  <data name="&gt;&gt;chDate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chFrom.Name" xml:space="preserve">
+    <value>chFrom</value>
+  </data>
+  <data name="&gt;&gt;chFrom.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chTo.Name" xml:space="preserve">
+    <value>chTo</value>
+  </data>
+  <data name="&gt;&gt;chTo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chOrdered.Name" xml:space="preserve">
+    <value>chOrdered</value>
+  </data>
+  <data name="&gt;&gt;chOrdered.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chUnit.Name" xml:space="preserve">
+    <value>chUnit</value>
+  </data>
+  <data name="&gt;&gt;chUnit.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chUnitPrice.Name" xml:space="preserve">
+    <value>chUnitPrice</value>
+  </data>
+  <data name="&gt;&gt;chUnitPrice.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chAmmount.Name" xml:space="preserve">
+    <value>chAmmount</value>
+  </data>
+  <data name="&gt;&gt;chAmmount.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chTotal.Name" xml:space="preserve">
+    <value>chTotal</value>
+  </data>
+  <data name="&gt;&gt;chTotal.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>POTrackerForm</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

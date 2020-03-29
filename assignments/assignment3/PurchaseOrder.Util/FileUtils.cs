@@ -1,6 +1,12 @@
-﻿using System;
+﻿/* Assignment 3
+ * FileUtils.cs
+ *  Helper methods to assist IO operation
+ *  
+ *  Revision History
+ *      Gustavo Bonifacio Rodrigues, 2020.03.14: Created
+ */
+using System;
 using System.Collections.Generic;
-using System.Text;
 using System.IO;
 
 namespace PurchaseOrder.Util
@@ -15,7 +21,7 @@ namespace PurchaseOrder.Util
         /// Opens a fileStream for the desired file.
         /// </summary>
         /// <param name="fileName"></param>
-        /// <returns>Thte StreamReader with the file</returns>
+        /// <returns>The StreamReader with the file</returns>
         /// <exception cref="ArgumentException"></exception>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="FileNotFoundException"></exception>
@@ -25,21 +31,26 @@ namespace PurchaseOrder.Util
             new StreamReader(fileName);
 
         /// <summary>
-        /// Creates a file if It doesnt exist.
+        /// Creates a file. If not specied, it won't overwrite if already exists.
         /// </summary>
-        /// <param name="path">The path to the file</param>
         /// <param name="fileName">The file name</param>
+        /// <param name="forceOverwrite">If overwrites existing file.</param>
         /// <returns>True iff able to create file.</returns>
         /// <exception cref="UnauthorizedAccessException"></exception>
-        /// <exception cref="ArgumentException"></ exception >
+        /// <exception cref="ArgumentException"></exception>
         /// <exception cref="ArgumentNullException"></exception>
-        /// <exception cref="PathTooLongException"></ exception >
+        /// <exception cref="PathTooLongException"></exception >
         /// <exception cref="DirectoryNotFoundException"></exception>
-        /// <exception cref="IOException"></ exception >
+        /// <exception cref="IOException"></exception>
         /// <exception cref="NotSupportedException"></exception>
-        public static bool CreateFile(string fileName)
+        public static bool CreateFile(string fileName, bool forceOverwrite=false)
         {
             if (!File.Exists(fileName))
+            {
+                File.Create(fileName).Close();
+                return true;
+            }
+            else if (File.Exists(fileName) && forceOverwrite)
             {
                 File.Create(fileName).Close();
                 return true;
@@ -50,16 +61,16 @@ namespace PurchaseOrder.Util
         /// <summary>
         /// Appends item to the file.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="file"></param>
-        /// <param name="list"></param>
+        /// <typeparam name="T">The type of the item</typeparam>
+        /// <param name="file">the path and filename to be appended.</param>
+        /// <param name="item">The item to append.</param>
         /// <returns>True iff able to append.</returns>
         /// <exception cref="UnauthorizedAccessException"></exception>
-        /// <exception cref="ArgumentException"></ exception >
+        /// <exception cref="ArgumentException"></exception>
         /// <exception cref="ArgumentNullException"></exception>
-        /// <exception cref="PathTooLongException"></ exception >
+        /// <exception cref="PathTooLongException"></exception >
         /// <exception cref="DirectoryNotFoundException"></exception>
-        /// <exception cref="IOException"></ exception >
+        /// <exception cref="IOException"></exception>
         /// <exception cref="NotSupportedException"></exception>
         public static bool AppendToFile<T>(string file, T item)
         {
@@ -79,16 +90,16 @@ namespace PurchaseOrder.Util
         /// <summary>
         /// Write all item in the list to the file.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="file"></param>
-        /// <param name="list"></param>
+        /// <typeparam name="T">The type of the list</typeparam>
+        /// <param name="file">the file to be saved.</param>
+        /// <param name="list">the list with objects to be saved</param>
         /// <returns>True iff able to append.</returns>
         /// <exception cref="UnauthorizedAccessException"></exception>
-        /// <exception cref="ArgumentException"></ exception >
+        /// <exception cref="ArgumentException"></exception >
         /// <exception cref="ArgumentNullException"></exception>
-        /// <exception cref="PathTooLongException"></ exception >
+        /// <exception cref="PathTooLongException"></exception >
         /// <exception cref="DirectoryNotFoundException"></exception>
-        /// <exception cref="IOException"></ exception >
+        /// <exception cref="IOException"></exception>
         /// <exception cref="NotSupportedException"></exception>
         public static bool SaveAllRecords<T>(string file, List<T> list)
         {
@@ -103,5 +114,12 @@ namespace PurchaseOrder.Util
                 return true;
             }
         }
+        
+        /// <summary>
+        /// Creates the default Folder inside the project.
+        /// </summary>
+        /// <param name="currentPath">The path to be created.</param>
+        public static void CreateFolder(string currentPath) =>
+            Directory.CreateDirectory(currentPath);
     }
 }

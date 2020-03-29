@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PurchaseOrder.Util</name>
+    </assembly>
+    <members>
+        <member name="T:PurchaseOrder.Util.FileUtils">
+            <summary>
+            Holds readers for the project.
+            </summary>
+        </member>
+        <member name="M:PurchaseOrder.Util.FileUtils.FileReader(System.String)">
+            <summary>
+            Opens a fileStream for the desired file.
+            </summary>
+            <param name="fileName"></param>
+            <returns>The StreamReader with the file</returns>
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.IO.FileNotFoundException"></exception>
+            <exception cref="T:System.IO.DirectoryNotFoundException"></exception>
+            <exception cref="T:System.IO.IOException"></exception>
+        </member>
+        <member name="M:PurchaseOrder.Util.FileUtils.CreateFile(System.String,System.Boolean)">
+            <summary>
+            Creates a file. If not specied, it won't overwrite if already exists.
+            </summary>
+            <param name="fileName">The file name</param>
+            <param name="forceOverwrite">If overwrites existing file.</param>
+            <returns>True iff able to create file.</returns>
+            <exception cref="T:System.UnauthorizedAccessException"></exception>
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.IO.PathTooLongException"></exception >
+            <exception cref="T:System.IO.DirectoryNotFoundException"></exception>
+            <exception cref="T:System.IO.IOException"></exception>
+            <exception cref="T:System.NotSupportedException"></exception>
+        </member>
+        <member name="M:PurchaseOrder.Util.FileUtils.AppendToFile``1(System.String,``0)">
+            <summary>
+            Appends item to the file.
+            </summary>
+            <typeparam name="T">The type of the item</typeparam>
+            <param name="file">the path and filename to be appended.</param>
+            <param name="item">The item to append.</param>
+            <returns>True iff able to append.</returns>
+            <exception cref="T:System.UnauthorizedAccessException"></exception>
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.IO.PathTooLongException"></exception >
+            <exception cref="T:System.IO.DirectoryNotFoundException"></exception>
+            <exception cref="T:System.IO.IOException"></exception>
+            <exception cref="T:System.NotSupportedException"></exception>
+        </member>
+        <member name="M:PurchaseOrder.Util.FileUtils.SaveAllRecords``1(System.String,System.Collections.Generic.List{``0})">
+            <summary>
+            Write all item in the list to the file.
+            </summary>
+            <typeparam name="T">The type of the list</typeparam>
+            <param name="file">the file to be saved.</param>
+            <param name="list">the list with objects to be saved</param>
+            <returns>True iff able to append.</returns>
+            <exception cref="T:System.UnauthorizedAccessException"></exception>
+            <exception cref="T:System.ArgumentException"></exception >
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.IO.PathTooLongException"></exception >
+            <exception cref="T:System.IO.DirectoryNotFoundException"></exception>
+            <exception cref="T:System.IO.IOException"></exception>
+            <exception cref="T:System.NotSupportedException"></exception>
+        </member>
+        <member name="M:PurchaseOrder.Util.FileUtils.CreateFolder(System.String)">
+            <summary>
+            Creates the default Folder inside the project.
+            </summary>
+            <param name="currentPath">The path to be created.</param>
+        </member>
+    </members>
+</doc>

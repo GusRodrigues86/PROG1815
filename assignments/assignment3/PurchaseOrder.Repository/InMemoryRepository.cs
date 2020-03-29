@@ -1,13 +1,25 @@
-﻿using PurchaseOrder.Domain;
+﻿/* Assignment 3
+ * InMemoryRepository.cs
+ *  Representation an in memory storage unit
+ *  
+ *  Revision History
+ *      Gustavo Bonifacio Rodrigues, 2020.03.14: Created
+ */
+using PurchaseOrder.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace PurchaseOrder.Repository
 {
+    /// <summary>
+    /// Creates a persistence unit in memory called InMemoryRepository that uses an IRepository of Purchases.
+    /// </summary>
     public class InMemoryRepository : IRepository<Purchase>
     {
+        /// <summary>
+        /// The representation of the persistence unit.
+        /// </summary>
         private readonly Dictionary<int, Purchase> MemoryDB;
         
         /// <summary>
@@ -26,6 +38,7 @@ namespace PurchaseOrder.Repository
 
         #region CRUD
         #region Creation
+        ///<inheritdoc/>
         public Purchase Create(Purchase entity)
         {
             if (MemoryDB.ContainsKey(entity.GetId()))
@@ -37,6 +50,7 @@ namespace PurchaseOrder.Repository
         }
         #endregion
         #region Read
+        ///<inheritdoc/>
         public List<Purchase> GetAll()
         {
             if (MemoryDB.Count == 0)
@@ -53,6 +67,7 @@ namespace PurchaseOrder.Repository
             return sortedOrders;
         }
 
+        ///<inheritdoc/>
         public Purchase GetById(int id)
         {
             if (MemoryDB.ContainsKey(id))
@@ -64,15 +79,12 @@ namespace PurchaseOrder.Repository
 
         }
 
+        ///<inheritdoc/>
         public bool HasItem(Purchase entity) => 
             this.MemoryDB.ContainsKey(entity.GetId());
         #endregion
         #region Update
-        /// <summary>
-        /// Updates the purchase information.
-        /// </summary>
-        /// <param name="pruchase">The entity that will be updated.</param>
-        /// <returns>True IFF the operation updates the value.</returns>
+        ///<inheritdoc/>
         public bool Update(Purchase pruchase)
         {
             if (MemoryDB.ContainsKey(pruchase.GetId()))
@@ -84,6 +96,7 @@ namespace PurchaseOrder.Repository
         }
         #endregion
         #region Delete
+        ///<inheritdoc/>
         public bool Delete(int id)
         {
             if (!MemoryDB.ContainsKey(id))
@@ -96,7 +109,16 @@ namespace PurchaseOrder.Repository
         #endregion
         #endregion
 
+        ///<inheritdoc/>
         public int Size() => 
             this.MemoryDB.Keys.Count;
+
+        /// <summary>
+        /// Searchs the persistence unit by int id.
+        /// </summary>
+        /// <param name="id">The id to be searched</param>
+        /// <returns>True iff there is an object with the supplied ID.</returns>
+        public bool FindById(int id) =>
+            MemoryDB.ContainsKey(id);
     }
 }
