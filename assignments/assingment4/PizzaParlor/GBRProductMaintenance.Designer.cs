@@ -46,6 +46,7 @@
             this.txtFactor = new System.Windows.Forms.TextBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.txtPrice = new System.Windows.Forms.MaskedTextBox();
+            this.lblErrors = new System.Windows.Forms.Label();
             this.gboxProducts.SuspendLayout();
             this.gboxInput.SuspendLayout();
             this.SuspendLayout();
@@ -228,11 +229,22 @@
             this.txtPrice.Size = new System.Drawing.Size(140, 20);
             this.txtPrice.TabIndex = 6;
             // 
+            // lblErrors
+            // 
+            this.lblErrors.AutoSize = true;
+            this.lblErrors.ForeColor = System.Drawing.Color.Red;
+            this.lblErrors.Location = new System.Drawing.Point(209, 239);
+            this.lblErrors.Name = "lblErrors";
+            this.lblErrors.Size = new System.Drawing.Size(33, 13);
+            this.lblErrors.TabIndex = 9;
+            this.lblErrors.Text = "errors";
+            // 
             // GBRProductMaintenance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(530, 306);
+            this.Controls.Add(this.lblErrors);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.gboxInput);
             this.Controls.Add(this.btnClose);
@@ -274,6 +286,7 @@
         private System.Windows.Forms.TextBox txtDescription;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.MaskedTextBox txtPrice;
+        private System.Windows.Forms.Label lblErrors;
     }
 }
 
