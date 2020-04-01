@@ -46,15 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GBRProductMaintenance.cs">
+    <Compile Include="GBRClasses\GBRProduct.cs" />
+    <Compile Include="Views\GBRProductMaintenance.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GBRProductMaintenance.Designer.cs">
+    <Compile Include="Views\GBRProductMaintenance.Designer.cs">
       <DependentUpon>GBRProductMaintenance.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="GBRProductMaintenance.resx">
+    <EmbeddedResource Include="Views\GBRProductMaintenance.resx">
       <DependentUpon>GBRProductMaintenance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -79,5 +80,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
