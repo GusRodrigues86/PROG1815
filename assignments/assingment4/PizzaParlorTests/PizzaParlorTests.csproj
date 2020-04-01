@@ -13,7 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PizzaParlorDomain\PizzaParlorDomain.csproj" />
     <ProjectReference Include="..\PizzaParlor\PizzaParlor.UI.csproj" />
   </ItemGroup>
 
