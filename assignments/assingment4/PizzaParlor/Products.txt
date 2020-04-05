@@ -1,0 +1,3 @@
+﻿Ground Meat	1.00	1.00	true	Ground Beef chunks
+Tomato Sauce	0.01	1.00	false	Tomato sauce
+Chopped Garlic	1.00	1.00	true	Garlic chopped in small chunks.

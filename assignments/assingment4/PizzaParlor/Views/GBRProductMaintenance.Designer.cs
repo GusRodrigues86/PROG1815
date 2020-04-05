@@ -36,8 +36,8 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.gboxInput = new System.Windows.Forms.GroupBox();
-            this.txtPrice = new System.Windows.Forms.MaskedTextBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.txtPrice = new System.Windows.Forms.TextBox();
+            this.chkTopping = new System.Windows.Forms.CheckBox();
             this.txtFactor = new System.Windows.Forms.TextBox();
             this.txtDescription = new System.Windows.Forms.TextBox();
             this.txtName = new System.Windows.Forms.TextBox();
@@ -58,6 +58,7 @@
             this.lstProducts.Name = "lstProducts";
             this.lstProducts.Size = new System.Drawing.Size(180, 199);
             this.lstProducts.TabIndex = 0;
+            this.lstProducts.SelectedIndexChanged += new System.EventHandler(this.lstProducts_SelectedIndexChanged);
             // 
             // btnClear
             // 
@@ -67,6 +68,7 @@
             this.btnClear.TabIndex = 1;
             this.btnClear.Text = "Clear Inputs";
             this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // gboxProducts
             // 
@@ -87,6 +89,7 @@
             this.btnSave.TabIndex = 2;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnDelete
             // 
@@ -96,6 +99,7 @@
             this.btnDelete.TabIndex = 3;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnCancel
             // 
@@ -105,6 +109,7 @@
             this.btnCancel.TabIndex = 4;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnClose
             // 
@@ -115,11 +120,12 @@
             this.btnClose.TabIndex = 5;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // gboxInput
             // 
             this.gboxInput.Controls.Add(this.txtPrice);
-            this.gboxInput.Controls.Add(this.checkBox1);
+            this.gboxInput.Controls.Add(this.chkTopping);
             this.gboxInput.Controls.Add(this.txtFactor);
             this.gboxInput.Controls.Add(this.txtDescription);
             this.gboxInput.Controls.Add(this.txtName);
@@ -137,21 +143,21 @@
             // 
             // txtPrice
             // 
-            this.txtPrice.Culture = new System.Globalization.CultureInfo("en-CA");
             this.txtPrice.Location = new System.Drawing.Point(86, 98);
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(140, 20);
             this.txtPrice.TabIndex = 6;
+            this.txtPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DigitsWithDecimals);
             // 
-            // checkBox1
+            // chkTopping
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(86, 150);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(70, 17);
-            this.checkBox1.TabIndex = 8;
-            this.checkBox1.Text = "Is Toping";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.chkTopping.AutoSize = true;
+            this.chkTopping.Location = new System.Drawing.Point(86, 150);
+            this.chkTopping.Name = "chkTopping";
+            this.chkTopping.Size = new System.Drawing.Size(76, 17);
+            this.chkTopping.TabIndex = 8;
+            this.chkTopping.Text = "Is Topping";
+            this.chkTopping.UseVisualStyleBackColor = true;
             // 
             // txtFactor
             // 
@@ -159,6 +165,7 @@
             this.txtFactor.Name = "txtFactor";
             this.txtFactor.Size = new System.Drawing.Size(140, 20);
             this.txtFactor.TabIndex = 7;
+            this.txtFactor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DigitsWithDecimals);
             // 
             // txtDescription
             // 
@@ -178,11 +185,11 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(7, 128);
+            this.label5.Location = new System.Drawing.Point(1, 127);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(73, 13);
+            this.label5.Size = new System.Drawing.Size(79, 13);
             this.label5.TabIndex = 3;
-            this.label5.Text = "Toping factor:";
+            this.label5.Text = "Topping factor:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label4
@@ -258,6 +265,7 @@
             this.Name = "GBRProductMaintenance";
             this.Padding = new System.Windows.Forms.Padding(6);
             this.Text = "Gus\'s Pizza";
+            this.Load += new System.EventHandler(this.GBRProductMaintenance_Load);
             this.gboxProducts.ResumeLayout(false);
             this.gboxInput.ResumeLayout(false);
             this.gboxInput.PerformLayout();
@@ -281,11 +289,11 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox chkTopping;
         private System.Windows.Forms.TextBox txtFactor;
         private System.Windows.Forms.TextBox txtDescription;
         private System.Windows.Forms.TextBox txtName;
-        private System.Windows.Forms.MaskedTextBox txtPrice;
+        private System.Windows.Forms.TextBox txtPrice;
         private System.Windows.Forms.Label lblErrors;
     }
 }
