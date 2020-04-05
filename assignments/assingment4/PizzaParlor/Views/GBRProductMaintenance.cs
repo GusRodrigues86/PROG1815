@@ -41,6 +41,7 @@ namespace PizzaParlor
             txtName.Focus();
         }
 
+        // save a new product or update the current product
         private void btnSave_Click(object sender, EventArgs e)
         {
             ClearErrors();
@@ -75,6 +76,7 @@ namespace PizzaParlor
 
         }
 
+        // calls to delete the product with that name
         private void btnDelete_Click(object sender, EventArgs e)
         {
             ClearErrors();
@@ -104,6 +106,7 @@ namespace PizzaParlor
             }
         }
 
+        // Cancel any changes in the form and revert state
         private void btnCancel_Click(object sender, EventArgs e)
         {
             ClearErrors();
@@ -115,6 +118,39 @@ namespace PizzaParlor
         // Closes the form
         private void btnClose_Click(object sender, EventArgs e) =>
             this.Close();
+
+        // Use case of selecting some item in the list box
+        private void lstProducts_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ClearErrors();
+            var input = lstProducts.SelectedValue.ToString();
+            var product = GBRProduct.GBRGetByProductName(input);
+            if (product is null)
+            {
+                lblErrors.Text = "Can't find the product.\n";
+            }
+            else
+            {
+                FillTheForm(product);
+            }
+        }
+
+        // Prevent the insertion of any char that is not a digit and only one .
+        private void DigitsWithDecimals(object sender, KeyPressEventArgs e)
+        {
+            TextBox textBox = (TextBox) sender;// safecast
+            char input = e.KeyChar;
+            // checks for .
+            if (input == 46 && textBox.Text.IndexOf('.') != -1) // already has digits.
+            {
+                e.Handled = true;
+                return;
+            }
+            if (!char.IsDigit(input) && input != 8 && input != 46) // digits, dot or backspace
+            {
+                e.Handled = true;
+            }
+        }
 
         // Clears the error labels
         private void ClearErrors() =>
@@ -136,22 +172,6 @@ namespace PizzaParlor
             }
         }
 
-        // Use case of selecting some item in the list box
-        private void lstProducts_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ClearErrors();
-            var input = lstProducts.SelectedValue.ToString();
-            var product = GBRProduct.GBRGetByProductName(input);
-            if (product is null)
-            {
-                lblErrors.Text = "Can't find the product.\n";
-            }
-            else
-            {
-                FillTheForm(product);
-            }
-        }
-
         // Fill the form with the Product information
         private void FillTheForm(GBRProduct product)
         {
@@ -162,22 +182,6 @@ namespace PizzaParlor
             txtDescription.Text = product.Description;
         }
 
-        // Prevent the insertion of any char that is not a digit and only one .
-        private void DigitsWithDecimals(object sender, KeyPressEventArgs e)
-        {
-            TextBox textBox = (TextBox) sender;// safecast
-            char input = e.KeyChar;
-            // checks for .
-            if (input == 46 && textBox.Text.IndexOf('.') != -1) // already has digits.
-            {
-                e.Handled = true;
-                return;
-            }
-            if (!char.IsDigit(input) && input != 8 && input != 46) // digits, dot or backspace
-            {
-                e.Handled = true;
-            }
-        }
 
         // Attempt validation
         private void ValidateForm()
