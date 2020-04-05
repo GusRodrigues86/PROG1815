@@ -9,10 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace PizzaParlor.GBRClasses
 {
@@ -38,7 +35,9 @@ namespace PizzaParlor.GBRClasses
         ///  StreamReader to read the file
         /// </summary>
         private static StreamReader reader;
-        /// <summary>if we are inserting into file.</summary>
+        /// <summary>
+        /// if we are inserting into file.
+        /// </summary>
         private bool isInsert = false;
 
         #endregion
@@ -314,6 +313,10 @@ namespace PizzaParlor.GBRClasses
             }
         }
 
+        /// <summary>
+        /// Delete the supplied product and save file.
+        /// </summary>
+        /// <param name="product">The product to be delete.</param>
         private void DeleteAndSaveFile(GBRProduct product)
         {
             // get all
@@ -326,7 +329,7 @@ namespace PizzaParlor.GBRClasses
             }
         }
 
-
+        /// <inheritdoc/>
         public override string ToString()
         {
             // fields order:

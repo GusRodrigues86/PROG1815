@@ -1,13 +1,16 @@
-﻿using PizzaParlor.GBRClasses;
+﻿/* Assignment 4
+ * GBRProductMaintenance.cs
+ * Form structure and events
+ * 
+ * Revision History
+ *      Gustavo Bonifacio Rodrigues, 2020.03.30: Created
+ */
+using PizzaParlor.GBRClasses;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PizzaParlor
