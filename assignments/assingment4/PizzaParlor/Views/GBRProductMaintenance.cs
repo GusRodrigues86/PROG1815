@@ -183,6 +183,7 @@ namespace PizzaParlor
             txtPrice.Text = product.Price.ToString("F2", CULTURE.NumberFormat);
             txtFactor.Text = product.CostFactorForToppings.ToString("F2", CULTURE.NumberFormat);
             txtDescription.Text = product.Description;
+            chkTopping.Checked = product.IsPizzaTopping;
         }
 
 
