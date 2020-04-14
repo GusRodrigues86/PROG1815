@@ -38,7 +38,6 @@ namespace PizzaParlor.GBRClasses
         /// <summary>
         /// if we are inserting into file.
         /// </summary>
-        private bool isInsert = false;
 
         #endregion
         #region Fields        
@@ -63,6 +62,7 @@ namespace PizzaParlor.GBRClasses
         /// Is this product a topping?
         /// </summary>
         private bool isTopping;
+        private bool isInsert = false;
 
         #endregion
         #region Constructor
@@ -186,7 +186,7 @@ namespace PizzaParlor.GBRClasses
 
             try
             {
-                SaveToFile(product);
+                product.SaveToFile(product);
             }
             catch (Exception ex)
             {
